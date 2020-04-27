@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_entity_store_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_marginLeft="16.5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="新手任务"
+      android:layout_marginTop="23dp"
+        android:textColor="#010100"
+        android:textSize="15sp"
+        android:gravity="left"
+        />
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        android:id="@+id/item_order_goods_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bj_3dp"
+        android:background="#e5e5e5"/>
+</LinearLayout>

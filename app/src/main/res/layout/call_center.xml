@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_white_shape"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/bj_36dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/bj_22dp"
+        android:text="拨打电话"
+        android:textColor="#ff333333"
+        android:textSize="18sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bj_1dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginTop="@dimen/bj_11dp"
+        android:layout_marginRight="@dimen/bj_7dp"
+        android:background="#dddddd" />
+
+    <TextView
+        android:id="@+id/call_center_phone1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/bj_32dp"
+        android:text=""
+        android:textColor="#ff333333"
+        android:textSize="24sp" />
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/call_center_phone2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/bj_32dp"
+        android:text="0755-28129588"
+        android:textColor="#ff333333"
+        android:textSize="24sp" />
+</LinearLayout>

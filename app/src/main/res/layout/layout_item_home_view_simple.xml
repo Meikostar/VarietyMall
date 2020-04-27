@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:background="#f2f2f2"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:background="@drawable/shape_white_10"
+        android:layout_width="match_parent"
+        android:layout_height="111dp"
+        android:padding="@dimen/dp_10">
+        <ImageView
+            android:layout_marginRight="5dp"
+            android:id="@+id/iv_home_simple_icon"
+            android:layout_width="80dp"
+            android:layout_height="@dimen/bj_80dp"
+            android:layout_alignParentRight="true"
+            android:scaleType="centerCrop" />
+        <TextView
+            android:layout_marginTop="15dp"
+            android:id="@+id/tv_tl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="成长任务1：升级掌柜，省的多，赚的多"
+            android:textColor="#fffc2929"
+            android:textSize="12sp"
+            />
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/tv_tl"
+            android:id="@+id/tv_home_simple_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/bj_12dp"
+            android:layout_toLeftOf="@+id/iv_home_simple_icon"
+            android:maxLines="2"
+            android:text="建立一个大于50人的微信群完成升级，即可开启省更多同时分享赚钱等9项特权 "
+            android:textColor="#111111"
+            android:textSize="12sp" />
+
+
+    </RelativeLayout>
+</LinearLayout>

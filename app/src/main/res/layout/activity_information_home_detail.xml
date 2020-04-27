@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/action_bar" />
+
+    <com.smg.variety.view.widgets.autoview.ObservableScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!--<com.jkdfapplication.view.widgets.NoScrollWebView-->
+            <!--android:id="@+id/webView"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="157dp" />-->
+            <ImageView
+                android:id="@+id/iv_item_head_line_icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:adjustViewBounds="true"
+                android:minHeight="157dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/ic_launcher"
+                android:visibility="gone" />
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tv_item_head_line_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="14dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="title"
+                android:textColor="#ff333333"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="14dp"
+                android:layout_marginTop="15dp">
+
+                <TextView
+                    android:id="@+id/tv_item_head_line_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10-09"
+                    android:textColor="#ff999999"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_look_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:textColor="#ff999999"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <com.smg.variety.view.widgets.autoview.NoScrollWebView
+                android:id="@+id/webView_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                tools:ignore="WebViewLayout" />
+
+            <!--<TextView-->
+            <!--android:id="@+id/content_tv"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="15dp"-->
+            <!--android:layout_marginTop="15dp"-->
+            <!--android:layout_marginRight="20dp"-->
+            <!--android:minHeight="83dp"-->
+            <!--android:text="      10月20日腦白金上漲發佈了最新版10月20日CC腦白金上漲發貨10月20日腦白金上漲發佈了最新版10月20日CC腦白金上漲發貨10月20日腦白金上漲發佈了最新版10月20日CC腦白金上漲發貨10月20日腦白金上漲發佈了最新版10月20日CC腦白金上漲發貨"-->
+            <!--android:textColor="#ff666666"-->
+            <!--android:textSize="13sp" />-->
+
+        </LinearLayout>
+    </com.smg.variety.view.widgets.autoview.ObservableScrollView>
+</LinearLayout>

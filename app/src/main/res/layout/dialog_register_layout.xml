@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginLeft="12dp"
+        android:id="@+id/rl_red_packet_open"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:background="@drawable/shape_white_10">
+
+        <TextView
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="用户协议与隐私政策"
+            android:layout_marginTop="27dp"
+            android:layout_marginBottom="22dp"
+            android:textStyle="bold"
+            android:textColor="#ff333333"
+            android:textSize="15sp"
+            />
+        <com.yanzhenjie.recyclerview.swipe.widget.StickyNestedScrollView
+            android:layout_width="match_parent"
+            android:layout_marginTop="60dp"
+            android:layout_marginLeft="15dp"
+            android:scrollbars="none"
+            android:layout_marginBottom="80dp"
+            android:layout_marginRight="15dp"
+            android:layout_height="match_parent">
+            <LinearLayout
+
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <WebView
+                    android:scrollbars="none"
+                    android:paddingLeft="@dimen/bj_5dp"
+                    android:paddingRight="@dimen/bj_5dp"
+                    android:id="@+id/webview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </com.yanzhenjie.recyclerview.swipe.widget.StickyNestedScrollView>
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/iv_close"
+            android:layout_marginRight="@dimen/bj_7dp"
+            android:layout_marginTop="7dp"
+            android:layout_alignParentRight="true"
+            android:padding="7dp"
+            android:layout_width="26dp"
+            android:layout_height="28dp"
+
+            />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="26dp"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+
+                android:id="@+id/tv_miss"
+                android:layout_weight="0.7"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/bj_43dp"
+                android:layout_marginLeft="@dimen/bj_15dp"
+                android:layout_marginTop="@dimen/bj_50dp"
+                android:layout_marginRight="@dimen/bj_15dp"
+                android:background="@drawable/btn_no_agree"
+                android:gravity="center"
+                android:text="不同意"
+                android:textColor="#ffffffff"
+                android:textSize="18sp" />
+            <TextView
+
+                android:id="@+id/tv_argee"
+                android:layout_weight="1.3"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/bj_43dp"
+                android:layout_marginLeft="@dimen/bj_15dp"
+                android:layout_marginTop="@dimen/bj_50dp"
+                android:layout_marginRight="@dimen/bj_15dp"
+                android:background="@drawable/login_blue"
+                android:gravity="center"
+                android:text="同意"
+                android:textColor="#ffffffff"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

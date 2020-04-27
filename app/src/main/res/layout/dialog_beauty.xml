@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#00000000"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_centerVertical="true"
+            android:id="@+id/tv_cz"
+            android:background="@drawable/shape_white_10"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="15dp"
+            android:gravity="center"
+            android:layout_width="49dp"
+            android:layout_height="20dp"
+            android:text="重置"
+            android:textColor="#ff000000"
+            android:textSize="12sp"
+            />
+        <TextView
+            android:id="@+id/tv_bc"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/shape_white_10"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="15dp"
+            android:gravity="center"
+            android:layout_width="49dp"
+            android:layout_height="20dp"
+            android:text="保存"
+            android:textColor="#ff000000"
+            android:textSize="12sp"
+            />
+    </RelativeLayout>
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:id="@+id/rl_mopi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/bj_15dp">
+        <ImageView
+            android:src="@drawable/live_mp"
+            android:layout_width="@dimen/bj_44dp"
+            android:layout_height="@dimen/bj_44dp" />
+        <TextView
+            android:layout_marginLeft="8dp"
+            android:id="@+id/tv_mopi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="磨皮"
+            android:textColor="@color/white"
+            android:textSize="@dimen/wz_15sp" />
+
+        <SeekBar
+            android:id="@+id/mopiLevel_seekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/bj_20dp"
+            android:layout_toRightOf="@+id/tv_mopi"
+            android:max="100"
+            android:progress="100" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_mopi"
+        android:padding="@dimen/bj_15dp">
+        <ImageView
+            android:src="@drawable/live_mb"
+            android:layout_width="@dimen/bj_44dp"
+            android:layout_height="@dimen/bj_44dp" />
+        <TextView
+            android:layout_marginLeft="8dp"
+            android:id="@+id/tv_meibai"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="美白"
+            android:textColor="@color/white"
+            android:textSize="@dimen/wz_15sp" />
+
+        <SeekBar
+            android:id="@+id/meibaiLevel_seekBar"
+            android:layout_marginLeft="@dimen/bj_20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tv_meibai"
+            android:max="100"
+            android:progress="100" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#f2f2f2"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="121dp"
+        android:layout_marginLeft="@dimen/bj_13dp"
+        android:layout_marginRight="@dimen/bj_13dp"
+        android:elevation="@dimen/bj_0dp"
+        app:cardCornerRadius="@dimen/bj_10dp">
+
+        <com.youth.banner.Banner
+            app:delay_time="4000"
+            android:id="@+id/banner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:indicator_drawable_selected="@drawable/shape_circle_ffffff"
+            app:indicator_drawable_unselected="@drawable/shape_circle_aaaaaa" />
+    </android.support.v7.widget.CardView>
+
+
+</LinearLayout>

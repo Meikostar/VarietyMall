@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+     android:paddingTop="29dp"
+    android:background="#2864D9"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_width="match_parent"
+        android:layout_height="38dp">
+
+        <TextView
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="在线直播"
+            android:textColor="#ffffffff"
+            android:textSize="18sp"
+            />
+        <ImageView
+            android:id="@+id/iv_search"
+            android:layout_centerVertical="true"
+            android:layout_width="37dp"
+            android:layout_height="37dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="48dp"
+            android:src="@drawable/live_ss"
+            android:padding="10dp"
+            />
+        <ImageView
+
+            android:id="@+id/iv_more"
+            android:padding="10dp"
+            android:layout_centerVertical="true"
+            android:layout_width="37dp"
+            android:layout_height="37dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="6dp"
+            android:src="@drawable/live_m"
+            />
+    </RelativeLayout>
+    <com.smg.variety.view.widgets.tablayout.SlidingScaleTabLayout
+
+        android:background="#2864D9"
+        android:id="@+id/tablayout"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        app:tl_indicator_color="#fff"
+        app:tl_indicator_corner_radius="3dp"
+        app:tl_indicator_gravity="BOTTOM"
+        app:tl_indicator_height="5dp"
+        app:tl_indicator_width="28dp"
+        app:tl_textBold="SELECT"
+        app:tl_tab_gravity="Bottom"
+        app:tl_tab_marginBottom="8dp"
+        app:tl_tab_padding="15dp"
+        app:tl_textSelectColor="#fff"
+        app:tl_textSelectSize="20sp"
+        app:tl_textUnSelectColor="#fff"
+        app:tl_textUnSelectSize="14sp" />
+    <android.support.v4.view.ViewPager
+        android:background="#2864D9"
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="2dp" />
+    <com.smg.variety.view.widgets.banner.BannerView
+        android:background="#2864D9"
+        android:id="@+id/bannerView"
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        app:bannerPageAlpha="1.0"
+        app:bannerPageMargin="8dp"
+        app:bannerPagePercent="1"
+        app:bannerPageScale="1"
+        app:bannerAnimScroll="true"
+        app:bannerAutoScroll="true"
+        app:bannerScrollDuration="6000"
+        app:bannerAnimDuration="1000"/>
+
+    <LinearLayout
+        android:gravity="center_horizontal"
+        android:id="@+id/ll_bg"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="23dp">
+
+    </LinearLayout>
+</LinearLayout>

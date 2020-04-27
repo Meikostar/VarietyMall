@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:visibility="gone"
+        android:layout_marginBottom="5dp"
+        android:id="@+id/ll_bg"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="55dp">
+
+        <RelativeLayout
+
+            android:layout_weight="1"
+            android:background="@drawable/blackt_title_rectangle_lights"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/bj_35dp"
+            android:layout_marginLeft="@dimen/bj_15dp">
+
+
+            <TextView
+                android:gravity="center"
+                android:id="@+id/tv_date_star"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/tv_login_account_number"
+                android:textColor="#333"
+                android:hint="开始时间"
+                android:textColorHint="#666"
+                android:textSize="14sp" />
+
+        </RelativeLayout>
+        <View
+            android:layout_width="@dimen/bj_25dp"
+            android:layout_height="2dp"
+            android:background="#999"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"/>
+        <RelativeLayout
+            android:layout_marginRight="15dp"
+            android:background="@drawable/blackt_title_rectangle_lights"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="@dimen/bj_35dp">
+
+
+            <TextView
+
+                android:gravity="center"
+                android:textColor="#333"
+                android:id="@+id/tv_date_end"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="结束时间"
+                android:textColorHint="#666"
+                android:textSize="14sp" />
+
+        </RelativeLayout>
+        <TextView
+            android:id="@+id/tv_find"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/shape_radius_5_blue"
+            android:gravity="center"
+            android:layout_width="@dimen/bj_80dp"
+            android:layout_height="35dp"
+            android:textSize="15sp"
+            android:text="查询"
+            android:textColor="#fff"/>
+    </LinearLayout>
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.scwang.smartrefresh.header.MaterialHeader
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recy_my_order"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:nestedScrollingEnabled="false" />
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+</LinearLayout>

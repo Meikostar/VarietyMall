@@ -1,0 +1,418 @@
+<resources>
+    <!--自定义progressDialog-->
+    <style name="progress_dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@null</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+    <!--全屏透明，有任务栏电量时间...-->
+    <style name="NoTitleTranslucentTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowDisablePreview">true</item>
+    </style>
+
+    <!--Banner无限轮播属性-->
+    <declare-styleable name="BannerView">
+        <attr name="bannerPageMargin" format="dimension"/>
+        <attr name="bannerPagePercent" format="float"/>
+        <attr name="bannerPageScale" format="float"/>
+        <attr name="bannerPageAlpha" format="float"/>
+        <attr name="bannerScrollDuration" format="integer"/>
+        <attr name="bannerAnimDuration" format="integer"/>
+        <attr name="bannerAnimScroll" format="boolean"/>
+        <attr name="bannerAutoScroll" format="boolean"/>
+    </declare-styleable>
+    <!-- 自定义提示dialog样式 -->
+    <style name="dialog_with_alpha" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+    <!-- 右上角popupwindow -->
+    <style name="AnimationPreview">
+        <item name="android:windowEnterAnimation">@anim/fade_in</item>
+        <item name="android:windowExitAnimation">@anim/fade_out</item>
+    </style>
+    <declare-styleable name="FlexboxLayout">
+        <attr name="flexDirection">
+            <enum name="row" value="0" />
+            <enum name="row_reverse" value="1" />
+            <enum name="column" value="2" />
+            <enum name="column_reverse" value="3" />
+        </attr>
+
+        <attr name="flexWrap">
+            <enum name="nowrap" value="0" />
+            <enum name="wrap" value="1" />
+            <enum name="wrap_reverse" value="2" />
+        </attr>
+
+        <!--
+            Omitting flex-flow property since it's reflected in the parent flex container.
+            Set the flexDirection and/or flexWrap to the parent flex container explicitly if you
+            want to use the flex-flow similar way to the web.
+         -->
+
+        <attr name="justifyContent">
+            <enum name="flex_start" value="0" />
+            <enum name="flex_end" value="1" />
+            <enum name="center" value="2" />
+            <enum name="space_between" value="3" />
+            <enum name="space_around" value="4" />
+        </attr>
+
+        <attr name="alignItems">
+            <enum name="flex_start" value="0" />
+            <enum name="flex_end" value="1" />
+            <enum name="center" value="2" />
+            <enum name="baseline" value="3" />
+            <enum name="stretch" value="4" />
+        </attr>
+
+        <attr name="alignContent">
+            <enum name="flex_start" value="0" />
+            <enum name="flex_end" value="1" />
+            <enum name="center" value="2" />
+            <enum name="space_between" value="3" />
+            <enum name="space_around" value="4" />
+            <enum name="stretch" value="5" />
+        </attr>
+
+
+    </declare-styleable>
+    <declare-styleable name="FlexboxLayout_Layout">
+        <attr name="layout_order" format="integer" />
+        <!-- Negative numbers are invalid. -->
+        <attr name="layout_flexGrow" format="float" />
+        <!-- Negative numbers are invalid. -->
+        <attr name="layout_flexShrink" format="float" />
+        <!--
+            The initial length in a percentage format relative to its parent. This is similar to the
+            flex-basis property in the original CSS specification.
+            (https://www.w3.org/TR/css-flexbox-1/#flex-basis-property)
+            But unlike the flex-basis property, this attribute only accepts a value in fraction
+            (percentage), whereas flex-basis property accepts width values such as 1em, 10px and
+            the 'content' string.
+            But specifying initial fixed width values can be done by specifying width values in
+            layout_width (or layout_height, varies depending on the flexDirection). Also the same
+            effect can be done by specifying "wrap_contnet" in layout_width (or layout_height) if
+            developers want to achieve the same effect as 'content'.
+            Thus, this attribute only accepts fraction values, which can't be done through
+            layout_width (or layout_height) for simplicity.
+        -->
+        <attr name="layout_flexBasisPercent" format="fraction" />
+        <!--
+            Omitting flex property since it's a shorthand for layout_flexGrow and layout_flexShrink
+            and layout_percentInParent (flex-basis in the original CSS spec).
+        -->
+
+        <attr name="layout_alignSelf">
+            <enum name="auto" value="-1" />
+            <!-- The values below need to match the values of alignItems -->
+            <enum name="flex_start" value="0" />
+            <enum name="flex_end" value="1" />
+            <enum name="center" value="2" />
+            <enum name="baseline" value="3" />
+            <enum name="stretch" value="4" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="Custom_TagBtn">
+        <attr name="btn_tag_txt" format="string"></attr>
+    </declare-styleable>
+    <declare-styleable name="SlidingScaleTabLayout">
+        <!-- indicator -->
+        <attr name="tl_indicator_color" />
+        <attr name="tl_indicator_height" />
+        <attr name="tl_indicator_width" />
+        <attr name="tl_indicator_margin_left" />
+        <attr name="tl_indicator_margin_top" />
+        <attr name="tl_indicator_margin_right" />
+        <attr name="tl_indicator_margin_bottom" />
+        <attr name="tl_indicator_corner_radius" />
+        <attr name="tl_indicator_gravity" />
+        <attr name="tl_indicator_style" />
+        <attr name="tl_indicator_width_equal_title" />
+
+        <!-- underline -->
+        <attr name="tl_underline_color" />
+        <attr name="tl_underline_height" />
+        <attr name="tl_underline_gravity" />
+
+        <!-- divider -->
+        <attr name="tl_divider_color" />
+        <attr name="tl_divider_width" />
+        <attr name="tl_divider_padding" />
+
+        <!-- tab -->
+        <attr name="tl_tab_padding" />
+        <attr name="tl_tab_space_equal" />
+        <attr name="tl_tab_width" />
+        <attr name="tl_tab_marginTop" />
+        <attr name="tl_tab_marginBottom" />
+        <attr name="tl_tab_gravity" />
+
+        <!-- title -->
+        <attr name="tl_textSelectSize" />
+        <attr name="tl_textUnSelectSize" />
+        <attr name="tl_textSelectColor" />
+        <attr name="tl_textUnSelectColor" />
+        <attr name="tl_textBold" />
+        <attr name="tl_textAllCaps" />
+
+    </declare-styleable>
+    <!-- tab的位置 -->
+
+    <!-- tab -->
+    <!-- 设置tab的paddingLeft和paddingRight -->
+    <attr name="tl_tab_padding" format="dimension" />
+    <!-- 设置tab大小等分 -->
+    <attr name="tl_tab_space_equal" format="boolean" />
+    <!-- 设置tab固定大小 -->
+    <attr name="tl_tab_width" format="dimension" />
+
+    <!-- 设置tab的上下间距 -->
+    <attr name="tl_tab_marginTop" format="dimension" />
+    <attr name="tl_tab_marginBottom" format="dimension" />
+
+    <!-- tab的位置 -->
+    <attr name="tl_tab_gravity" format="enum">
+        <enum name="Top" value="0" />
+        <enum name="Bottom" value="1" />
+        <enum name="Center" value="2" />
+    </attr>
+
+    <!-- title -->
+    <!-- 设置字体大小 -->
+    <attr name="tl_textSize" format="dimension" />
+    <attr name="tl_textSelectSize" format="dimension" />
+    <attr name="tl_textUnSelectSize" format="dimension" />
+    <!-- 设置字体选中颜色 -->
+    <attr name="tl_textSelectColor" format="color" />
+    <!-- 设置字体未选中颜色 -->
+    <attr name="tl_textUnSelectColor" format="color" />
+    <!-- 设置字体加粗 -->
+    <attr name="tl_textBold" format="enum">
+        <enum name="NONE" value="0" />
+        <enum name="SELECT" value="1" />
+        <enum name="BOTH" value="2" />
+    </attr>
+    <!-- 设置字体全大写 -->
+    <attr name="tl_textAllCaps" format="boolean" />
+    <declare-styleable name="MsgView">
+        <!-- 圆角矩形背景色 -->
+        <attr name="mv_backgroundColor" format="color" />
+        <!-- 圆角弧度,单位dp-->
+        <attr name="mv_cornerRadius" format="dimension" />
+        <!-- 圆角弧度,单位dp-->
+        <attr name="mv_strokeWidth" format="dimension" />
+        <!-- 圆角边框颜色-->
+        <attr name="mv_strokeColor" format="color" />
+        <!-- 圆角弧度是高度一半-->
+        <attr name="mv_isRadiusHalfHeight" format="boolean" />
+        <!-- 圆角矩形宽高相等,取较宽高中大值-->
+        <attr name="mv_isWidthHeightEqual" format="boolean" />
+    </declare-styleable>
+    <style name="CustomDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+    </style>
+    <style name="pickerview_dialogAnim" mce_bogus="1" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/pickerview_dialog_scale_in</item>
+        <item name="android:windowExitAnimation">@anim/pickerview_dialog_scale_out</item>
+    </style>
+    <style name="custom_dialog2" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <!-- Dialog的windowFrame框为无 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 是否漂现在activity上 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 是否半透明 -->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@null</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <!-- 去除黑色边框的关键设置项 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 屏幕背景是否变暗 -->
+        <item name="android:backgroundDimAmount">0.3</item>
+    </style>
+    <declare-styleable name="pickerview">
+        <attr name="pickerview_gravity">
+            <enum name="center" value="17"/>
+            <enum name="left" value="3"/>
+            <enum name="right" value="5"/>
+        </attr>
+        <attr name="pickerview_textSize" format="dimension"/>
+        <attr name="pickerview_textColorOut" format="color"/>
+        <attr name="pickerview_textColorCenter" format="color"/>
+        <attr name="pickerview_dividerColor" format="color"/>
+        <attr name="pickerview_lineSpacingMultiplier" format="float"/>
+    </declare-styleable>
+
+    <style name="line_1">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.5dp</item>
+        <item name="android:background">@color/my_color_e5e5e5</item>
+    </style>
+    <style name="tv_userInfo_title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:textSize">@dimen/wz_15sp</item>
+        <item name="android:textColor">@color/my_color_2E2E2E</item>
+    </style>
+    <style name="ll_userInfo_item_child">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/bj_50dp</item>
+        <item name="android:layout_marginLeft">@dimen/bj_15dp</item>
+        <item name="android:layout_marginRight">@dimen/bj_15dp</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+    <style name="bottomAnimStyle" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/slide_in_bottom</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_bottom</item>
+    </style>
+    <style name="rightAnimStyle" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/slide_in_right</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_right</item>
+    </style>
+    <!-- 透明对话框 -->
+    <style name="transparent_style_dialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/transparent</item>
+    </style>
+    <style name="btn_confirm">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/bj_40dp</item>
+        <item name="android:background">@drawable/btn_packet_confirm_shape</item>
+        <item name="android:textSize">@dimen/wz_15sp</item>
+        <item name="android:textColor">@color/my_color_white</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="btn_packet_confirm">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/bj_40dp</item>
+        <item name="android:background">@drawable/btn_packet_confirm_shape</item>
+        <item name="android:textSize">@dimen/wz_14sp</item>
+        <item name="android:textColor">@color/my_color_FFFFFF</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="community_tab_button_blue_style" parent="@android:style/Widget.CompoundButton.RadioButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:button">@null</item>
+        <item name="android:textSize">@dimen/wz_18sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@drawable/community_tab_button_text_color</item>
+    </style>
+    <style name="MyTabLayoutTextAppearanceInverse">
+        <item name="android:textSize">@dimen/wz_16sp</item>
+    </style>
+
+    <style name="divider_horizontal_f5f5f5_5">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/bj_5dp</item>
+        <item name="android:background">@color/my_color_f5f5f5</item>
+    </style>
+
+    <style name="lv_content">
+        <item name="android:listSelector">@color/transparent</item>
+        <item name="android:divider">@null</item>
+        <item name="android:dividerHeight">0dp</item>
+        <item name="android:scrollbars">none</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="AnimBottom" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/push_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/push_buttom_out</item>
+    </style>
+
+    <declare-styleable name="RedDotLayout">
+        <attr name="red_background" format="color" />
+        <attr name="red_radius" format="dimension" />
+        <attr name="red_text" format="string" />
+        <attr name="red_textColor" format="color" />
+        <attr name="red_location" format="integer" />
+        <attr name="red_textSize" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="MCheckBox">
+        <attr name="isCheckeds" format="boolean"/>
+        <attr name="drawables" format="reference|color"/>
+        <attr name="drawablechoose" format="reference|color"/>
+        <attr name="canNoClick" format="boolean"/>
+    </declare-styleable>
+    <!-- 自定义loading dialog 透明无边框-->
+    <style name="loading_dialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <!-- 自定义提示dialog样式1 -->
+    <style name="dialog_with_alpha1" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <!--<item name="android:backgroundDimAmount">0.6</item>-->
+    </style>
+
+    <style name="checkbox.theme" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/radio_check_state</item>
+    </style>
+    <style name="popwin_anim">
+        <item name="android:windowEnterAnimation">@anim/popw_show</item>
+        <item name="android:windowExitAnimation">@anim/popw_hide</item>
+    </style>
+    <declare-styleable name="SwipeMenuLayout">
+        <attr name="leftMenuId" format="reference" />
+        <attr name="rightMenuId" format="reference" />
+        <attr name="contentId" format="reference" />
+    </declare-styleable>
+
+    <style name="shop_cart_button_style" parent="@android:style/Widget.CompoundButton.RadioButton">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:button">@null</item>
+        <item name="android:textSize">@dimen/wz_16sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@drawable/cart_top_text_color</item>
+        <item name="android:background">@drawable/cart_radio_group_seletor</item>
+    </style>
+
+    <declare-styleable name="HeartLayout">
+        <attr name="initX" format="dimension" />
+        <attr name="initY" format="dimension" />
+        <attr name="xRand" format="dimension" />
+        <attr name="animLengthRand" format="dimension" />
+        <attr name="xPointFactor" format="dimension" />
+        <attr name="animLength" format="dimension" />
+        <attr name="heart_width" format="dimension" />
+        <attr name="heart_height" format="dimension" />
+        <attr name="bezierFactor" format="integer" />
+        <attr name="anim_duration" format="integer" />
+    </declare-styleable>
+</resources>

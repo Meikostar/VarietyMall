@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/transparent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/ll_bg"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="43dp"
+        android:layout_marginRight="43dp"
+        android:background="@drawable/shape_white_5"
+        android:layout_width="match_parent"
+        android:layout_height="323dp"
+        android:paddingTop="@dimen/bj_30dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="签到成功"
+            android:textColor="#111"
+            android:textSize="23sp" />
+        <TextView
+            android:id="@+id/tv_one"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/shape_radius_3_fc6"
+            android:layout_width="96dp"
+            android:layout_height="20dp"
+            android:text="已连续签到1天"
+            android:textColor="#ffffff"
+            android:textSize="12sp"
+            android:gravity="center"
+            />
+        <LinearLayout
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tv_notice_content"
+                android:layout_marginTop="38dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="您的专属导师微信号："
+                android:textColor="#111111"
+                android:textSize="15sp"
+                android:gravity="left"
+                />
+            <ImageView
+                android:src="@drawable/qiand_8"
+                android:layout_marginTop="26dp"
+                android:id="@+id/iv_img"
+                android:layout_width="185dp"
+                android:layout_height="130dp" />
+            <!-- TextView "hddklhfkdfh_1_1" -->
+            <LinearLayout
+                android:layout_marginTop="13dp"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <!-- TextView "10_10_1" -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="12dp"
+                    android:text="获得成长值"
+                    android:textColor="#a0a0a0"
+                    android:textSize="12sp"
+                    />
+
+                <!-- TextView "10_10_1_1" -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+10"
+                    android:id="@+id/tv_two"
+                    android:textColor="#fc6f48"
+                    android:textSize="12sp"
+                    android:gravity="left"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="12dp"
+                    android:text=" 获得优币"
+                    android:textColor="#a0a0a0"
+                    android:textSize="12sp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+10"
+                    android:id="@id/tv_three"
+                    android:textColor="#fc6f48"
+                    android:textSize="12sp"
+                    android:gravity="left"
+                    />
+            </LinearLayout>
+            <TextView
+                android:id="@+id/tv_four"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="再签到7天可获得额外奖励哦"
+                android:textColor="#a0a0a0"
+                android:textSize="12sp"
+                android:gravity="left"
+                />
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+
+    <ImageView
+        android:src="@drawable/qiand_7"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="43dp"
+        android:layout_marginBottom="12dp"
+        android:layout_above="@+id/ll_bg"
+        android:id="@+id/iv_close"
+        android:layout_width="@dimen/bj_34dp"
+        android:layout_height="@dimen/bj_34dp" />
+</RelativeLayout>

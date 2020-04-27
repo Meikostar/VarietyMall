@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_entity_store_item"
+    android:layout_width="match_parent"
+    android:layout_height="68dp"
+    android:gravity="center_vertical"
+    android:orientation="vertical">
+
+    <LinearLayout
+
+        android:layout_marginLeft="16.5dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="42dp">
+        <ImageView
+            android:id="@+id/iv_img"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/renw_1"
+            android:layout_width="@dimen/bj_17dp"
+            android:layout_height="@dimen/bj_17dp" />
+        <RelativeLayout
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginLeft="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+               android:id="@+id/tv_one"
+                android:textColor="#010100"
+                android:textSize="16sp"
+                android:gravity="left"
+                />
+            <TextView
+                android:id="@+id/tv_two"
+                android:layout_alignParentBottom="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="#898989"
+                android:textSize="13sp"
+                android:gravity="left"
+                />
+        </RelativeLayout>
+        <TextView
+            android:id="@+id/tv_go"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/shape_radius_15_rede32"
+            android:layout_width="72dp"
+            android:layout_height="31dp"
+            android:text="去领取"
+            android:layout_marginRight="15dp"
+            android:textColor="#ffffff"
+            android:textSize="14sp"
+            android:gravity="center"
+            />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="wrap_content">
+
+
+     <LinearLayout
+         android:id="@+id/ll_bg"
+         android:orientation="horizontal"
+         android:layout_width="match_parent"
+         android:layout_height="127dp">
+         <FrameLayout
+             android:layout_marginBottom="12dp"
+             android:layout_marginLeft="13.5dp"
+             android:layout_marginTop="17.5dp"
+             android:layout_width="@dimen/bj_100dp"
+             android:layout_height="100dp">
+
+
+             <ImageView
+                 android:id="@+id/iv_img"
+                 android:layout_width="@dimen/bj_100dp"
+                 android:layout_height="@dimen/bj_100dp" />
+             <TextView
+
+                 android:background="@drawable/black_circle"
+                 android:layout_marginTop="5dp"
+                 android:id="@+id/tv_cout"
+                 android:gravity="center"
+                 android:text="1"
+                 android:layout_marginLeft="5dp"
+                 android:layout_width="25dp"
+                 android:layout_height="25dp"
+                 android:layout_alignParentRight="true"
+                 android:textColor="@color/white"
+                 android:textSize="12sp" />
+         </FrameLayout>
+         <LinearLayout
+             android:layout_marginLeft="13dp"
+             android:orientation="vertical"
+             android:layout_centerVertical="true"
+             android:layout_width="wrap_content"
+             android:layout_height="match_parent">
+             <TextView
+                 android:id="@+id/tv_title"
+                 android:layout_marginTop="24dp"
+                 android:maxLines="2"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="商品标题商品标题商品标题商品标题商品标题"
+                 android:textColor="#ff111111"
+                 android:textSize="15sp"
+                 />
+             <TextView
+                 android:id="@+id/tv_price"
+                 android:layout_marginTop="15dp"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="￥1999.00"
+                 android:textColor="#ffff0000"
+                 android:textSize="15sp"
+                 />
+             <TextView
+                 android:id="@+id/tv_prices"
+                 android:layout_marginTop="5dp"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="￥3699.00"
+                 android:textColor="#ffaaaaaa"
+                 android:textSize="10sp"
+                 />
+         </LinearLayout>
+     </LinearLayout>
+
+    <TextView
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:background="@drawable/shape_radius_red"
+        android:layout_marginTop="90dp"
+        android:id="@+id/tv_del"
+        android:gravity="center"
+        android:text="删除"
+        android:layout_marginRight="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="22dp"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/white"
+        android:textSize="12sp" />
+    <View
+       android:layout_marginTop="127dp"
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:layout_marginLeft="@dimen/bj_8dp"
+        android:background="#EEEEEE"/>
+</RelativeLayout>

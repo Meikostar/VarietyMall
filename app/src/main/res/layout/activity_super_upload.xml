@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/bj_24dp">
+
+
+    <include layout="@layout/layout_title_view" />
+
+    <View
+        android:layout_height="10dp"
+        style="@style/divider_horizontal_f5f5f5_5" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+             <LinearLayout
+                 android:layout_marginTop="25dp"
+                 android:layout_marginLeft="13dp"
+                 android:orientation="horizontal"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content">
+                 <TextView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="升级进展："
+                     android:textColor="#111111"
+                     android:textSize="18sp"
+                     android:gravity="left"
+                     />
+
+                 <!-- TextView "_1_1" -->
+                 <TextView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="待上传截图"
+                     android:textColor="#0266ca"
+                     android:textSize="18sp"
+                     android:gravity="left"
+                     />
+             </LinearLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_fz"
+                    android:layout_marginTop="70dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="12dp"
+                    android:layout_width="38dp"
+                    android:layout_height="19.5dp"
+                    android:text="复制"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="#ffffff"
+                    android:background="@drawable/shape_radius_glod5"
+                    android:textSize="12sp"
+                    android:gravity="center"
+                    />
+                <LinearLayout
+                    android:layout_marginBottom="13dp"
+                    android:layout_marginLeft="36dp"
+                    android:layout_marginRight="56dp"
+                    android:layout_marginTop="25dp"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1、新拉或已有一个超50人的微信推广群，群名称修改为："
+                        android:lineSpacingExtra="5dp"
+                        android:textColor="#111111"
+                        android:textSize="15sp"
+                        android:gravity="left"
+                        />
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:id="@+id/tv_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:text=""
+                            android:textColor="#ffb401"
+                            android:textSize="14sp"
+                            />
+
+                    </LinearLayout>
+
+                    <!-- TextView "1_50_5214634_2_3_30_1_2_1" -->
+                    <TextView
+                        android:layout_marginRight="12dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2、上传两张截图（截图一：显示出群主和群人数；截图二：显示出群名称）"
+                        android:textColor="#111"
+                        android:textSize="15sp"
+                        android:gravity="left"
+                        />
+
+                    <TextView
+                        android:layout_marginRight="12dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="3、上传提交后，工作时间30分钟内会有审核结果，审核通过会有短信通知。"
+                        android:textColor="#111"
+                        android:textSize="15sp"
+                        android:gravity="left"
+                        />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <View
+                android:layout_height="10dp"
+                style="@style/divider_horizontal_f5f5f5_5" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/bj_16dp"
+                android:paddingTop="@dimen/bj_19dp"
+                android:paddingRight="@dimen/bj_10dp"
+                android:paddingBottom="@dimen/dp_10">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="图片上传"
+
+                    android:textColor="#111111"
+                    android:textSize="18sp"
+                    android:gravity="left"
+                    />
+
+                <android.support.v7.widget.RecyclerView
+                    android:layout_marginTop="18dp"
+                    android:id="@+id/recy_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_marginBottom="35dp"
+                android:id="@+id/btn_open_live"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginLeft="35dp"
+                android:layout_marginRight="35dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/bj_40dp"
+                android:background="@drawable/shape_radius_glods5"
+                android:gravity="center"
+                android:text="确认"
+                android:textColor="#111"
+                android:textSize="16sp" />
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_topic_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#f2f2f2"
+    android:paddingLeft="@dimen/bj_10dp"
+    android:paddingTop="@dimen/bj_15dp"
+    android:paddingRight="@dimen/bj_10dp"
+    android:paddingBottom="@dimen/bj_10dp">
+    <LinearLayout
+        android:background="@drawable/shape_white_10"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_marginLeft="14dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/img_user_header"
+                android:layout_width="@dimen/bj_50dp"
+                android:layout_height="@dimen/bj_50dp"
+                android:src="@mipmap/icon_logos"
+                android:layout_alignParentLeft="true"/>
+            <TextView
+                android:id="@+id/tv_topic_follow"
+                android:layout_width="66dp"
+                android:layout_height="25dp"
+                android:gravity="center"
+                android:layout_marginRight="@dimen/bj_10dp"
+                android:textSize="@dimen/wz_12sp"
+                android:layout_alignParentRight="true"
+                android:text="复制文字"
+
+                android:textColor="@color/white"
+                android:background="@drawable/shape_radius_30blue"
+                android:layout_centerVertical="true" />
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/bj_10dp"
+                android:layout_toRightOf="@id/img_user_header"
+                android:layout_toLeftOf="@id/tv_topic_follow"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="壹基金爱心工程"
+                android:textColor="@color/my_color_black"
+                android:textSize="@dimen/wz_16sp" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/bj_10dp"
+            android:layout_marginRight="@dimen/bj_10dp"
+            android:layout_marginTop="@dimen/bj_10dp"
+            android:orientation="vertical">
+            <com.smg.variety.view.widgets.autoview.NoScrollWebView
+                android:id="@+id/webView_huodon"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:ignore="WebViewLayout" />
+
+            <ImageView
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/iv_content"
+                android:layout_width="@dimen/bj_150dp"
+                android:layout_height="@dimen/bj_240dp"/>
+
+            <TextView
+                android:id="@+id/tv_click"
+                android:layout_marginBottom="13dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="点击图片获取您的专属海报"
+                android:textColor="#ff318fef"
+                android:textSize="12sp"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

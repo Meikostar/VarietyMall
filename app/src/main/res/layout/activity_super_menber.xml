@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#cd1010"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/bj_24dp">
+
+    <RelativeLayout
+        android:id="@+id/layout_top"
+        android:layout_width="match_parent"
+        android:layout_height="45dp">
+
+        <ImageView
+            android:id="@+id/iv_title_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+           android:padding="10dp"
+            android:src="@drawable/white_arrow" />
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:textColor="#fff"
+            android:text="会员权益"
+            android:textSize="18sp" />
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+         android:background="#f02222"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/iv_img"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="17dp"
+            android:layout_marginRight="17dp"
+            android:layout_width="match_parent"
+            android:layout_height="355dp" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="55dp"
+            android:id="@+id/tv_next"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bj_43dp"
+            android:layout_marginLeft="@dimen/bj_15dp"
+
+            android:layout_marginRight="@dimen/bj_15dp"
+            android:background="@drawable/shape_radius_25_glod"
+            android:gravity="center"
+            android:text="直接建群升级"
+            android:textColor="#111111"
+            android:textSize="18sp"/>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/bj_24dp">
+
+    <include layout="@layout/layout_title_view" />
+
+    <RelativeLayout
+        android:background="@drawable/shape_radius_25_f2f2f2"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_height="@dimen/bj_45dp"
+        android:layout_marginTop="@dimen/bj_15dp"
+        android:paddingLeft="@dimen/bj_15dp"
+        android:paddingRight="@dimen/bj_15dp">
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/tv_login_account_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="账号"
+            android:textColor="#ff212121"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/et_login_account_number"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/bj_9dp"
+            android:layout_toRightOf="@+id/tv_login_account_number"
+            android:background="@null"
+            android:maxLength="11"
+            android:inputType="phone"
+            android:hint="手机号"
+            android:textColorHint="#bbb"
+            android:textSize="14sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bj_1dp"
+            android:layout_alignParentBottom="true"
+            android:background="#f5f5f5" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:background="@drawable/shape_radius_25_f2f2f2"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bj_45dp"
+        android:layout_marginTop="@dimen/bj_15dp"
+        android:paddingLeft="@dimen/bj_15dp"
+        android:paddingRight="@dimen/bj_15dp">
+
+
+
+        <EditText
+            android:id="@+id/et_login_password"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/bj_8dp"
+            android:background="@null"
+            android:hint="密码"
+            android:inputType="textPassword"
+            android:textColorHint="#bbb"
+            android:textSize="14sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bj_1dp"
+            android:layout_alignParentBottom="true"
+            android:background="#f5f5f5" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_login"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bj_43dp"
+        android:layout_marginLeft="@dimen/bj_25dp"
+        android:layout_marginTop="@dimen/bj_40dp"
+        android:layout_marginRight="@dimen/bj_25dp"
+        android:background="@drawable/shape_radius_5_e10020"
+        android:gravity="center"
+        android:text="登录"
+        android:textColor="#ffffffff"
+        android:textSize="16sp" />
+    <LinearLayout
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="@dimen/bj_25dp"
+        android:gravity="center">
+
+        <CheckBox
+
+            android:id="@+id/cb_remember_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/checkbox.theme"
+            android:checked="false"
+            android:text=""
+            android:textColor="#ff838383"
+            android:textSize="11sp" />
+        <TextView
+            android:layout_marginLeft="11dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="记住密码"
+            android:textColor="#ff4b4b4b"
+            android:textSize="15sp" />"
+
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:paddingLeft="@dimen/bj_9dp"
+        android:paddingRight="@dimen/bj_9dp">
+
+        <TextView
+            android:padding="@dimen/bj_6dp"
+            android:id="@+id/tv_login_forget_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="忘记密码？"
+            android:textColor="#ff4b4b4b"
+            android:textSize="15sp" />
+
+        <TextView
+            android:padding="6dp"
+            android:id="@+id/tv_login_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="立即注册"
+            android:textColor="#ff4b4b4b"
+            android:textSize="15sp" />
+    </RelativeLayout>
+</LinearLayout>

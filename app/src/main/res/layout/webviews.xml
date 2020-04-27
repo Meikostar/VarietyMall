@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:paddingTop="25dp"
+        android:id="@+id/navigationBar"
+        android:background="#fff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <RelativeLayout
+            android:layout_marginBottom="12dp"
+            android:layout_marginTop="6dp"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+
+
+
+            <TextView
+                android:layout_weight="0.6"
+                android:textColor="@color/my_color_333333"
+                android:textSize="18sp"
+                android:text=""
+                android:gravity="center"
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:paddingLeft="@dimen/bj_10dp"
+                android:paddingRight="@dimen/dp_10"
+                android:src="@mipmap/arrow_topbar" />
+
+        </RelativeLayout>
+
+
+
+
+    </LinearLayout>
+
+
+
+    <com.smg.variety.view.widgets.X5WebView
+        android:layout_below="@+id/navigationBar"
+        android:id="@+id/webview_webView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </com.smg.variety.view.widgets.X5WebView>
+</RelativeLayout>

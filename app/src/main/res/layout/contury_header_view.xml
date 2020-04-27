@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.youth.banner.Banner
+        android:id="@+id/banner"
+        android:layout_width="match_parent"
+        android:layout_height="171dp"
+
+        app:image_scale_type="fit_xy"
+        app:indicator_height="6dp"
+        app:indicator_margin="4dp"
+        app:indicator_width="6dp"
+        app:is_auto_play="true" />
+
+    <com.smg.variety.view.widgets.autoview.NoScrollGridView
+        android:id="@+id/grid_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:listSelector="@color/transparent"
+        android:numColumns="5"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/my_color_F5F5F5" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_one"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bj_75dp"
+            android:layout_marginLeft="@dimen/bj_12dp"
+            android:layout_marginTop="@dimen/bj_13dp"
+            android:layout_marginRight="@dimen/bj_12dp"
+            android:layout_marginBottom="@dimen/bj_13dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:id="@+id/ll_bg"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bj_44dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/bj_13dp"
+            android:layout_weight="1"
+            android:text="全球大牌"
+            android:textColor="@color/my_color_333333"
+            android:textSize="@dimen/wz_17sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:text="更多"
+            android:textColor="@color/my_color_666666"
+            android:textSize="@dimen/wz_14sp" />
+
+        <ImageView
+
+            android:layout_width="8dp"
+            android:layout_height="11dp"
+            android:layout_marginRight="12dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/arrow_right" />
+
+
+    </LinearLayout>
+
+    <com.smg.variety.view.widgets.autoview.NoScrollGridView
+        android:id="@+id/grid_content1"
+        android:layout_width="match_parent"
+        android:layout_height="159dp"
+        android:background="@color/white"
+        android:listSelector="@color/transparent"
+        android:numColumns="3"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:visibility="gone" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/my_color_F5F5F5" />
+
+    <com.smg.variety.view.widgets.AutoLocateHorizontalView
+
+        android:id="@+id/auto_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="39dp"
+        android:background="#fff" />
+</LinearLayout>

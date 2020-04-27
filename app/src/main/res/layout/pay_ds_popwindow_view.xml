@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#00000000"
+    android:orientation="vertical">
+   <View
+       android:layout_weight="1"
+       android:layout_width="match_parent"
+       android:layout_height="0dp"/>
+    <LinearLayout
+        android:orientation="vertical"
+
+        android:background="@drawable/shape_white_10"
+        android:layout_width="match_parent"
+        android:layout_height="336dp">
+
+        <TextView
+            android:layout_marginTop="18dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="打赏选择"
+            android:textColor="#ff111111"
+            android:textSize="18sp"
+            />
+
+
+
+
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="请选择打赏金额"
+            android:textColor="#ff999999"
+            android:textSize="12sp"
+            />
+        <com.smg.variety.view.widgets.FlexboxLayout
+
+            android:layout_marginTop="9dp"
+            android:focusableInTouchMode="true"
+            android:focusable="true"
+            android:id="@+id/fbl_zw"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="1dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="9dp"
+            android:background="@color/white"
+
+            android:paddingBottom="10dp"
+            app:flexDirection="row"
+            app:flexWrap="wrap"
+            app:justifyContent="flex_start" />
+        <TextView
+            android:layout_marginLeft="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="自定义打赏金额"
+            android:textColor="#ff999999"
+            android:textSize="12sp"
+            />
+        <LinearLayout
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:focusableInTouchMode="true"
+            android:focusable="true"
+            android:background="@drawable/shop_searh_bg"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:layout_marginRight="15dp"
+                android:paddingLeft="18dp"
+                android:id="@+id/et_money"
+                android:layout_weight="1"
+                android:layout_width="253dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/shape_radius_14_ddd"
+                android:hint="请输入打赏金额"
+                android:textColorHint="@color/white"
+                android:singleLine="true"
+                android:inputType="number"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_pay"
+                android:background="@drawable/shape_radius_14_blue"
+                android:gravity="center"
+                android:layout_width="77dp"
+                android:layout_height="34dp"
+                android:text="去支付"
+                android:textColor="#ffffffff"
+                android:textSize="15sp"
+                />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

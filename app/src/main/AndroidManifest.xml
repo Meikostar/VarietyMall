@@ -1,0 +1,677 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.smg.variety">
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS_FULL" />
+    <!-- 控制振动器 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission   android:name="android.permission.ACCESS_FINE_LOCATION"   />
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"   />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <!-- 防止设备休眠 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+    <!--获取联系人信息，demo中演示发送通讯录消息-->
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <!-- ⼩米 配置开始  -->
+    <permission
+        android:name="com.smg.variety.permission.MIPUSH_RECEIVE"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="com.smg.variety.permission.MIPUSH_RECEIVE" />
+    <!-- ⼩米 配置结束  -->
+    <!-- GCM 配置开始  -->
+    <permission
+        android:name="com.smg.variety.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="com.smg.variety.permission.C2D_MESSAGE" />
+    <!-- GCM 配置结束  -->
+    <!-- 华为 配置开始 -->
+    <!--检测网络状态-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!--检测wifi状态-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!--为了获取用户手机的IMEI，用来唯一的标识用户。-->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!--如果是安卓8.0，应用编译配置的targetSdkVersion>=26，请务必添加以下权限 -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <!-- 华为 配置结束  -->
+    <!-- MeiZu 配置开始  -->
+    <!-- 兼容 flyme5.0 以下版本，魅族内部集成 pushSDK 必填，不然无法收到 消息-->
+    <uses-permission android:name="com.meizu.flyme.push.permission.RECEIVE" />
+    <permission
+        android:name="com.smg.variety.push.permission.MESSAGE"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="com.smg.variety.push.permission.MESSAGE" />
+    <!-- 兼容 flyme3.0 配置权限-->
+    <uses-permission android:name="com.meizu.c2dm.permission.RECEIVE" />
+    <!-- MeiZu 配置结束  -->
+    <!-- OPPPO 权限配置-->
+    <uses-permission android:name="com.coloros.mcs.permission.SEND_MCS_MESSAGE" />
+    <!-- OPPO 配置结束-->
+    <!--华为手机更新应用桌面角标需要的权限-->
+    <uses-permission android:name="com.huawei.android.launcher.permission.CHANGE_BADGE" />
+    <!--网络权限-->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!--HMS-SDK引导升级HMS功能，保存下载的升级包需要SD卡写权限，文件写权限-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!--文件读权限-->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!-- 拨号权限 -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <!-- 访问GPS定位 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- 相机 -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!-- 录音 -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <!-- 七牛直播云-->
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
+    <application
+        android:name="com.smg.variety.base.BaseApplication"
+        android:allowBackup="true"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_logo"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:roundIcon="@mipmap/ic_logo"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:name="com.smg.variety.WelcomeActivity"
+            android:screenOrientation="portrait">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data
+                    android:host="com.smg.variety"
+                    android:scheme="variety."
+                    />
+
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.smg.variety.view.MainActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <action android:name="android.intent.action.VIEW" />
+                <!--配置聚合会话列表-->
+                <data
+                    android:host="com.smg.variety"
+                    android:pathPrefix="/conversationlist"
+                    android:scheme="rong" />
+            </intent-filter>
+
+        </activity>
+        <activity
+            android:name="com.smg.variety.view.mainfragment.consume.LoveFactoryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.mainfragment.consume.AllianceMallActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.mainfragment.consume.LoveFamilyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.mainfragment.consume.BabyPublishActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.EnterprisePermissionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.XgPwdActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.SelectConturyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.mainfragment.ImagePreviewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.LiveProductActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.smg.variety.view.activity.ProductListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.SpikeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.MoreHotLiveActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.ShopStoreDetailActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
+
+        <activity
+            android:name="com.smg.variety.view.activity.HotActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.ConturyDetialActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.ForgetPayPasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.SettingPasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.ConturyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.BrandsActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.smg.variety.view.activity.HostManActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.smg.variety.view.mainfragment.community.TopicPublishActivity"
+            android:screenOrientation="portrait" />
+        <!--<activity
+            android:name=".view.mainfragment.community.LocationSearchActivity"
+            android:screenOrientation="portrait" />-->
+        <activity
+            android:name="com.smg.variety.view.activity.RequestLivePermissionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.ActionDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.ActionOnlineSingupActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.PovertyReliefActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.LiveLifeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.StartLiveActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.AnchorInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.RegisterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.ForgetPasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.AccountSettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.UserInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.ModifyNicknameActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.ShippingAddressActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.AddShippingAddressActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.AreaListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.CollectActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.AttentionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.MyIssueActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.MyIssueDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.CommentCenterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.MyBuyGoodActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.MyFootprintActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.OrderActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.RefundAfterSalesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.RefundAfterSalesDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.MessageCenterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.BankCardManagerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.MyEarningsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.RechargeWithdrawDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.AddBandCardActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.RechargeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.WithdrawActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.IntegralBalanceActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.MyCardBagActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.HelpCenterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.AboutUsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.MessageFeedbackActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.EnterpriseProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.mainfragment.chat.UserDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.mainfragment.chat.AddFriendActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.mainfragment.chat.ModifyGroupActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.mainfragment.chat.NewFriendListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.mainfragment.chat.CreatGroupActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.mainfragment.consume.CommodityDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.mainfragment.consume.ShopCartActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.mainfragment.consume.BrandShopDetailActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity
+            android:name="com.smg.variety.view.mainfragment.consume.EntityStoreActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.mainfragment.consume.SelectCityActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.mainfragment.consume.ConfirmOrderActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.GlobeConturyActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".view.activity.MenberShareActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.BalanceWithdrawalActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.TxActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.NewsOrderActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".view.activity.MoreDetailActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.smg.variety.view.mainfragment.consume.LoveFactoryMoreActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.mainfragment.consume.LoveFactoryTypeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.mainfragment.consume.HeadLineDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.mainfragment.consume.ProductSearchActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.mainfragment.consume.HeadLineActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.mainfragment.consume.ProductSearchResultActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.mainfragment.consume.BabyDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.mainfragment.consume.BuyBabyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.mainfragment.consume.ProductTypeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.mainfragment.community.HuoDonDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.mainfragment.community.TopicDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.WebUtilsActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.smg.variety.view.activity.OrderTgActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.smg.variety.view.activity.SuperMemberActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.UploadSuperActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.LoadSuperActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.SuperYqYlActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.SuperListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.InformationHomeDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.SearchLiveActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.LiverDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.AppStoreActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".view.activity.ShopCarActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.WebViewActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".view.activity.AppRenWuActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".view.activity.AppQianDaoActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".view.activity.WebViewsActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.smg.variety.utils.MyCommonWebView"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".view.activity.AppNewPeopleActivity"
+            android:screenOrientation="portrait"/>
+
+
+        <activity
+            android:name=".view.activity.GlodMoneyDetailActivity"
+            android:screenOrientation="portrait"/>
+
+
+        <!--<meta-data-->
+        <!--android:name="RONG_CLOUD_APP_KEY"-->
+        <!--android:value="e0x9wycfx7flq" />-->
+        <!-- 正式 n19jmcy59f1q9  测试 p5tvi9dst25b4  小乔 e0x9wycfx7flq-->
+        <!--end rongcloud-->
+        <!-- 请将CHANNAL改为app的发布渠道-->
+        <meta-data
+            android:name="InstallChannel"
+            android:value="CHANNAL" />
+        <!-- 高德地图-->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="e09af6a2b26c02086e9216bd07c960ae" />
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="577b2b55e0f55afbcb0026c6" />
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="RongCloudApp" />
+        <!--第三方的推送 权限 广播 和服务-->
+        <!-- 小米 配置开始  -->
+
+        <!-- MeiZu 配置结束  -->
+        <!--第三方推送的权限 广播 服务 配置结束-->
+        <!--添加融云 第三方推送的权限 广播 服务 配置结束-->
+        <!-- vivo 推送配置 开始 -->
+
+        <activity
+            android:name="com.smg.variety.view.activity.PLVideoViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.CourseWarehouseDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.LearnRecordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.VideoPayMethodActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.LiveCheckFailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.LiveCheckingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.OnlineLiveFinishActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.LiveSearchActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.PointIncomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.RoomUserListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.AttentionUserListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.MyPublishActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.RechargeWebActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.MyOrderEvaluateActivity"
+
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.IncomeActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.smg.variety.view.activity.MessageXtActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.MessageOrderActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.smg.variety.view.activity.MyOrderEvaluateListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.MyOrderReturnActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.MyQRcodeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.PaySuccessActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.qiniu.AVStreamingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.AfterLoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.LiveVideoViewActivity"
+            android:screenOrientation="portrait" />
+
+        <!--第三方的推送 权限 广播 和服务-->
+        <activity
+            android:name="com.smg.variety.view.activity.MyOrderEvaluateSuccessActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.MyOrderLogisticsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.ToShipActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.InviteFriendsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.EditGoodsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.GoodsTypeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.MyOrderDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.mainfragment.consume.CommodityCommentActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.mainfragment.consume.ShopProductDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.mainfragment.consume.ShopProductCommitOrderActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.mainfragment.consume.ShopCommentActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.MyCouponActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name="com.smg.variety.view.mainfragment.consume.LoveFamilySecondHandActivity"
+            android:screenOrientation="portrait"/>
+
+        <service android:name=".utils.DownLoadServerice"/>
+        <!--&lt;!&ndash; OPPO push 配置结束&ndash;&gt;-->
+        <!--<provider-->
+            <!--android:name="android.support.v4.content.FileProvider"-->
+            <!--android:authorities="com.smg.variety.FileProvider"-->
+            <!--android:exported="false"-->
+            <!--android:grantUriPermissions="true">-->
+            <!--<meta-data-->
+                <!--android:name="android.support.FILE_PROVIDER_PATHS"-->
+                <!--android:resource="@xml/rc_file_path" />-->
+        <!--</provider>-->
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.smg.variety.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/rc_file_path" />
+        </provider>
+
+        <!--微信分享回调 -->
+        <activity
+            android:name="com.smg.variety.wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <!-- 支付宝H5页面 -->
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <!--<activity-->
+            <!--android:name="ALiPayActivity"-->
+            <!--android:screenOrientation="portrait">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+            <!--</intent-filter>-->
+        <!--</activity>-->
+        <!--支付宝支付页面-->
+        <activity
+            android:name="com.alipay.sdk.app.H5AuthActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <!-- 微信支付回调 -->
+        <!--android:theme="@android:style/Theme.Translucent.NoTitleBar"-->
+        <activity
+            android:name="com.smg.variety.wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoTitleTranslucentTheme" />
+    </application>
+</manifest>

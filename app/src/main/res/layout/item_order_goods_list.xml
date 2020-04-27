@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="109dp"
+    android:background="#fafafa"
+    android:paddingTop="@dimen/bj_15dp"
+    android:id="@+id/rl_bg"
+    android:paddingRight="@dimen/bj_15dp">
+
+    <ImageView
+        android:layout_marginLeft="17dp"
+        android:id="@+id/iv_img"
+        android:layout_width="@dimen/bj_81dp"
+        android:layout_height="@dimen/bj_81dp"
+        android:scaleType="centerCrop" />
+
+    <TextView
+
+        android:layout_marginRight="70dp"
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="118dp"
+        android:layout_toRightOf="@+id/iv_order_goods_icon"
+        android:maxLines="2"
+        android:text=""
+        android:layout_toLeftOf="@+id/tv_order_goods_price"
+        android:textColor="#ff333333"
+        android:textSize="14sp" />
+
+    <TextView
+        android:layout_alignParentBottom="true"
+         android:layout_marginBottom="16dp"
+        android:layout_marginRight="70dp"
+        android:id="@+id/tv_gg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="118dp"
+        android:layout_toRightOf="@+id/iv_order_goods_icon"
+        android:maxLines="2"
+        android:text=""
+        android:layout_toLeftOf="@+id/tv_order_goods_price"
+        android:textColor="#999"
+        android:textSize="14sp" />
+    <TextView
+        android:text=""
+        android:layout_alignParentRight="true"
+        android:id="@+id/tv_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       android:textColor="#ff333333"
+        android:textSize="15sp" />
+
+
+
+    <TextView
+        android:text="1"
+        android:layout_marginBottom="@dimen/bj_18dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:id="@+id/tv_cout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ff999999"
+        android:textSize="12sp" />
+
+    <View
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/iv_order_goods_icon"
+        android:layout_height="0.5dp"
+        android:layout_alignParentBottom="true"
+        android:background="#EEEEEE" />
+</RelativeLayout>
