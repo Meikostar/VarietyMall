@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/layout_entity_store_item"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
-    android:layout_marginBottom="10dp"
-    android:background="@drawable/item_new_bg"
-    android:orientation="vertical">
+    android:layout_height="100.2dp"
 
+    android:orientation="vertical">
+   <View
+       android:layout_marginLeft="5dp"
+       android:layout_marginRight="5dp"
+       android:layout_width="match_parent"
+       android:layout_height="@dimen/bj_91dp"
+       android:background="#ffffff"/>
 <LinearLayout
+    android:background="@drawable/item_new_top"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="62dp">
@@ -50,6 +54,7 @@
            android:layout_width="wrap_content"
            android:layout_height="wrap_content">
            <TextView
+               android:id="@+id/tv_fh"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:text="¥"
@@ -62,7 +67,7 @@
                android:id="@+id/tv_cout"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:text="20"
+               android:text="200"
                android:textColor="#fb3403"
                android:textSize="30sp"
                />
@@ -78,13 +83,21 @@
             />
     </LinearLayout>
 </LinearLayout>
-    <LinearLayout
+    <View
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:layout_marginTop="62dp"
-       android:paddingTop="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="0.2dp"
+        android:background="@color/my_color_line"/>
+    <LinearLayout
+        android:background="@drawable/item_new_bottom"
+        android:layout_marginTop="62.2dp"
+
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="28dp">
         <TextView
             android:id="@+id/tv_ty"
             android:layout_weight="1"
@@ -98,9 +111,9 @@
             />
         <TextView
             android:id="@+id/tv_get"
-            android:layout_marginRight="25dp"
+            android:layout_marginRight="24dp"
             android:background="@drawable/new_people_bg"
-            android:layout_width="52dp"
+            android:layout_width="51dp"
             android:layout_height="18dp"
             android:text="领券"
             android:textColor="#ffffff"
@@ -108,6 +121,11 @@
             android:gravity="center"
             />
     </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bj_10dp"
+        android:background="#fb3403"
+        android:layout_marginTop="91dp"/>
     <ImageView
         android:visibility="gone"
         android:id="@+id/iv_state"

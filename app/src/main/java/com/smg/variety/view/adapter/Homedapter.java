@@ -14,11 +14,17 @@ import android.widget.TextView;
 
 import com.smg.variety.R;
 import com.smg.variety.bean.BannerDto;
+import com.smg.variety.common.Constants;
 import com.smg.variety.common.utils.GlideUtils;
 import com.smg.variety.common.utils.ToastUtil;
+import com.smg.variety.utils.ShareUtil;
 import com.smg.variety.utils.TextUtil;
+import com.smg.variety.view.activity.AppNewPeopleActivity;
+import com.smg.variety.view.activity.LoginActivity;
 import com.smg.variety.view.activity.ProductListActivity;
+import com.smg.variety.view.activity.ShopStoreDetailActivity;
 import com.smg.variety.view.activity.WebViewActivity;
+import com.smg.variety.view.activity.WebViewsActivity;
 import com.smg.variety.view.mainfragment.consume.ProductSearchResultActivity;
 
 import java.util.List;
@@ -87,11 +93,34 @@ public class Homedapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 if(TextUtil.isNotEmpty(bannerDto.url)){
-                    Intent intent = new Intent(context, WebViewActivity.class);
+                    if(bannerDto.url.contains("::")&&bannerDto.url.contains("seller")){
+                        String[] split = bannerDto.url.split("=");
+                        if(split!=null&&split.length==2){
+                            Bundle bundle = new Bundle();
+                            bundle.putString(ShopStoreDetailActivity.SHOP_DETAIL_ID, split[1]);
+                            gotoActivity(ShopStoreDetailActivity.class, false, bundle);
+                        }
+                    }else {
+                        if(i==0){
+                            if (TextUtils.isEmpty(ShareUtil.getInstance().get(Constants.USER_TOKEN))) {
 
-                    intent.putExtra(WebViewActivity.WEBTITLE, bannerDto.title);
-                    intent.putExtra(WebViewActivity.WEBURL, bannerDto.url);
-                    context.startActivity(intent   );
+                                Intent intent = new Intent(context, LoginActivity.class);
+                                context.startActivity(intent);
+                            } else {
+                                Intent intent = new Intent(context, AppNewPeopleActivity.class);
+                                context.startActivity(intent);
+                            }
+
+                        }else {
+                            Intent intent = new Intent(context, WebViewActivity.class);
+
+                            intent.putExtra(WebViewActivity.WEBTITLE, bannerDto.title);
+                            intent.putExtra(WebViewActivity.WEBURL, bannerDto.url);
+                            context.startActivity(intent   );
+                        }
+                    }
+
+
                 }else {
                     ToastUtil.showToast("暂未开放");
 
@@ -109,7 +138,15 @@ public class Homedapter extends BaseAdapter {
         return view;
     }
 
+    public void gotoActivity(Class<?> clz, boolean isCloseCurrentActivity, Bundle bundle) {
+        Intent intent = new Intent(context, clz);
+        if (bundle != null) {
+            intent.putExtras(bundle);
+        }
+        context.startActivity(intent);
 
+
+    }
 
     class ViewHolder {
         TextView     txt_name;

@@ -11,6 +11,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.support.v4.app.FragmentActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
@@ -19,6 +21,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -80,7 +83,131 @@ public class DialogUtils {
         });
     }
 
+    /**
+     * 考试提醒
+     */
+    public static void showChangeSuccessDialog(Context context, String noticeStr, OnClickDialogListener listener) {
+        final Dialog dialog = new Dialog(context, R.style.loading_dialog);
+        dialog.setCancelable(true);
 
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View view = inflater.inflate(R.layout.show_success_item, null);
+
+        TextView  tvContent = view.findViewById(R.id.tv_exam_no_notice);
+        tvContent.setText(""+noticeStr);
+
+        //        TextView tvNo = view.findViewById(R.id.tv_exam_no_notice);
+        //        tvNo.setOnClickListener(new View.OnClickListener() {
+        //            public void onClick(View view) {
+        //                dialog.dismiss();
+        //                if(listener!=null){
+        //                    listener.onClick(view);
+        //                }
+        //            }
+        //        });
+
+        TextView tvSure = view.findViewById(R.id.tv_exam_sure);
+        tvSure.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                dialog.dismiss();
+                if(listener!=null){
+                    listener.onClick(view);
+                }
+            }
+        });
+        dialog.setContentView(view);
+        Window dialogWindow = dialog.getWindow();
+        dialogWindow.setGravity(Gravity.CENTER);
+        WindowManager wm = ((Activity)(context)).getWindowManager();
+        Display d = wm.getDefaultDisplay(); // 获取屏幕宽、高用
+        WindowManager.LayoutParams p = dialog.getWindow().getAttributes(); // 获取对话框当前的参数值
+        p.width = (int) (d.getWidth()*0.8) ; // 宽度设置为屏幕的0.6
+        dialogWindow.setAttributes(p);
+        dialog.show();
+    }
+
+    /**
+     * 考试提醒
+     */
+    public static void showChangeDialog(Context context, String cout,double figs, OnClickDialogCoutsListener listener) {
+        final Dialog dialog = new Dialog(context, R.style.loading_dialog);
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View view = inflater.inflate(R.layout.show_change_item, null);
+
+        TextView  tvContent = view.findViewById(R.id.tv_use);
+        tvContent.setText("可用"+cout+"个");
+
+        //        TextView tvNo = view.findViewById(R.id.tv_exam_no_notice);
+        //        tvNo.setOnClickListener(new View.OnClickListener() {
+        //            public void onClick(View view) {
+        //                dialog.dismiss();
+        //                if(listener!=null){
+        //                    listener.onClick(view);
+        //                }
+        //            }
+        //        });
+
+        EditText editText1 = view.findViewById(R.id.et_cout);
+        TextView editText2 = view.findViewById(R.id.et_couts);
+
+        editText1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+              if(TextUtil.isNotEmpty(s.toString())){
+
+                  if(Long.valueOf(s.toString())>Double.valueOf(cout)){
+                      double aDouble = Double.valueOf(cout);
+                      ToastUtil.showToast("最多可兑换"+cout);
+                      editText1.setText((long)aDouble+"");
+                      editText2.setText((float)aDouble*figs+"");
+                  }else {
+                      double aDouble = Double.valueOf(cout);
+                      editText2.setText((float)Long.valueOf(s.toString())*figs+"");
+                  }
+              }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        TextView tvSure = view.findViewById(R.id.tv_sure);
+        TextView tvCancel = view.findViewById(R.id.tv_cancel);
+        tvCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        tvSure.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                dialog.dismiss();
+                if(listener!=null){
+                    if(!TextUtil.isNotEmpty(editText1.getText().toString())){
+                       ToastUtil.showToast("请输入兑换数量");
+                    }
+                    listener.showCouts( editText1.getText().toString(),editText2.getText().toString());
+                }
+            }
+        });
+        dialog.setContentView(view);
+        Window dialogWindow = dialog.getWindow();
+        dialogWindow.setGravity(Gravity.CENTER);
+        WindowManager wm = ((Activity)(context)).getWindowManager();
+        Display d = wm.getDefaultDisplay(); // 获取屏幕宽、高用
+        WindowManager.LayoutParams p = dialog.getWindow().getAttributes(); // 获取对话框当前的参数值
+        p.width = (int) (d.getWidth()*0.8) ; // 宽度设置为屏幕的0.6
+        dialogWindow.setAttributes(p);
+        dialog.show();
+    }
 
     /**
      * 考试提醒
@@ -568,5 +695,8 @@ public class DialogUtils {
     }
     public interface OnClickDialogListener{
         void onClick(View v);
+    }
+    public interface OnClickDialogCoutsListener{
+        void showCouts(String one,String two);
     }
 }

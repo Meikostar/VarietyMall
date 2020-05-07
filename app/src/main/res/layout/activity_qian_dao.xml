@@ -666,6 +666,7 @@
 
           </LinearLayout>
             <TextView
+                android:id="@+id/tv_tip"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="18dp"
                 android:layout_width="wrap_content"

@@ -127,15 +127,15 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:padding="6dp"
+
                     android:layout_marginBottom="3dp"
                     android:layout_width="@dimen/bj_37dp"
                     android:layout_height="@dimen/bj_37dp"
-                    android:src="@drawable/mine_sxy" />
+                    android:src="@drawable/mine_yhq" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="商学院"
+                    android:text="我的优惠券"
                     android:textColor="#3c3c3c"
                     android:textSize="12sp" />
 

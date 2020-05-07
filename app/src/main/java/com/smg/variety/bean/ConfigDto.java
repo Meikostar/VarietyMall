@@ -10,8 +10,10 @@ public class ConfigDto implements Serializable {
     private HotSearchDto hot_search;
     public ConfigDto rights_pull_new;
     public ConfigDto apk;
+    public ConfigDto exchange;
     public String level_1;
     public String level_2;
+    public String gold_money;
     public String update_msg;
     public String update_time;
     public String download_url;

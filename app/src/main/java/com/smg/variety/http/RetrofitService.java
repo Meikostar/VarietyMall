@@ -51,6 +51,7 @@ import com.smg.variety.bean.MemberDto;
 import com.smg.variety.bean.MyOrderDto;
 import com.smg.variety.bean.MyOrderLogisticsDto;
 import com.smg.variety.bean.NewListItemDto;
+import com.smg.variety.bean.NewPeopleBeam;
 import com.smg.variety.bean.NewsDetailDto;
 import com.smg.variety.bean.NewsOtherListItemDto;
 import com.smg.variety.bean.NewsRecommendListDto;
@@ -192,8 +193,22 @@ public interface RetrofitService {
      */
     @GET("api/package/wallet/log")
     Single<HttpResult<List<IncomeDto>>> getUserlog(@Header("Authorization") String token,@QueryMap Map<String, String> map);
+
+
     /**
      * 获取用户信息
+     */
+    @GET("api/live/reward/water")
+    Single<HttpResult<List<IncomeDto>>> getGiftLog(@Header("Authorization") String token,@QueryMap Map<String, String> map);
+
+
+    @GET("api/package/tips")
+    Single<HttpResult<List<IncomeDto>>> getTipsLog(@Header("Authorization") String token,@QueryMap Map<String, String> map);
+
+
+    /**
+     * 获取用户信息/
+     *
      */
     @GET("api/package/user/withdraw")
     Single<HttpResult<List<IncomeDto>>> getWithdraw(@Header("Authorization") String token,@QueryMap Map<String, String> map);
@@ -419,6 +434,27 @@ public interface RetrofitService {
      */
     @GET("api/group/my_group")
     Single<HttpResult<List<GroupListDto>>> getGroupList(@Header("Authorization") String token, @Query("type") String type, @Query("status") String status);
+
+
+    /**
+     * 获取群列表
+     */
+    @GET("api/package/mall/default/coupons/group/newbie_coupon/items")
+    Single<HttpResult<List<NewPeopleBeam>>> getCouPon(@Header("Authorization") String token, @Query("include") String include);
+
+
+    /**
+     * 获取群列表
+     */
+    @GET("api/package/mall/all/user/coupons")
+    Single<HttpResult<List<NewPeopleBeam>>> getCouPons(@Header("Authorization") String token,@QueryMap Map<String, String> map);
+
+
+    /**
+     * 获取群列表
+     */
+    @POST("api/package/mall/default/coupons/group/newbie_coupon/items/{id}")
+    Single<HttpResult<Object>> putCouPon(@Header("Authorization") String token, @Path("id") String id);
 
     /**
      * 获取群相关信息
@@ -866,11 +902,21 @@ public interface RetrofitService {
      */
     @GET("api/live/video")
     Single<HttpResult<List<VideoLiveBean>>> liveVideos(@QueryMap HashMap<String, String> map);
+
+    /**
+     * 直播列表/api/live/videos
+     */
+    @DELETE("api/live/video")
+    Single<HttpResult<Object>> delVideos(@Header("Authorization") String token, @QueryMap HashMap<String, String> map);
     /**
      * 直播列表/api/live/videos
      */
     @PUT("api/live/video")
     Single<HttpResult<Object>> UpdateliveVideo(@Header("Authorization") String token, @Body Map<String, String> map);
+
+
+    @PUT("api/package/wallet/exchange")
+    Single<HttpResult<Object>> Updateexchange(@Header("Authorization") String token, @Body Map<String, String> map);
 
     /**
      * 开启视频直播

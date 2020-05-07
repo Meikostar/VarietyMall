@@ -23,6 +23,7 @@ public class VideoLiveBean {
     public String               followingsCount;
     public String               images;
     public String               desc;
+    public boolean               isChoose;
     public String               end_at;
     public String               play_count;
     private VideoLiveUserInfo    user;

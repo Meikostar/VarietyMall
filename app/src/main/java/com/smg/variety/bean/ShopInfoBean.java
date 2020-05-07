@@ -10,7 +10,7 @@ public class ShopInfoBean {
     public String      type;//    images/activity.png
     public String      shop_name;//    images/activity.png
     public String       category;//    images/activity.png
-    public String       industry;//    images/activity.png
+//    public String       industry;//    images/activity.png
     public String       area_id;//    images/activity.png
     public String       address;//    images/activity.png
     public String       lat;//    images/activity.png
@@ -18,7 +18,7 @@ public class ShopInfoBean {
     public String       phone;//    images/activity.png
     public String       photos;//    images/activity.png
     public String       logo;//    images/activity.png
-    public List<String> id_cards;//    images/activity.png
+    public List<String> id_cards;//    images/activity.pngext
     public List<String> credentials;//    images/activity.png
     public String       status;//    images/activity.png
     public String       refuse_info;//    images/activity.png

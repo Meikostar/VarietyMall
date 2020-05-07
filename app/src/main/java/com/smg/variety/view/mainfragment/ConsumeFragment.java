@@ -12,6 +12,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -50,12 +51,16 @@ import com.smg.variety.http.response.HttpResult;
 import com.smg.variety.utils.LocationUtils;
 import com.smg.variety.utils.ShareUtil;
 import com.smg.variety.view.MainActivity;
+import com.smg.variety.view.activity.AppNewPeopleActivity;
+import com.smg.variety.view.activity.AppRenWuActivity;
 import com.smg.variety.view.activity.AppStoreActivity;
 import com.smg.variety.view.activity.BrandsActivity;
 import com.smg.variety.view.activity.ConturyActivity;
 import com.smg.variety.view.activity.HotActivity;
+import com.smg.variety.view.activity.LoginActivity;
 import com.smg.variety.view.activity.MenberShareActivity;
 import com.smg.variety.view.activity.MessageCenterActivity;
+import com.smg.variety.view.activity.ShopStoreDetailActivity;
 import com.smg.variety.view.activity.SpikeActivity;
 import com.smg.variety.view.activity.WebViewActivity;
 import com.smg.variety.view.activity.WebViewsActivity;
@@ -74,9 +79,6 @@ import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
 import com.youth.banner.loader.ImageLoader;
-import com.yzq.zxinglibrary.android.CaptureActivity;
-import com.yzq.zxinglibrary.bean.ZxingConfig;
-import com.yzq.zxinglibrary.common.Constant;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -135,6 +137,8 @@ public class ConsumeFragment extends BaseFragment {
     LinearLayout       ll_fl;
     @BindView(R.id.grid)
     GridView       gridView;
+    @BindView(R.id.iv_red)
+    ImageView          iv_red;
 
     private List<RecommendListDto> brandList    = new ArrayList<RecommendListDto>();
     private ConsumePushAdapter     mConsumePushAdapter;
@@ -192,19 +196,29 @@ public class ConsumeFragment extends BaseFragment {
         adapter.setClickListener(new ChatMenberAdapter.ClickListener() {
             @Override
             public void clicks(BannerDto game) {
-                if(game.url.contains("https://s.click.taobao.com")||game.url.contains("https://m.tb.cn")){
-                    Intent intent = new Intent(getActivity(), WebViewsActivity.class);
-
-                    intent.putExtra(WebViewActivity.WEBTITLE, game.title);
-                    intent.putExtra(WebViewActivity.WEBURL, game.url);
-                    startActivity(intent   );
+                if(game.url.contains("::")&&game.url.contains("seller")){
+                    String[] split = game.url.split("=");
+                    if(split!=null&&split.length==2){
+                        Bundle bundle = new Bundle();
+                        bundle.putString(ShopStoreDetailActivity.SHOP_DETAIL_ID, split[1]);
+                        gotoActivity(ShopStoreDetailActivity.class, false, bundle);
+                    }
                 }else {
-                    Intent intent = new Intent(getActivity(), WebViewActivity.class);
+                    if(game.url.contains("https://s.click.taobao.com")||game.url.contains("https://m.tb.cn")){
+                        Intent intent = new Intent(getActivity(), WebViewsActivity.class);
 
-                    intent.putExtra(WebViewActivity.WEBTITLE, game.title);
-                    intent.putExtra(WebViewActivity.WEBURL, game.url);
-                    startActivity(intent   );
+                        intent.putExtra(WebViewActivity.WEBTITLE, game.title);
+                        intent.putExtra(WebViewActivity.WEBURL, game.url);
+                        startActivity(intent   );
+                    }else {
+                        Intent intent = new Intent(getActivity(), WebViewActivity.class);
+
+                        intent.putExtra(WebViewActivity.WEBTITLE, game.title);
+                        intent.putExtra(WebViewActivity.WEBURL, game.url);
+                        startActivity(intent   );
+                    }
                 }
+
 
             }
         });
@@ -316,6 +330,19 @@ public class ConsumeFragment extends BaseFragment {
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void initListener() {
+        iv_red.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (TextUtils.isEmpty(ShareUtil.getInstance().get(Constants.USER_TOKEN))) {
+                    gotoActivity(LoginActivity.class);
+
+                } else {
+                    gotoActivity(AppRenWuActivity.class);
+                }
+
+            }
+        });
         bindClickEvent(tv_location, () -> {
 
             Bundle bundle = new Bundle();

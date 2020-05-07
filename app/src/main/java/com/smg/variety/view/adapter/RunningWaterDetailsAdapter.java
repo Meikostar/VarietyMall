@@ -32,17 +32,20 @@ public class RunningWaterDetailsAdapter extends BaseQuickAdapter<IncomeDto, Base
         int type = item.status;
         TextView view = helper.getView(R.id.account_tv);
         TextView view2 = helper.getView(R.id.type_name_tv);
-        view.setText("-"+item.money);
-        if(type==0){
-            view2.setText("申请提现");
-            view.setTextColor(mContext.getResources().getColor(R.color.my_color_18B1));
+        view.setText(item.value);
+        if(TextUtil.isNotEmpty(item.type)){
+            if(item.type.equals("withdraw")){
+                view2.setText(item.type_name);
+                view.setTextColor(mContext.getResources().getColor(R.color.my_color_18B1));
+            }else {
+                view2.setText(item.type_name);
+                view.setTextColor(mContext.getResources().getColor(R.color.my_color_999999));
+            }
 
-        }else if(type==1){
-            view2.setText("提现到账");
+
+        }else {
+            view2.setText(item.type_name);
             view.setTextColor(mContext.getResources().getColor(R.color.my_color_18B1));
-        }else if(type==2){
-            view2.setText("提现失败");
-            view.setTextColor(mContext.getResources().getColor(R.color.my_color_999999));
         }
 
         helper.setText(R.id.create_time_tv, item.created_at);

@@ -47,8 +47,10 @@ import com.smg.variety.view.activity.EnterprisePermissionActivity;
 import com.smg.variety.view.activity.HelpCenterActivity;
 import com.smg.variety.view.activity.LiveCheckFailActivity;
 import com.smg.variety.view.activity.LiveCheckingActivity;
+import com.smg.variety.view.activity.LiverInfoActivity;
 import com.smg.variety.view.activity.LoginActivity;
 import com.smg.variety.view.activity.MessageCenterActivity;
+import com.smg.variety.view.activity.MineCouPonActivity;
 import com.smg.variety.view.activity.MyBuyGoodActivity;
 import com.smg.variety.view.activity.MyEarningsActivity;
 import com.smg.variety.view.activity.MyFootprintActivity;
@@ -627,13 +629,16 @@ public class MeFragment extends BaseFragment {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.ll_mine_live:
-                isPlayer();
+                gotoActivity(LiverInfoActivity.class);
+//                isPlayer();
                 break;
             case R.id.ll_sxy:
-                ToastUtil.showToast("敬请期待");
+                gotoActivity(MineCouPonActivity.class);
+
                 break;
             case R.id.ll_qd:
                 gotoActivity(AppRenWuActivity.class);
+
 
                 break;
             case R.id.ll_qb:

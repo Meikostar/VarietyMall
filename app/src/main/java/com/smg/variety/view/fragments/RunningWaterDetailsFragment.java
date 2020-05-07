@@ -95,8 +95,9 @@ public class RunningWaterDetailsFragment extends BaseFragment {
         HashMap<String, String> map = new HashMap<>();
         map.put("page", mPage + "");
 
-//        map.put("include", "order.user,order.address");
-        DataManager.getInstance().getWithdraw(new DefaultSingleObserver<HttpResult<List<IncomeDto>>>() {
+        map.put("money_type", "money");
+        map.put("type", "withdraw,withdraw_back");
+        DataManager.getInstance().getUserlog(new DefaultSingleObserver<HttpResult<List<IncomeDto>>>() {
             @Override
             public void onSuccess(HttpResult<List<IncomeDto>> httpResult) {
                 setData(httpResult);

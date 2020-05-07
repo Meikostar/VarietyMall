@@ -4,8 +4,8 @@ ext {
             compileSdkVersion: 26,
             minSdkVersion    : 19,
             targetSdkVersion : 26,
-            versionCode      : 2,
-            versionName      : "1.5.0"
+            versionCode      :17,
+            versionName      : "1.7.0"
     ]
     supportLibrary = "26.1.0"
     dependencies = [

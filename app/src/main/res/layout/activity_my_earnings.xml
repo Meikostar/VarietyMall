@@ -9,10 +9,10 @@
     <include layout="@layout/layout_title_view" />
 
     <LinearLayout
-        android:background="#f8efef"
+        android:background="@drawable/qn_bg"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="207dp">
+        android:layout_height="187dp">
         <LinearLayout
 
             android:layout_gravity="center_horizontal"
@@ -32,38 +32,41 @@
                 android:layout_height="wrap_content"
 
                 android:gravity="center"
-                android:text="当前余额"
-                android:textColor="@color/my_color_535353"
-                android:textSize="17sp" />
+                android:text="您的当前余额(元)"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
         </LinearLayout>
+       <LinearLayout
+           android:layout_gravity="center_horizontal"
+           android:layout_marginTop="40dp"
+           android:orientation="horizontal"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content">
+           <TextView
+               android:id="@+id/tv_ye"
 
-        <TextView
-            android:id="@+id/tv_ye"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+               android:layout_gravity="center_horizontal"
+               android:text="0"
+               android:textColor="@color/white"
+               android:textSize="25sp" />
 
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/bj_8dp"
-            android:text="0"
-            android:textColor="@color/my_color_333333"
-            android:textSize="27sp" />
+           <TextView
+               android:layout_marginLeft="16dp"
+               android:layout_marginBottom="3dp"
+               android:layout_gravity="bottom"
+               android:id="@+id/tv_submit"
+               android:layout_width="55dp"
+               android:layout_height="21dp"
+               android:background="@drawable/shape_white_10"
+               android:gravity="center"
+               android:text="提现"
+               android:textColor="#0266CA"
+               android:textSize="11sp" />
+       </LinearLayout>
 
-        <TextView
-            android:layout_marginTop="40dp"
-            android:layout_gravity="center_horizontal"
-            android:paddingTop="@dimen/bj_6dp"
-            android:paddingBottom="@dimen/bj_6dp"
-            android:paddingLeft="18dp"
-            android:paddingRight="@dimen/bj_18dp"
-            android:id="@+id/tv_submit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/shape_radius_14_blue"
-            android:gravity="center"
-            android:text="立即提现"
-            android:textColor="#fff"
-            android:textSize="13sp" />
 
     </LinearLayout>
     <LinearLayout
@@ -105,7 +108,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
-                android:textColor="#01A5F1"
+                android:textColor="#0266CA"
                 android:textSize="18sp" />
         </LinearLayout>
         <LinearLayout
@@ -126,40 +129,76 @@
                 <TextView
 
 
-                    android:layout_marginLeft="@dimen/bj_8dp"
-                    android:layout_gravity="center_horizontal"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="已提现(元)"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="@dimen/bj_8dp"
+                    android:text="金币"
                     android:textColor="@color/my_color_333333"
                     android:textSize="15sp" />
 
             </LinearLayout>
-            <TextView
-                android:id="@+id/tv_tx"
+            <RelativeLayout
                 android:layout_marginTop="5dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textColor="#01A5F1"
-                android:textSize="18sp" />
+
+                android:orientation="horizontal"
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/tv_tx"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="#0266CA"
+                    android:textSize="18sp" />
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:layout_toRightOf="@+id/tv_tx"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="16dp"
+                    android:id="@+id/tv_dh"
+                    android:layout_width="29dp"
+                    android:layout_height="16dp"
+                    android:background="@drawable/shape_radius_14_blue"
+                    android:gravity="center"
+                    android:text="兑换"
+                    android:textColor="#fff"
+                    android:textSize="10sp" />
+            </RelativeLayout>
+
         </LinearLayout>
     </LinearLayout>
-    <TextView
-        android:paddingLeft="15dp"
-        android:gravity="center_vertical"
-        android:background="@color/white"
-        android:layout_gravity="center_horizontal"
+    <LinearLayout
+        android:background="#f4f4f4"
         android:layout_width="match_parent"
-        android:layout_height="28dp"
-        android:text="变动明细"
-        android:textColor="#555"
-        android:textSize="11sp" />
-   <View
-       android:layout_width="match_parent"
-       android:layout_height="0.5dp"
-       android:background="@color/my_color_line"/>
+        android:layout_height="@dimen/bj_42dp">
+        <TextView
+            android:id="@+id/tv_state1"
+            android:paddingLeft="15dp"
+            android:gravity="center_vertical"
+            android:background="#f4f4f4"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="80dp"
+            android:layout_height="42dp"
+            android:text="变动明细"
+            android:textColor="#111"
+            android:textSize="11sp" />
+        <TextView
+            android:id="@+id/tv_state2"
+            android:paddingLeft="15dp"
+            android:gravity="center_vertical"
+            android:background="#f4f4f4"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="80dp"
+            android:layout_height="42dp"
+            android:text="兑换记录"
+            android:textColor="#555"
+            android:textSize="11sp" />
+    </LinearLayout>
+
+
 
 
     <com.smg.variety.view.widgets.autoview.SuperSwipeRefreshLayout

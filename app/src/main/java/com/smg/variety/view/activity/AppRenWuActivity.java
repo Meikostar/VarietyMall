@@ -105,7 +105,7 @@ public class AppRenWuActivity extends BaseActivity {
         iv_bg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gotoActivity(MyQRcodeActivity.class);
+                gotoActivity(SuperYqYlActivity.class);
             }
         });
         tvGz.setOnClickListener(new View.OnClickListener() {
@@ -217,7 +217,7 @@ public class AppRenWuActivity extends BaseActivity {
             } else if (flag.equals("task_first_follow")) {
                 finishAll();
                 Bundle bundle = new Bundle();
-                bundle.putInt(MainActivity.PAGE_INDEX, 1);
+                bundle.putInt(MainActivity.PAGE_INDEX, 2);
                 gotoActivity(MainActivity.class, true, bundle);
             } else if (flag.equals("task_first_favorite")) {
                 finishAll();
@@ -241,7 +241,7 @@ public class AppRenWuActivity extends BaseActivity {
                 bundle.putInt(MainActivity.PAGE_INDEX, 0);
                 gotoActivity(MainActivity.class, true, bundle);
             } else if (flag.equals("task_daily_invitation")) {
-                gotoActivity(MyQRcodeActivity.class);
+                gotoActivity(SuperYqYlActivity.class);
             } else if (flag.equals("task_daily_child_order")) {
                 gotoActivity(MyQRcodeActivity.class);
             } else if (flag.equals("task_daily_watch_live")) {
@@ -272,7 +272,7 @@ public class AppRenWuActivity extends BaseActivity {
                 mlist.clear();
                 dissLoadDialog();
                 if (httpResult != null && httpResult.getData() != null) {
-                    if (httpResult.getData().newbie != null) {
+                    if (httpResult.getData().newbie != null&&httpResult.getData().newbie.size()>0) {
                         RenWuBean renWuBean = new RenWuBean();
                         renWuBean.list = httpResult.getData().newbie;
                         renWuBean.poistion = 1;

@@ -37,6 +37,8 @@ public class ConfigPasswordDialog extends Dialog {
         this.mContext = context;
         this.sexSelectListener = listener;
         //        setContentView(R.layout.config_password_dialog);
+       setCancelable(false);
+       setCanceledOnTouchOutside(false);
         setContentView(R.layout.write_group_name);
         initView();
         initListener();

@@ -66,6 +66,7 @@ import com.smg.variety.qiniu.chatroom.message.ChatroomWelcome;
 import com.smg.variety.qiniu.live.gles.FBO;
 import com.smg.variety.qiniu.live.ui.CameraPreviewFrameView;
 import com.smg.variety.qiniu.live.ui.InputPanel;
+import com.smg.variety.qiniu.live.utils.Config;
 import com.smg.variety.utils.ShareUtil;
 import com.smg.variety.utils.TextUtil;
 import com.smg.variety.view.MainActivity;
@@ -673,23 +674,23 @@ public class AVStreamingActivity extends StreamingBaseActivity implements Stream
     }
 
 
-    //    private class EncodingOrientationSwitcher implements Runnable {
-    //        @Override
-    //        public void run() {
-    //            Log.i(TAG, "mIsEncOrientationPort:" + mIsEncOrientationPort);
-    //            mOrientationChanged = true;
-    //            mIsEncOrientationPort = !mIsEncOrientationPort;
-    //            mProfile.setEncodingOrientation(mIsEncOrientationPort ? StreamingProfile.ENCODING_ORIENTATION.PORT : StreamingProfile.ENCODING_ORIENTATION.LAND);
-    //            mMediaStreamingManager.setStreamingProfile(mProfile);
-    //            stopStreamingInternal();
-    //            setRequestedOrientation(mIsEncOrientationPort ? ActivityInfo.SCREEN_ORIENTATION_PORTRAIT : ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-    //            mMediaStreamingManager.notifyActivityOrientationChanged();
-    ////            updateOrientationBtnText();
-    //            Toast.makeText(AVStreamingActivity.this, Config.HINT_ENCODING_ORIENTATION_CHANGED,
-    //                    Toast.LENGTH_SHORT).show();
-    //            Log.i(TAG, "EncodingOrientationSwitcher -");
-    //        }
-    //    }
+//        private class EncodingOrientationSwitcher implements Runnable {
+//            @Override
+//            public void run() {
+//                Log.i(TAG, "mIsEncOrientationPort:" + mIsEncOrientationPort);
+//                mOrientationChanged = true;
+//                mIsEncOrientationPort = !mIsEncOrientationPort;
+//                mProfile.setEncodingOrientation(mIsEncOrientationPort ? StreamingProfile.ENCODING_ORIENTATION.PORT : StreamingProfile.ENCODING_ORIENTATION.LAND);
+//                mMediaStreamingManager.setStreamingProfile(mProfile);
+//                stopStreamingInternal();
+//                setRequestedOrientation(mIsEncOrientationPort ? ActivityInfo.SCREEN_ORIENTATION_PORTRAIT : ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+//                mMediaStreamingManager.notifyActivityOrientationChanged();
+//    //            updateOrientationBtnText();
+//                Toast.makeText(AVStreamingActivity.this, Config.HINT_ENCODING_ORIENTATION_CHANGED,
+//                        Toast.LENGTH_SHORT).show();
+//                Log.i(TAG, "EncodingOrientationSwitcher -");
+//            }
+//        }
 
     private class Switcher implements Runnable {
         @Override

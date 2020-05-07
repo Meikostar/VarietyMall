@@ -160,6 +160,9 @@
         <activity
             android:name=".view.activity.LiveProductActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.LiverProductsActivity"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name="com.smg.variety.view.activity.ProductListActivity"
@@ -276,6 +279,10 @@
         <activity
             android:name="com.smg.variety.view.activity.OrderActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.LiverInfoActivity"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name="com.smg.variety.view.activity.RefundAfterSalesActivity"
             android:screenOrientation="portrait" />
@@ -577,6 +584,24 @@
         <activity
             android:name="com.smg.variety.view.activity.LiveVideoViewActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.MineCouPonActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.MyTipsListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.MyGitListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.MyYongjListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.MyLiversActivity"
+            android:screenOrientation="portrait" />
+
+
+
 
         <!--第三方的推送 权限 广播 和服务-->
         <activity

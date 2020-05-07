@@ -135,5 +135,25 @@
 
         </RelativeLayout>
     </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+        <View
+            android:layout_width="@dimen/bj_2dp"
+            android:layout_height="0dp"
+            android:layout_weight="2"/>
+        <ImageView
+            android:id="@+id/iv_red"
+            android:layout_width="49dp"
+            android:layout_height="49dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/re_xf" />
+        <View
+            android:layout_width="@dimen/bj_2dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+    </LinearLayout>
 
 </RelativeLayout>

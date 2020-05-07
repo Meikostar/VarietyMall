@@ -7,6 +7,7 @@ public class ScoreBean {
     private String thumb;
     private String price;
     public String day;
+    public String tip;
     public boolean checked;
     public boolean today_check;
     public String reward_msg;

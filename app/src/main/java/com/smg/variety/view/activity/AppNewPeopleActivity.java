@@ -12,10 +12,14 @@ import com.smg.variety.R;
 import com.smg.variety.base.BaseActivity;
 import com.smg.variety.bean.BannerInfoDto;
 import com.smg.variety.bean.BaseDto4;
+import com.smg.variety.bean.GroupInfoDto;
+import com.smg.variety.bean.GroupUserItemInfoDto;
+import com.smg.variety.bean.NewPeopleBeam;
 import com.smg.variety.bean.RenWuBean;
 import com.smg.variety.common.utils.GlideUtils;
 import com.smg.variety.common.utils.ToastUtil;
 import com.smg.variety.http.DefaultSingleObserver;
+import com.smg.variety.http.error.ApiException;
 import com.smg.variety.http.manager.DataManager;
 import com.smg.variety.http.response.HttpResult;
 import com.smg.variety.view.MainActivity;
@@ -25,6 +29,7 @@ import com.smg.variety.view.widgets.CustomDividerItemDecoration;
 import com.smg.variety.view.widgets.autoview.MaxRecyclerView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
@@ -59,7 +64,9 @@ public class AppNewPeopleActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        tvTitleText.setText("新人礼包");
         initAdapter();
+        getCouPonList();
     }
 
 
@@ -83,178 +90,94 @@ public class AppNewPeopleActivity extends BaseActivity {
                 finish();
             }
         });
+        tvLq.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(allGet){
+                    putCouPon("all");
 
+                }else {
+                    ToastUtil.showToast("你已领完！");
+                }
+
+            }
+        });
     }
 
-
-
-    private void getMoney() {
+    private boolean allGet;
+    private void getCouPonList() {
+        allGet=false;
         showLoadDialog();
-        DataManager.getInstance().getTotalInofs(new DefaultSingleObserver<BaseDto4>() {
+        DataManager.getInstance().getCouPonList(new DefaultSingleObserver<HttpResult<List<NewPeopleBeam>>>() {
             @Override
-            public void onSuccess(BaseDto4 result) {
+            public void onSuccess(HttpResult<List<NewPeopleBeam>> result) {
                 dissLoadDialog();
-                if (result.data != null) {
-
+                if(result.getData() != null){
+                      for(NewPeopleBeam mean:result.getData()){
+                          if(mean.userCoupon==null){
+                              allGet=true;
+                          }
+                      }
+                    mEntityStoreAdapter.setNewData(result.getData());
                 }
             }
 
             @Override
             public void onError(Throwable throwable) {
                 dissLoadDialog();
+                allGet=true;
             }
-        }, "task_reward", "money");
+        }, "coupon.shop");
     }
+
+    private void putCouPon(String ids) {
+        showLoadDialog();
+        DataManager.getInstance().putCouPon(new DefaultSingleObserver<HttpResult<Object>>() {
+            @Override
+            public void onSuccess(HttpResult<Object> result) {
+                dissLoadDialog();
+                ToastUtil.showToast("领取成功");
+                getCouPonList();
+            }
+
+            @Override
+            public void onError(Throwable throwable) {
+                dissLoadDialog();
+                if (ApiException.getInstance().isSuccess()) {
+                   ToastUtil.showToast("领取成功");
+                    getCouPonList();
+                } else {
+                    ToastUtil.showToast(ApiException.getHttpExceptionMessage(throwable));
+                }
+            }
+        }, ids);
+    }
+
 
 
     private NewPeopleAdapter mEntityStoreAdapter;
 
 
     private void initAdapter() {
-        mlist.add(new RenWuBean());
-        mlist.add(new RenWuBean());
-        mlist.add(new RenWuBean());
-        mlist.add(new RenWuBean());
-        mlist.add(new RenWuBean());
-        mlist.add(new RenWuBean());
-        mlist.add(new RenWuBean());
-        mlist.add(new RenWuBean());
-        mlist.add(new RenWuBean());
-        mlist.add(new RenWuBean());
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(AppNewPeopleActivity.this);
         entity_store_push_recy.setLayoutManager(layoutManager);
-        entity_store_push_recy.addItemDecoration(new CustomDividerItemDecoration(AppNewPeopleActivity.this, LinearLayoutManager.VERTICAL, R.drawable.shape_divider_f5f5f5_1));
         mEntityStoreAdapter = new NewPeopleAdapter(mlist, this);
         mEntityStoreAdapter.setTaskListener(new NewPeopleAdapter.ItemTaskListener() {
             @Override
-            public void taskListener(RenWuBean bean) {
+            public void taskListener(NewPeopleBeam bean) {
+                if(bean==null){
+
+                }else {
+                    putCouPon(bean.id);
+                }
 
             }
         });
         entity_store_push_recy.setAdapter(mEntityStoreAdapter);
     }
 
-    public void goTask(RenWuBean bean) {
-        String flag = bean.flag;
-        String content = "";
-
-
-        if (bean.task_status == 0) {
-            if (flag.equals("task_welcome")) {
-
-            } else if (flag.equals("task_set_avatar")) {
-                gotoActivity(UserInfoActivity.class);
-            } else if (flag.equals("task_set_name")) {
-                gotoActivity(UserInfoActivity.class);
-            } else if (flag.equals("task_complete_info")) {
-                gotoActivity(UserInfoActivity.class);
-            } else if (flag.equals("task_first_share")) {
-                finishAll();
-                Bundle bundle = new Bundle();
-                bundle.putInt(MainActivity.PAGE_INDEX, 0);
-                gotoActivity(MainActivity.class, true, bundle);
-            } else if (flag.equals("task_first_follow")) {
-                finishAll();
-                Bundle bundle = new Bundle();
-                bundle.putInt(MainActivity.PAGE_INDEX, 1);
-                gotoActivity(MainActivity.class, true, bundle);
-            } else if (flag.equals("task_first_favorite")) {
-                finishAll();
-                Bundle bundle = new Bundle();
-                bundle.putInt(MainActivity.PAGE_INDEX, 0);
-                gotoActivity(MainActivity.class, true, bundle);
-            } else if (flag.equals("task_first_order")) {
-                finishAll();
-                Bundle bundle = new Bundle();
-                bundle.putInt(MainActivity.PAGE_INDEX, 0);
-                gotoActivity(MainActivity.class, true, bundle);
-            } else if (flag.equals("task_first_comment")) {
-                Intent intent = new Intent(AppNewPeopleActivity.this, OrderActivity.class);
-                intent.putExtra("page", 4);
-                startActivity(intent);
-            } else if (flag.equals("task_daily_check_in")) {
-                gotoActivity(AppQianDaoActivity.class);
-            } else if (flag.equals("task_daily_share_product")) {
-                finishAll();
-                Bundle bundle = new Bundle();
-                bundle.putInt(MainActivity.PAGE_INDEX, 0);
-                gotoActivity(MainActivity.class, true, bundle);
-            } else if (flag.equals("task_daily_invitation")) {
-                gotoActivity(MyQRcodeActivity.class);
-            } else if (flag.equals("task_daily_child_order")) {
-                gotoActivity(MyQRcodeActivity.class);
-            } else if (flag.equals("task_daily_watch_live")) {
-                finishAll();
-                Bundle bundle = new Bundle();
-                bundle.putInt(MainActivity.PAGE_INDEX, 2);
-                gotoActivity(MainActivity.class, true, bundle);
-            } else if (flag.equals("task_daily_live")) {
-                finishAll();
-                Bundle bundle = new Bundle();
-                bundle.putInt(MainActivity.PAGE_INDEX, 2);
-                gotoActivity(MainActivity.class, true, bundle);
-            }
-        } else if (bean.task_status == 1) {
-            putDailyShare(bean.task_log_id);
-        } else if (bean.task_status == 2) {
-            ToastUtil.showToast("该任务已完成了哦！明天再来吧");
-        }
-    }
-
-    private List<RenWuBean> mlist = new ArrayList<>();
-
-    private void getTasks() {
-        showLoadDialog();
-        DataManager.getInstance().getTasks(new DefaultSingleObserver<HttpResult<RenWuBean>>() {
-            @Override
-            public void onSuccess(HttpResult<RenWuBean> httpResult) {
-                mlist.clear();
-                dissLoadDialog();
-                if (httpResult != null && httpResult.getData() != null) {
-                    if (httpResult.getData().newbie != null) {
-                        RenWuBean renWuBean = new RenWuBean();
-                        renWuBean.list = httpResult.getData().newbie;
-                        renWuBean.poistion = 1;
-                        mlist.add(renWuBean);
-                    }
-                    if (httpResult.getData().daily != null) {
-                        RenWuBean renWuBean = new RenWuBean();
-                        renWuBean.list = httpResult.getData().daily;
-                        renWuBean.poistion = 2;
-                        mlist.add(renWuBean);
-                    }
-                    mEntityStoreAdapter.setNewData(mlist);
-
-                }
-
-            }
-
-            @Override
-            public void onError(Throwable throwable) {
-                dissLoadDialog();
-            }
-        });
-    }
-
-    public void putDailyShare(String id) {
-
-        DataManager.getInstance().putReward(new DefaultSingleObserver<HttpResult<Object>>() {
-            @Override
-            public void onSuccess(HttpResult<Object> result) {
-                getTasks();
-                getMoney();
-
-            }
-
-            @Override
-            public void onError(Throwable throwable) {
-                dissLoadDialog();
-                getTasks();
-                getMoney();
-
-            }
-        }, id);
-    }
+    private List<NewPeopleBeam> mlist = new ArrayList<>();
 
 
 }

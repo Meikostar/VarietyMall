@@ -38,9 +38,9 @@
             android:layout_centerVertical="true"
             android:layout_gravity="center"
             android:layout_marginRight="@dimen/bj_10dp"
-            android:textColor="#ff666666"
-            android:textSize="14sp"
-            android:visibility="gone" />
+            android:textColor="#111"
+            android:textSize="15sp"
+            android:text="编辑"/>
         <ImageView
             android:id="@+id/iv_right"
             android:layout_width="wrap_content"

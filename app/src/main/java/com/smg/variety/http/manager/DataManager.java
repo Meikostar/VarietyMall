@@ -52,6 +52,7 @@ import com.smg.variety.bean.MemberDto;
 import com.smg.variety.bean.MyOrderDto;
 import com.smg.variety.bean.MyOrderLogisticsDto;
 import com.smg.variety.bean.NewListItemDto;
+import com.smg.variety.bean.NewPeopleBeam;
 import com.smg.variety.bean.NewsDetailDto;
 import com.smg.variety.bean.NewsOtherListItemDto;
 import com.smg.variety.bean.NewsRecommendListDto;
@@ -282,6 +283,17 @@ public class DataManager {
                 .map(new HttpResultMapper.HttpResultOtheData<>(null));
         subscribe(observable, observer);
     }
+    public void getGiftLog(DefaultSingleObserver<HttpResult<List<IncomeDto>>> observer, Map<String, String> map) {
+        Single<HttpResult<List<IncomeDto>>> observable = retrofitService.getGiftLog(getToken(),map)
+                .map(new HttpResultMapper.HttpResultOtheData<>(null));
+        subscribe(observable, observer);
+    }
+    public void getTipsLog(DefaultSingleObserver<HttpResult<List<IncomeDto>>> observer, Map<String, String> map) {
+        Single<HttpResult<List<IncomeDto>>> observable = retrofitService.getTipsLog(getToken(),map)
+                .map(new HttpResultMapper.HttpResultOtheData<>(null));
+        subscribe(observable, observer);
+    }
+
     public void getWithdraw(DefaultSingleObserver<HttpResult<List<IncomeDto>>> observer, Map<String, String> map) {
         Single<HttpResult<List<IncomeDto>>> observable = retrofitService.getWithdraw(getToken(),map)
                 .map(new HttpResultMapper.HttpResultOtheData<>(null));
@@ -632,6 +644,22 @@ public class DataManager {
                 .map(new HttpResultMapper.HttpResultOtheData<>(null));
         subscribe(observable, observer);
     }
+    public void getCouPonList(DefaultSingleObserver<HttpResult<List<NewPeopleBeam>>> observer, String type) {
+        Single<HttpResult<List<NewPeopleBeam>>> observable = retrofitService.getCouPon(getToken(), type)
+                .map(new HttpResultMapper.HttpResultOtheData<>(null));
+        subscribe(observable, observer);
+    }
+    public void getCouPonLists(DefaultSingleObserver<HttpResult<List<NewPeopleBeam>>> observer,Map<String, String> map) {
+        Single<HttpResult<List<NewPeopleBeam>>> observable = retrofitService.getCouPons(getToken(),map)
+                .map(new HttpResultMapper.HttpResultOtheData<>(null));
+        subscribe(observable, observer);
+    }
+    public void putCouPon(DefaultSingleObserver<HttpResult<Object>> observer, String id) {
+        Single<HttpResult<Object>> observable = retrofitService.putCouPon(getToken(), id)
+                .map(new HttpResultMapper.HttpResultOtheData<>(null));
+        subscribe(observable, observer);
+    }
+
 
     /**
      * 获取群相关信息
@@ -1391,6 +1419,12 @@ public class DataManager {
         subscribe(observable, observer);
     }
 
+    public void delVideos(DefaultSingleObserver<HttpResult<Object>> observer, HashMap<String, String> map) {
+        Single<HttpResult<Object>> observable = retrofitService.delVideos(getToken(),map)
+                .map(new HttpResultMapper.HttpResultOtheData<>(null));
+        subscribe(observable, observer);
+    }
+
     /**
      * 直播公告
      */
@@ -1725,6 +1759,12 @@ public class DataManager {
     }
     public void UpdateliveVideo(DefaultSingleObserver<HttpResult<Object>> observer,Map<String, String> map) {
         Single<HttpResult<Object>> observable = retrofitService.UpdateliveVideo(getToken(), map)
+                .map(new HttpResultMapper.HttpResultOtheData<>(null));
+        subscribe(observable, observer);
+    }
+
+    public void Updateexchange(DefaultSingleObserver<HttpResult<Object>> observer,Map<String, String> map) {
+        Single<HttpResult<Object>> observable = retrofitService.Updateexchange(getToken(), map)
                 .map(new HttpResultMapper.HttpResultOtheData<>(null));
         subscribe(observable, observer);
     }
