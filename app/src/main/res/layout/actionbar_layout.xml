@@ -10,7 +10,7 @@
         android:id="@+id/acb_status_bar"
         android:layout_width="match_parent"
         android:layout_height="24dp"
-        android:background="@color/my_color_333333"
+        android:background="@color/white"
         android:paddingLeft="6dp"
         android:paddingRight="6dp" />
 

@@ -32,7 +32,18 @@ public class StoreDetailActivity extends BaseActivity {
 
     @Override
     public void initListener() {
-
+        rlGr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gotoActivity(PersonRequireActivity.class);
+            }
+        });
+        rlQy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gotoActivity(EnterpireRequireActivity.class);
+            }
+        });
     }
 
     @Override
@@ -72,10 +83,7 @@ public class StoreDetailActivity extends BaseActivity {
         super.onResume();
     }
 
-    private void gotoModifyNicknameActivity() {
-        Intent intent = new Intent(this, ModifyNicknameActivity.class);
-        startActivityForResult(intent, 100);
-    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -84,10 +92,4 @@ public class StoreDetailActivity extends BaseActivity {
     }
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
 }

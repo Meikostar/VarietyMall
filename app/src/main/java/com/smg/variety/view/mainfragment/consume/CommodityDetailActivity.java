@@ -416,7 +416,7 @@ public class CommodityDetailActivity extends BaseActivity implements BaseActivit
                         ShareUtil.getInstance().saveInt("isFirstShare",1);
                     }
                     putDailyShare();
-                    ShareUtil.sendToWeaChat(CommodityDetailActivity.this, isTimelineCb, title, url);
+                    ShareUtil.sendToWeaChat(CommodityDetailActivity.this, isTimelineCb, title, url,procutUrl);
 
                 }
             });
@@ -949,8 +949,16 @@ public class CommodityDetailActivity extends BaseActivity implements BaseActivit
 
         }
     }
-
+    private String procutUrl;
     private void startBanner(List<String> data) {
+        if(data!=null&&data.size()>0){
+            if(data.get(0).contains("http")){
+                procutUrl=data.get(0);
+            }else {
+                procutUrl=Constants.WEB_IMG_URL_UPLOADS+data.get(0);
+            }
+        }
+
         //设置banner样式(显示圆形指示器)
         banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
         //设置指示器位置（指示器居右）

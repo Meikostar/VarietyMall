@@ -92,6 +92,7 @@ import com.smg.variety.bean.WEIXINREQ;
 import com.smg.variety.bean.apply;
 import com.smg.variety.common.Constants;
 import com.smg.variety.common.utils.LogUtil;
+import com.smg.variety.db.bean.StoreInfo;
 import com.smg.variety.http.DefaultSingleObserver;
 import com.smg.variety.http.RetrofitHelper;
 import com.smg.variety.http.RetrofitService;
@@ -1280,7 +1281,7 @@ public class DataManager {
     /**
      * 申请主播
      */
-    public void upSellers(DefaultSingleObserver<HttpResult<Object>> observer, HashMap<String, String> map) {
+    public void upSellers(DefaultSingleObserver<HttpResult<Object>> observer, StoreInfo map) {
         Single<HttpResult<Object>> observable = retrofitService.upSellers(getToken(), map)
                 .map(new HttpResultMapper.HttpResultOtheData<>(null));
         subscribe(observable, observer);
@@ -1360,6 +1361,11 @@ public class DataManager {
      */
     public void getTags(DefaultSingleObserver<Param> observer) {
         Single<Param> observable = retrofitService.getTags()
+                .map(new HttpResultMapper.HttpResultOtheData<>(null));
+        subscribe(observable, observer);
+    }
+    public void getInducts(DefaultSingleObserver<Param> observer) {
+        Single<Param> observable = retrofitService.getInduct()
                 .map(new HttpResultMapper.HttpResultOtheData<>(null));
         subscribe(observable, observer);
     }

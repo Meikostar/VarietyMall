@@ -114,7 +114,7 @@ public class MyGitListActivity extends BaseActivity {
 
         map.put("page", mCurrentPage + "");
         map.put("filter[type]",  "gift");
-        map.put("filter[reward_id]", "1");
+//        map.put("filter[reward_id]", "1");
         DataManager.getInstance().getGiftLog(new DefaultSingleObserver<HttpResult<List<IncomeDto>>>() {
             @Override
             public void onSuccess(HttpResult<List<IncomeDto>> result) {

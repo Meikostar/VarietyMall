@@ -1,4 +1,4 @@
-package com.smg.variety.view.widgets.dialog;
+package com.smg.variety.view.widgets;
 
 import android.app.Activity;
 import android.content.Context;
@@ -12,8 +12,8 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-
 import com.smg.variety.R;
+import com.smg.variety.bean.AreaDto;
 import com.smg.variety.view.adapter.TypeItemAdapter;
 import com.smg.variety.view.adapter.TypeItemAdapters;
 
@@ -27,32 +27,48 @@ import java.util.List;
  * 版本:1.0
  ***/
 
-public class ShopTypeWindow extends PopupWindow {
+public class ShopTypeWindows extends PopupWindow {
 
     private View mView;
     private Context mContext;
 
-    private TypeItemAdapter adapter;
+    private TypeItemAdapters adapter;
 
     private ListView rlMenu;
 
     private  TextView tv_title;
-    public ShopTypeWindow(Activity context) {
+    private  TextView tv_sure;
+    public ShopTypeWindows(Activity context) {
         super(context);
         mContext = context;
-        mView = LayoutInflater.from(mContext).inflate(R.layout.shop_type_dialog, null);
+        mView = LayoutInflater.from(mContext).inflate(R.layout.shop_type_dialogs, null);
 
         rlMenu=mView.findViewById(R.id.rl_menu);
 
         tv_title=mView.findViewById(R.id.tv_title);
+        tv_sure=mView.findViewById(R.id.tv_sure);
 
-
-
-        adapter = new TypeItemAdapter(context);
-        adapter.setListener(new TypeItemAdapter.ItemClickListener() {
+        adapter = new TypeItemAdapters(context);
+        adapter.setListener(new TypeItemAdapters.ItemClickListener() {
             @Override
-            public void itemclick(int poistion, String name) {
-                listener.clickListener(name);
+            public void itemclick(int poistion, String id,String name) {
+                List<AreaDto> data = adapter.getData();
+                for(int i=0;i<data.size();i++){
+                    if(i==poistion){
+                        data.get(i).check=true;
+                    }else {
+                        data.get(i).check=false;
+                    }
+                }
+                adapter.setData(data);
+                names=name;
+                ids=id;
+            }
+        });
+        tv_sure.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.clickListener(ids,names);
                 dismiss();
             }
         });
@@ -60,9 +76,11 @@ public class ShopTypeWindow extends PopupWindow {
 
 
     }
-
-
-
+  private String names="";
+  private String ids="";
+    public List<AreaDto> getDatas() {
+        return adapter.getData();
+    }
     public void setSureListener(ClickListener listener) {
         this.listener = listener;
     }
@@ -70,9 +88,18 @@ public class ShopTypeWindow extends PopupWindow {
     private ClickListener listener;
 
     public interface ClickListener {
-        void clickListener(String name);
+        void clickListener(String id, String name);
     }
 
+    public void setSureListeners(ClickListeners listener) {
+        this.listeners = listener;
+    }
+
+    private ClickListeners listeners;
+
+    public interface ClickListeners {
+        void clickListener(String id, String name);
+    }
 
     @Override
     public void showAsDropDown(View anchor) {
@@ -132,7 +159,7 @@ public class ShopTypeWindow extends PopupWindow {
 
 
 
-    public void selectData(List<String> list,String title) {
+    public void selectData(List<AreaDto> list, String title) {
 
        adapter.setData(list);
        tv_title.setText(title);

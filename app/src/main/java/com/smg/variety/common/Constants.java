@@ -120,6 +120,7 @@ public class Constants {
     public static final int INTENT_REQUESTCODE_VERIFIED_IMG3 = 70;
     public static final int INTENT_REQUESTCODE_VERIFIED_IMG4 = 80;
     public static final int INTENT_REQUESTCODE_VERIFIED_IMG5 = 90;
+    public static final int INTENT_REQUESTCODE_VERIFIED_IMG6 = 100;
 
     public static final String INTENT_DATA = "data";
     public static final String INTENT_AREA_NAME = "area_name";

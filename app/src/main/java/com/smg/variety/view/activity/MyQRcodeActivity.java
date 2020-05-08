@@ -122,7 +122,7 @@ public class MyQRcodeActivity extends BaseActivity {
                         boolean isTimelineCb = false;
                         //http://bbsc.885505.com/api/package/user/invitation_img?user_id=14
                         String url = "http://bbsc.885505.com/h5/#/register?invite_code=from_phone_" + ShareUtil.getInstance().getString(Constants.USER_PHONE, "");
-                        String title = "我的推广码";
+                        String title = "5G社交直播带货平台";
                         if (position == ShareModeDialog.SHARE_PYQ) {
                             isTimelineCb = true;
                         }

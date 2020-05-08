@@ -25,12 +25,28 @@ import com.smg.variety.base.BaseApplication;
 import com.smg.variety.common.Constants;
 import com.smg.variety.common.utils.ToastUtil;
 
+import org.reactivestreams.Subscriber;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
 import java.util.List;
 import java.util.Map;
+
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+import io.rong.message.utils.BitmapUtil;
 
 
 public class ShareUtil {
@@ -457,7 +473,139 @@ public class ShareUtil {
         thumbBmp.recycle();
         thumb.recycle();
     }
+    /**
+     * 把网络资源图片转化成bitmap
+     *
+     * @param url 网络资源图片
+     * @return Bitmap
+     */
+    public static Bitmap GetLocalOrNetBitmap(String url) {
+        Bitmap bitmap = null;
+        InputStream in = null;
+        BufferedOutputStream out = null;
+        try {
+            in = new BufferedInputStream(new URL(StringUtil.changeUrl(url)).openStream(), 1024);
+            final ByteArrayOutputStream dataStream = new ByteArrayOutputStream();
+            out = new BufferedOutputStream(dataStream, 1024);
+            copy(in, out);
+            out.flush();
+            byte[] data = dataStream.toByteArray();
+            bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+            data = null;
+            return bitmap;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    public static void copy(InputStream in, OutputStream out) throws IOException {
+        if (!(in instanceof BufferedInputStream)) {
+            in = new BufferedInputStream(in);
+        }
+        if (!(out instanceof BufferedOutputStream)) {
+            out = new BufferedOutputStream(out);
+        }
+        int len = 0;
+        byte[] buffer = new byte[1024];
+        while ((len = in.read(buffer)) != -1) {
+            out.write(buffer, 0, len);
+        }
+        out.flush();
+    }
 
+    public static void sendToWeaChat(Context mContext, boolean isTimelineCb, String title, String url,String procutUrl) {
+        final IWXAPI api = WXAPIFactory.createWXAPI(mContext, null);
+        // 将该app注册到微信
+        api.registerApp(ShareUtil.SHARE_APP_ID);
+        //初始化一个WXWebpageObject填写url
+
+        Observable.create(new ObservableOnSubscribe<WXMediaMessage>() {
+            @Override
+            public void subscribe(ObservableEmitter<WXMediaMessage> emitter) throws Exception {
+                WXWebpageObject webpageObject = new WXWebpageObject();
+                webpageObject.webpageUrl = url;
+                WXMediaMessage msg = new WXMediaMessage(webpageObject);
+                msg.title = title;
+                msg.description = "百变商城";
+                Bitmap thumb;
+                if(TextUtil.isNotEmpty(procutUrl)){
+                    thumb =Bitmap.createScaledBitmap(GetLocalOrNetBitmap(StringUtil.changeUrl(procutUrl)), 120, 120, true);//压缩Bitmap
+
+                }else {
+                    thumb = BitmapFactory.decodeResource(mContext.getResources(), R.mipmap.ic_logo);
+                }
+
+
+                Bitmap thumbBmp = Bitmap.createScaledBitmap(thumb, 120, 120, true);
+
+                msg.setThumbImage(thumbBmp);
+
+                emitter.onNext(msg);
+//                thumbBmp.recycle();
+//                thumb.recycle();
+            }
+        }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<WXMediaMessage>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onNext(WXMediaMessage msg) {
+                SendMessageToWX.Req req = new SendMessageToWX.Req();
+                req.transaction = String.valueOf(System.currentTimeMillis());
+                req.message = msg;
+                req.scene = isTimelineCb ? SendMessageToWX.Req.WXSceneTimeline : SendMessageToWX.Req.WXSceneSession;
+                api.sendReq(req);
+
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+               ToastUtil.showToast("分享失败");
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
+
+//        if (!ShareUtil.isAvailable(mContext, "com.tencent.mm")) {
+//            ToastUtil.showToast("你的手机尚未安装微信客户端,请先安装微信客户端");
+//            return;
+//        }
+//        final IWXAPI api = WXAPIFactory.createWXAPI(mContext, null);
+//        // 将该app注册到微信
+//        api.registerApp(ShareUtil.SHARE_APP_ID);
+//        //初始化一个WXWebpageObject填写url
+//        WXWebpageObject webpageObject = new WXWebpageObject();
+//        webpageObject.webpageUrl = url;
+//        //用WXWebpageObject对象初始化一个WXMediaMessage，天下标题，描述
+//        WXMediaMessage msg = new WXMediaMessage(webpageObject);
+//        msg.title = title;
+//        msg.description = "百变商城";
+//        Bitmap thumb;
+//        if(TextUtil.isNotEmpty(procutUrl)){
+//             thumb =Bitmap.createScaledBitmap(GetLocalOrNetBitmap(StringUtil.changeUrl(procutUrl)), 120, 120, true);//压缩Bitmap
+//
+//        }else {
+//             thumb = BitmapFactory.decodeResource(mContext.getResources(), R.mipmap.ic_logo);
+//        }
+//
+//
+//        Bitmap thumbBmp = Bitmap.createScaledBitmap(thumb, 120, 120, true);
+//        msg.setThumbImage(thumbBmp);
+//        SendMessageToWX.Req req = new SendMessageToWX.Req();
+//        req.transaction = String.valueOf(System.currentTimeMillis());
+//        req.message = msg;
+//        req.scene = isTimelineCb ? SendMessageToWX.Req.WXSceneTimeline : SendMessageToWX.Req.WXSceneSession;
+//        api.sendReq(req);
+//        thumbBmp.recycle();
+//        thumb.recycle();
+    }
     public static void sendToWeaChat(Context mContext, boolean isTimelineCb, String title, String url) {
 
         if (!ShareUtil.isAvailable(mContext, "com.tencent.mm")) {

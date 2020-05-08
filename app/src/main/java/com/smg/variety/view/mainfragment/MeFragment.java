@@ -20,6 +20,7 @@ import com.smg.variety.base.BaseFragment;
 import com.smg.variety.bean.AnchorInfo;
 import com.smg.variety.bean.BannerInfoDto;
 import com.smg.variety.bean.BannerItemDto;
+import com.smg.variety.bean.BaseDto1;
 import com.smg.variety.bean.CountOrderBean;
 import com.smg.variety.bean.CountStatisticsBean;
 import com.smg.variety.bean.PersonalInfoDto;
@@ -39,11 +40,11 @@ import com.smg.variety.utils.TextUtil;
 import com.smg.variety.utils.UserHelper;
 import com.smg.variety.view.activity.AccountSettingActivity;
 import com.smg.variety.view.activity.AppRenWuActivity;
+import com.smg.variety.view.activity.AppStoresActivity;
 import com.smg.variety.view.activity.AttentionActivity;
 import com.smg.variety.view.activity.BankCardManagerActivity;
 import com.smg.variety.view.activity.CollectActivity;
 import com.smg.variety.view.activity.CommentCenterActivity;
-import com.smg.variety.view.activity.EnterprisePermissionActivity;
 import com.smg.variety.view.activity.HelpCenterActivity;
 import com.smg.variety.view.activity.LiveCheckFailActivity;
 import com.smg.variety.view.activity.LiveCheckingActivity;
@@ -54,7 +55,6 @@ import com.smg.variety.view.activity.MineCouPonActivity;
 import com.smg.variety.view.activity.MyBuyGoodActivity;
 import com.smg.variety.view.activity.MyEarningsActivity;
 import com.smg.variety.view.activity.MyFootprintActivity;
-import com.smg.variety.view.activity.MyOrderEvaluateListActivity;
 import com.smg.variety.view.activity.MyPublishActivity;
 import com.smg.variety.view.activity.MyQRcodeActivity;
 import com.smg.variety.view.activity.OrderActivity;
@@ -62,8 +62,10 @@ import com.smg.variety.view.activity.RechargeWebActivity;
 import com.smg.variety.view.activity.RefundAfterSalesActivity;
 import com.smg.variety.view.activity.RequestLivePermissionActivity;
 import com.smg.variety.view.activity.ShippingAddressActivity;
-import com.smg.variety.view.activity.ShopStoreDetailActivity;
+import com.smg.variety.view.activity.ShopCheckFailActivity;
+import com.smg.variety.view.activity.ShopCheckingActivity;
 import com.smg.variety.view.activity.StartLiveActivity;
+import com.smg.variety.view.activity.StoreDetailActivity;
 import com.smg.variety.view.activity.SuperMemberActivity;
 import com.smg.variety.view.activity.UserInfoActivity;
 import com.smg.variety.view.adapter.ServiceMenuAdapter;
@@ -428,11 +430,12 @@ public class MeFragment extends BaseFragment {
     }
 
 
-    private String id;
-    private int    state;
-    private int    states;
-    private int    level;
-    private int    setPay_state;
+    private String   id;
+    private int      state;
+    private int      states;
+    private int      level;
+    private int      setPay_state;
+    private BaseDto1 seller;
 
     private void getUserInfo() {
         DataManager.getInstance().getUserInfo(new DefaultSingleObserver<PersonalInfoDto>() {
@@ -443,7 +446,7 @@ public class MeFragment extends BaseFragment {
                 userCountStatistics();
                 getAllUserOrdersCount();
                 getAlOrdersRefundCount();
-
+                seller=personalInfoDto.seller;
                 //                getShopInfo();
                 if (mPersonalInfoDto != null) {
                     level=mPersonalInfoDto.level;
@@ -674,8 +677,26 @@ public class MeFragment extends BaseFragment {
 
                 break;
             case R.id.ll_dp://店铺
+              if(seller==null){
+                  gotoActivity(StoreDetailActivity.class);
+              }else {
+                 if(seller.data.status!=null){
+                     if(seller.data.status.equals("1")){
+                         gotoActivity(ShopCheckingActivity.class);
+                     }else if(seller.data.status.equals("2")){
+                         gotoActivity(AppStoresActivity.class);
+                       //审核成功
+                     }else if(seller.data.status.equals("3")){
+                         gotoActivity(ShopCheckFailActivity.class);
+                     }else if(seller.data.status.equals("4")){
+                         gotoActivity(ShopCheckFailActivity.class);
+                     }
+                 }else {
+                     gotoActivity(StoreDetailActivity.class);
 
-              ToastUtil.showToast("暂未开放");
+                 }
+              }
+//              ToastUtil.showToast("暂未开放");
                 break;
             case R.id.ll_kf://客服
                 showCallCenterDialog();

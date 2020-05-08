@@ -3,23 +3,24 @@ package com.smg.variety.bean;
 import java.io.Serializable;
 
 public class AreaDto implements Serializable {
-
-//           "id": 14,
-//                   "parent_id": null,
-//                   "order": 13,
-//                   "title": "越南",
-//                   "icon": "category_icon/越南.png",
-//                   "description": null,
-//                   "hidden": false,
-//                   "is_recommend": false,
-//                   "flag1": false,
-//                   "flag2": false
     public String title;
     public String icon;
     public String logo;
+    public String type;
+    public String description;
+
+
+
+    public String to;
+    public String from;
+    public String created_at;
+
+    public boolean check;
+    public boolean is_recommend;
+
 
     public int id;
-    String name;
+    public  String name;
     long depth;
     int parent_id;
 

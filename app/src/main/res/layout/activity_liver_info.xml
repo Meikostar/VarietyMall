@@ -138,9 +138,10 @@
                android:layout_width="match_parent"
                android:layout_height="110dp">
                <FrameLayout
+                   android:layout_weight="1"
                    android:visibility="gone"
                    android:id="@+id/fl_bg1"
-                   android:layout_marginLeft="15dp"
+                   android:layout_marginLeft="10dp"
                    android:layout_width="@dimen/bj_110dp"
                    android:layout_height="@dimen/bj_110dp">
                    <ImageView
@@ -161,6 +162,7 @@
                        />
                </FrameLayout>
                <FrameLayout
+                   android:layout_weight="1"
                    android:visibility="gone"
                    android:id="@+id/fl_bg2"
                    android:layout_marginLeft="15dp"
@@ -184,8 +186,9 @@
                        />
                </FrameLayout>
                <FrameLayout
+                   android:layout_weight="1"
                    android:visibility="gone"
-                   android:layout_marginRight="15dp"
+                   android:layout_marginRight="10dp"
                    android:id="@+id/fl_bg3"
                    android:layout_marginLeft="15dp"
                    android:layout_width="@dimen/bj_110dp"

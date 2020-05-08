@@ -89,6 +89,7 @@ import com.smg.variety.bean.VideoBean;
 import com.smg.variety.bean.VideoLiveBean;
 import com.smg.variety.bean.WEIXINREQ;
 import com.smg.variety.bean.apply;
+import com.smg.variety.db.bean.StoreInfo;
 import com.smg.variety.http.response.HttpResult;
 
 import java.util.ArrayList;
@@ -957,9 +958,9 @@ public interface RetrofitService {
 
     @PUT("api/tasks/{type}/complete")
     Single<HttpResult<Object>> putLookLive(@Header("Authorization") String token, @Path("type") String type);
-
+    @Headers({"Content-Type: application/json","Accept: application/json"})
     @POST("/api/sellers")
-    Single<HttpResult<Object>> upSellers(@Header("Authorization") String token, @Body HashMap<String, String> map);
+    Single<HttpResult<Object>> upSellers(@Header("Authorization") String token, @Body StoreInfo body);
 
     @POST("/api/user/likes")
     Single<HttpResult<Object>> getLike(@Header("Authorization") String token, @Body Map<String, String> map);
@@ -1002,6 +1003,9 @@ public interface RetrofitService {
      */
     @GET("api/package/tags")
     Single<Param> getTags();
+
+    @GET("api/indust")
+    Single<Param> getInduct();
 
     /**
      *

@@ -8,26 +8,32 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.lwkandroid.imagepicker.ImagePicker;
+import com.lwkandroid.imagepicker.data.ImageBean;
+import com.lwkandroid.imagepicker.data.ImagePickType;
+import com.lwkandroid.imagepicker.utils.GlideImagePickerDisplayer;
 import com.smg.variety.R;
 import com.smg.variety.base.BaseActivity;
 import com.smg.variety.base.BaseApplication;
+import com.smg.variety.bean.AreaDto;
+import com.smg.variety.bean.Param;
 import com.smg.variety.bean.UploadFilesDto;
 import com.smg.variety.common.Constants;
 import com.smg.variety.common.utils.Compressor;
 import com.smg.variety.common.utils.GlideUtils;
 import com.smg.variety.common.utils.ToastUtil;
+import com.smg.variety.db.bean.StoreInfo;
 import com.smg.variety.http.DefaultSingleObserver;
 import com.smg.variety.http.error.ApiException;
 import com.smg.variety.http.manager.DataManager;
 import com.smg.variety.http.response.HttpResult;
-import com.lwkandroid.imagepicker.ImagePicker;
-import com.lwkandroid.imagepicker.data.ImageBean;
-import com.lwkandroid.imagepicker.data.ImagePickType;
-import com.lwkandroid.imagepicker.utils.GlideImagePickerDisplayer;
+import com.smg.variety.view.widgets.ShopTypeWindows;
+import com.smg.variety.view.widgets.dialog.ShopTypeWindow;
 import com.tbruyelle.rxpermissions2.Permission;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
@@ -44,7 +50,7 @@ import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
-public class EnterprisePermissionActivity extends BaseActivity {
+public class PersonRequireActivity extends BaseActivity {
 
     UploadFilesDto uploadFilesDto;
     @BindView(R.id.iv_title_back)
@@ -55,46 +61,81 @@ public class EnterprisePermissionActivity extends BaseActivity {
     TextView       tvTitleRight;
     @BindView(R.id.layout_top)
     RelativeLayout layoutTop;
-    @BindView(R.id.et_content1)
-    EditText       etContent1;
-    @BindView(R.id.et_name)
-    EditText       etName;
-    @BindView(R.id.iv_img11)
-    ImageView      ivImg11;
-
-    @BindView(R.id.iv_img22)
-    ImageView      ivImg22;
-
-    @BindView(R.id.iv_img33)
-    ImageView      ivImg33;
-
-    @BindView(R.id.iv_img44)
+    @BindView(R.id.civ_user_avatar)
     ImageView      ivImg44;
 
-    @BindView(R.id.iv_img55)
-    ImageView      ivImg55;
-
-    @BindView(R.id.tv_submit)
-    TextView       tvSubmit;
+    @BindView(R.id.et_content1)
+    EditText       etContent1;
+    @BindView(R.id.et_content2)
+    EditText       etContent2;
+    @BindView(R.id.et_content3)
+    EditText     etContent3;
+    @BindView(R.id.iv_img11)
+    ImageView    ivImg11;
+    @BindView(R.id.iv_img22)
+    ImageView    ivImg22;
+    @BindView(R.id.iv_img33)
+    ImageView    ivImg33;
     @BindView(R.id.cb_register_check_box)
-    CheckBox       cbRegisterCheckBox;
-
-
+    CheckBox     cbRegisterCheckBox;
+    @BindView(R.id.tv_submit)
+    TextView     tvSubmit;
+    @BindView(R.id.tv_type)
+    TextView     tvType;
+    @BindView(R.id.line)
+    View         line;
+    @BindView(R.id.ll_choose)
+    LinearLayout ll_choose;
     @Override
     public int getLayoutId() {
-        return R.layout.activity_enterprise;
+        return R.layout.activity_person_reuqair;
     }
 
     @Override
     public void initView() {
-        tvTitleText.setText("企业认证");
+        tvTitleText.setText("个人申请");
     }
-
+    private ShopTypeWindows shoptypeWindow;
+    private String ids;
     @Override
     public void initData() {
+        getTags();
+        shoptypeWindow = new ShopTypeWindows(this);
+        shoptypeWindow.setSureListener(new ShopTypeWindows.ClickListener() {
+            @Override
+            public void clickListener(String id, String name) {
+                ids=id;
+                tvType.setText(name);
+
+
+            }
+        });
+    }
+    private List<AreaDto>  dto =null;//标签数据
+    public void getTags(){
+        DataManager.getInstance().getInducts(new DefaultSingleObserver<Param>() {
+            @Override
+            public void onSuccess(Param result) {
+                dissLoadDialog();
+
+                if(result!=null){
+                    dto=result.data;
+                }
+            }
+
+            @Override
+            public void onError(Throwable throwable) {
+                dissLoadDialog();
+                if (ApiException.getInstance().isSuccess()) {
+
+                } else {
+                    ToastUtil.showToast(ApiException.getHttpExceptionMessage(throwable));
+                }
+
+            }
+        });
 
     }
-
     @Override
     public void initListener() {
         ivTitleBack.setOnClickListener(new View.OnClickListener() {
@@ -103,32 +144,29 @@ public class EnterprisePermissionActivity extends BaseActivity {
                 finish();
             }
         });
+        ll_choose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                shoptypeWindow.selectData(dto, "选择行业分类" );
+                closeKeyBoard();
+                shoptypeWindow.showAsDropDown(line);
+            }
+        });
+
     }
 
     @OnClick({
-            R.id.tv_fw,
-            R.id.tv_ys,
+
             R.id.iv_img11,
             R.id.iv_img22,
             R.id.iv_img33,
-            R.id.iv_img44,
-            R.id.iv_img55,
+            R.id.rl_logo,
+
             R.id.tv_submit
     })
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.tv_fw:
 
-                Intent intent = new Intent(EnterprisePermissionActivity.this, WebUtilsActivity.class);
-                intent.putExtra("type",2);
-                startActivity(intent);
-                break;
-            case R.id.tv_ys:
-
-                Intent intent1 = new Intent(EnterprisePermissionActivity.this, WebUtilsActivity.class);
-                intent1.putExtra("type",1);
-                startActivity(intent1);
-                break;
             case R.id.iv_img11:
                 //                ToastUtil.showToast("上传身份证正面照");
                 selectPictur(1);
@@ -141,14 +179,11 @@ public class EnterprisePermissionActivity extends BaseActivity {
                 //                ToastUtil.showToast("上传身份证正面照");
                 selectPictur(3);
                 break;
-            case R.id.iv_img44:
+            case R.id.rl_logo:
                 //                ToastUtil.showToast("上传身份证正面照");
                 selectPictur(4);
                 break;
-            case R.id.iv_img55:
-                //                ToastUtil.showToast("上传身份证正面照");
-                selectPictur(5);
-                break;
+
             case R.id.tv_submit:
                 upSellers();
                 break;
@@ -157,17 +192,16 @@ public class EnterprisePermissionActivity extends BaseActivity {
     }
 
     private int code;
-    public void selectPictur(int poition){
-        if(poition==1){
-            code=Constants.INTENT_REQUESTCODE_VERIFIED_IMG1;
-        }else if(poition==2){
-            code=Constants.INTENT_REQUESTCODE_VERIFIED_IMG2;
-        }else if(poition==3){
-            code=Constants.INTENT_REQUESTCODE_VERIFIED_IMG3;
-        }else if(poition==4){
-            code=Constants.INTENT_REQUESTCODE_VERIFIED_IMG4;
-        }else if(poition==5){
-            code=Constants.INTENT_REQUESTCODE_VERIFIED_IMG5;
+
+    public void selectPictur(int poition) {
+        if (poition == 1) {
+            code = Constants.INTENT_REQUESTCODE_VERIFIED_IMG1;
+        } else if (poition == 2) {
+            code = Constants.INTENT_REQUESTCODE_VERIFIED_IMG2;
+        } else if (poition == 3) {
+            code = Constants.INTENT_REQUESTCODE_VERIFIED_IMG3;
+        } else if (poition == 4) {
+            code = Constants.INTENT_REQUESTCODE_VERIFIED_IMG4;
         }
 
         new RxPermissions(this).requestEach(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
@@ -182,41 +216,42 @@ public class EnterprisePermissionActivity extends BaseActivity {
                                     .needCamera(true)//是否需要在界面中显示相机入口(类似微信)
                                     .displayer(new GlideImagePickerDisplayer())//自定义图片加载器，默认是Glide实现的,可自定义图片加载器
                                     //                                             .doCrop(1, 1, 300, 300)
-                                    .start(EnterprisePermissionActivity.this, code);
+                                    .start(PersonRequireActivity.this, code);
                         }
                     }
                 });
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK  && data != null) {
+        if (resultCode == Activity.RESULT_OK && data != null) {
             List<ImageBean> resultList = data.getExtras().getParcelableArrayList(ImagePicker.INTENT_RESULT_DATA);
-            String    imageUrl="";
+            String imageUrl = "";
             if (resultList != null && resultList.size() > 0) {
-                 imageUrl = resultList.get(0).getImagePath();
+                imageUrl = resultList.get(0).getImagePath();
 
             }
-            if(requestCode==Constants.INTENT_REQUESTCODE_VERIFIED_IMG1){
-                uploadImg(imageUrl,1);
-            }else if(requestCode==Constants.INTENT_REQUESTCODE_VERIFIED_IMG2){
-                uploadImg(imageUrl,2);
-            }else if(requestCode==Constants.INTENT_REQUESTCODE_VERIFIED_IMG3){
-                uploadImg(imageUrl,3);
-            }else if(requestCode==Constants.INTENT_REQUESTCODE_VERIFIED_IMG4){
-                uploadImg(imageUrl,4);
-            }else if(requestCode==Constants.INTENT_REQUESTCODE_VERIFIED_IMG5){
-                uploadImg(imageUrl,5);
+            if (requestCode == Constants.INTENT_REQUESTCODE_VERIFIED_IMG1) {
+                uploadImg(imageUrl, 1);
+            } else if (requestCode == Constants.INTENT_REQUESTCODE_VERIFIED_IMG2) {
+                uploadImg(imageUrl, 2);
+            } else if (requestCode == Constants.INTENT_REQUESTCODE_VERIFIED_IMG3) {
+                uploadImg(imageUrl, 3);
+            } else if (requestCode == Constants.INTENT_REQUESTCODE_VERIFIED_IMG4) {
+                uploadImg(imageUrl, 4);
             }
 
         }
     }
+
     private String img1;
     private String img2;
     private String img3;
     private String img4;
     private String img5;
-    private void uploadImg(String imgPath,final int poition) {
+
+    private void uploadImg(String imgPath, final int poition) {
         uploadFilesDto = null;
         File file = new File(imgPath);
         File compressedImage = null;
@@ -243,41 +278,32 @@ public class EnterprisePermissionActivity extends BaseActivity {
             public void onSuccess(UploadFilesDto object) {
                 dissLoadDialog();
                 if (object != null) {
-                    if(poition==1){
-                        img1=object.getPath();
-                        GlideUtils.getInstances().loadNormalImg(EnterprisePermissionActivity.this, ivImg11, Constants.BASE_URL +img1);
+                    if (poition == 1) {
+                        img1 =object.getPath();
+                        GlideUtils.getInstances().loadNormalImg(PersonRequireActivity.this, ivImg11, img1);
 
-                    }else if(poition==2){
-                        img2=object.getPath();
-                        GlideUtils.getInstances().loadNormalImg(EnterprisePermissionActivity.this, ivImg22, Constants.BASE_URL +img2);
-                    }else if(poition==3){
-                        img3=object.getPath();
-                        GlideUtils.getInstances().loadNormalImg(EnterprisePermissionActivity.this, ivImg33, Constants.BASE_URL +img3);
-                    }else if(poition==4){
-                        img4=object.getPath();
-                        GlideUtils.getInstances().loadNormalImg(EnterprisePermissionActivity.this, ivImg44, Constants.BASE_URL +img4);
-                    }else if(poition==5){
-                        img5=object.getPath();
-                        GlideUtils.getInstances().loadNormalImg(EnterprisePermissionActivity.this, ivImg55, Constants.BASE_URL +img5);
+                    } else if (poition == 2) {
+                        img2 = object.getPath();
+                        GlideUtils.getInstances().loadNormalImg(PersonRequireActivity.this, ivImg22, img2);
+                    } else if (poition == 3) {
+                        img3 = object.getPath();
+                        GlideUtils.getInstances().loadNormalImg(PersonRequireActivity.this, ivImg33, img3);
+                    } else if (poition == 4) {
+                        img4 = object.getPath();
+                        GlideUtils.getInstances().loadNormalImg(PersonRequireActivity.this, ivImg44, img4);
                     }
 
                 } else {
-                    if(poition==1){
-                        img1=object.getPath();
-                        GlideUtils.getInstances().loadNormalImg(EnterprisePermissionActivity.this, ivImg11, R.drawable.icon_cer_1);
+                    if (poition == 1) {
+                        img1 = object.getPath();
+                        GlideUtils.getInstances().loadNormalImg(PersonRequireActivity.this, ivImg11, R.drawable.icon_cer_1);
 
-                    }else if(poition==2){
-                        img2=object.getPath();
-                        GlideUtils.getInstances().loadNormalImg(EnterprisePermissionActivity.this, ivImg22, R.drawable.icon_cer_2);
-                    }else if(poition==3){
-                        img3=object.getPath();
-                        GlideUtils.getInstances().loadNormalImg(EnterprisePermissionActivity.this, ivImg33, R.drawable.icon_cer_3);
-                    }else if(poition==4){
-                        img4=object.getPath();
-                        GlideUtils.getInstances().loadNormalImg(EnterprisePermissionActivity.this, ivImg44, R.drawable.icon_cer_4);
-                    }else if(poition==5){
-                        img5=object.getPath();
-                        GlideUtils.getInstances().loadNormalImg(EnterprisePermissionActivity.this, ivImg55, R.drawable.icon_cer_5);
+                    } else if (poition == 2) {
+                        img2 = object.getPath();
+                        GlideUtils.getInstances().loadNormalImg(PersonRequireActivity.this, ivImg22, R.drawable.icon_cer_2);
+                    } else if (poition == 3) {
+                        img3 = object.getPath();
+                        GlideUtils.getInstances().loadNormalImg(PersonRequireActivity.this, ivImg33, R.drawable.icon_cer_3);
                     }
                     ToastUtil.showToast("上传图片失败");
                 }
@@ -286,22 +312,33 @@ public class EnterprisePermissionActivity extends BaseActivity {
             @Override
             public void onError(Throwable throwable) {
                 dissLoadDialog();
-//                ToastUtil.toast(ApiException.getInstance().getErrorMsg());
+                //                ToastUtil.toast(ApiException.getInstance().getErrorMsg());
                 ToastUtil.showToast(ApiException.getHttpExceptionMessage(throwable));
             }
         }, "seller", part);
     }
-    private List<String> imgs=new ArrayList<>();
-    private String content;
+
+    private List<String> imgs = new ArrayList<>();
+    private List<String> imgs1 = new ArrayList<>();
+    private String       content;
+    private String       contents;
+
     public void upSellers() {
 
-        if (TextUtils.isEmpty(etName.getText().toString().trim())) {
-            ToastUtil.showToast("请输入营业执照上真实填写");
+        if (TextUtils.isEmpty(etContent1.getText().toString().trim())) {
+            ToastUtil.showToast("请输入店铺名称");
             return;
         }
-
-        if (TextUtils.isEmpty(etContent1.getText().toString().trim())) {
-            ToastUtil.showToast("请输入营业执照上的全称");
+        if (TextUtils.isEmpty(etContent2.getText().toString().trim())) {
+            ToastUtil.showToast("请输入联系人姓名");
+            return;
+        }
+        if (TextUtils.isEmpty(etContent3.getText().toString().trim())) {
+            ToastUtil.showToast("请输入联系人电话");
+            return;
+        }
+        if (TextUtils.isEmpty(ids)) {
+            ToastUtil.showToast("请输入选择行业分类");
             return;
         }
         if (TextUtils.isEmpty(img1)) {
@@ -316,11 +353,8 @@ public class EnterprisePermissionActivity extends BaseActivity {
             ToastUtil.showToast("请上传营业执照");
             return;
         }
+
         if (TextUtils.isEmpty(img4)) {
-            ToastUtil.showToast("请上传店铺照");
-            return;
-        }
-        if (TextUtils.isEmpty(img5)) {
             ToastUtil.showToast("请上传logo");
             return;
         }
@@ -330,19 +364,34 @@ public class EnterprisePermissionActivity extends BaseActivity {
             return;
         }
         showLoadDialog();
-        content="";
+        content = "";
+        imgs1.clear();
+        imgs.clear();
+        imgs1.add(img3);
         imgs.add(img1);
         imgs.add(img2);
         Gson g = new Gson();
         content = g.toJson(imgs);
-        HashMap<String,String> map = new HashMap<>();
-        map.put("type","default");
-        map.put("shop_name",etContent1.getText().toString().trim());
-        map.put("name",etName.getText().toString().trim());
-        map.put("logo",img5);
-        map.put("id_cards",content);
-        map.put("credentials",img3);
-        map.put("photos",img4);
+        contents = g.toJson(imgs1);
+        HashMap<String, String> map = new HashMap<>();
+        map.put("type", "personal");
+        map.put("shop_name", etContent1.getText().toString().trim());
+        map.put("name", etContent2.getText().toString().trim());
+        map.put("phone", etContent3.getText().toString().trim());
+        map.put("industry", ids);
+        map.put("logo", img4);
+        map.put("id_cards[0]", img1);
+        map.put("id_cards[1]", img2);
+        map.put("credentials", contents);
+        StoreInfo info=new StoreInfo();
+        info.type="personal";
+        info.shop_name=etContent1.getText().toString().trim();
+        info.name=etContent2.getText().toString().trim();
+        info.phone=etContent3.getText().toString().trim();
+        info.industry=ids;
+        info.logo=img4;
+        info.id_cards=imgs;
+        info.credentials=imgs1;
         DataManager.getInstance().upSellers(new DefaultSingleObserver<HttpResult<Object>>() {
             @Override
             public void onSuccess(HttpResult<Object> result) {
@@ -362,7 +411,8 @@ public class EnterprisePermissionActivity extends BaseActivity {
                 }
 
             }
-        }, map);
+        }, info);
     }
+
 
 }

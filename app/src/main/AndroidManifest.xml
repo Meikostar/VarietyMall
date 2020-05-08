@@ -146,7 +146,7 @@
             android:name="com.smg.variety.view.mainfragment.consume.BabyPublishActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.smg.variety.view.activity.EnterprisePermissionActivity"
+            android:name="com.smg.variety.view.activity.PersonRequireActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.smg.variety.view.XgPwdActivity"
@@ -200,6 +200,13 @@
         <activity
             android:name="com.smg.variety.view.activity.HostManActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.smg.variety.view.activity.AppStoresActivity"
+            android:screenOrientation="portrait" />
+
+
+
 
         <activity
             android:name="com.smg.variety.view.mainfragment.community.TopicPublishActivity"
@@ -599,6 +606,23 @@
         <activity
             android:name="com.smg.variety.view.activity.MyLiversActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.EnterpireRequireActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.StoreDetailActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.smg.variety.view.activity.ShopCheckFailActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.smg.variety.view.activity.ShopCheckingActivity"
+            android:screenOrientation="portrait" />
+
+
+
 
 
 
