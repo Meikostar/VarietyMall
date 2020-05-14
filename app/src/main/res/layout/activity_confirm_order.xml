@@ -62,7 +62,7 @@
                  android:background="@color/white"
                 android:id="@+id/rl_address"
                android:layout_width="match_parent"
-               android:layout_height="80dp"
+               android:layout_height="wrap_content"
                 android:minHeight="70dp"
                android:paddingTop="@dimen/bj_10dp"
                android:paddingBottom="@dimen/bj_10dp">

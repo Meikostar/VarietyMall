@@ -92,6 +92,7 @@ public class NewPeopleAdapterss extends BaseQuickAdapter<NewPeopleBeam, BaseView
                 }else if (item.day_type == 3) {
                     helper.setText(R.id.tv_time, "领取后第二天内可用");
                 }
+                helper.setText(R.id.tv_time, item.expire_at+"到期");
             }
             view.setOnClickListener(new View.OnClickListener() {
                 @Override

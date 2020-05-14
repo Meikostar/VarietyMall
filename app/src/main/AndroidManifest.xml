@@ -204,8 +204,22 @@
         <activity
             android:name="com.smg.variety.view.activity.AppStoresActivity"
             android:screenOrientation="portrait" />
-
-
+        <activity
+            android:name="com.smg.variety.view.activity.OnlyNewPeopleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.EntityProductActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.StoreOrderDetailActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.OrderStoreActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.smg.variety.view.activity.GiftSendActivity"
+            android:screenOrientation="portrait" />
 
 
         <activity

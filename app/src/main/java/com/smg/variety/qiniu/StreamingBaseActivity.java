@@ -291,10 +291,11 @@ public abstract class StreamingBaseActivity extends BaseActivity implements
     private void initEncodingProfile() {
 
             mProfile = new StreamingProfile();
-            mProfile.setVideoQuality(StreamingProfile.VIDEO_QUALITY_HIGH2)
-                    .setAudioQuality(StreamingProfile.AUDIO_QUALITY_HIGH1)
-                    .setEncodingSizeLevel(StreamingProfile.VIDEO_ENCODING_HEIGHT_1088)
-                    .setEncoderRCMode(StreamingProfile.EncoderRCModes.QUALITY_PRIORITY);
+            mProfile.setVideoQuality(StreamingProfile.VIDEO_QUALITY_HIGH3)
+                    .setAudioQuality(StreamingProfile.AUDIO_QUALITY_HIGH2)
+                    .setEncodingSizeLevel(StreamingProfile.VIDEO_ENCODING_HEIGHT_720)
+                    .setEncoderRCMode(StreamingProfile.EncoderRCModes.QUALITY_PRIORITY)
+                    .setBitrateAdjustMode(StreamingProfile.BitrateAdjustMode.Auto);
 //                    .setPublishUrl(publishURLFromServer);  // You can invoke this before startStreaming, but not in initialization phase.
 
         }

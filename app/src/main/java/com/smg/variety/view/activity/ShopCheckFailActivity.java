@@ -47,30 +47,10 @@ public class ShopCheckFailActivity extends BaseActivity {
     public void toOnclick(View view){
         switch (view.getId()){
             case R.id.btn_sure:
-                applyLives();
+                gotoActivity(StoreDetailActivity.class);
+                finish();
                 break;
         }
     }
-    public void applyLives() {
-        //        showLoadDialog();
-        DataManager.getInstance().applyLive(new DefaultSingleObserver<HttpResult<AnchorInfo>>() {
-            @Override
-            public void onSuccess(HttpResult<AnchorInfo> result) {
-                //                dissLoadDialog();
-                gotoActivity(LiveCheckingActivity.class);
-                                finish();
-            }
 
-            @Override
-            public void onError(Throwable throwable) {
-                if (ApiException.getInstance().isSuccess()) {
-                    gotoActivity(LiveCheckingActivity.class);
-                    finish();
-                } else {
-                    ToastUtil.showToast(ApiException.getHttpExceptionMessage(throwable));
-                }
-                //                dissLoadDialog();
-            }
-        });
-    }
 }

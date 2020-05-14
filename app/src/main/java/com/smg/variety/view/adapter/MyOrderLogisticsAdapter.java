@@ -69,8 +69,8 @@ public class MyOrderLogisticsAdapter extends BaseQuickAdapter<MyOrderItemDto, Ba
     }
 
     private void setLogisticsListData(RecyclerView recyclerView, List<TrackBean> items) {
-        recyclerView.setVisibility(View.VISIBLE);
-        recyclerView.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
-        recyclerView.setAdapter(new MyOrderLogisticsItemAdapter(items));
+//        recyclerView.setVisibility(View.VISIBLE);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
+//        recyclerView.setAdapter(new MyOrderLogisticsItemAdapter(items));
     }
 }

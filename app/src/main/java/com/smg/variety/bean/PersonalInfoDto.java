@@ -13,6 +13,8 @@ public class PersonalInfoDto implements Serializable {
     private String sex;
     private String im_token;
     public String wechat_number;
+    public String is_new_pull;
+
     public int level;
     public String level_name;
     public String followingsCount;

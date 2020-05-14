@@ -12,6 +12,7 @@ public class AreaDto implements Serializable {
 
 
     public String to;
+    public String map;
     public String from;
     public String created_at;
 
@@ -19,16 +20,17 @@ public class AreaDto implements Serializable {
     public boolean is_recommend;
 
 
-    public int id;
+    public String id;
     public  String name;
+    public  String code;
     long depth;
     int parent_id;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

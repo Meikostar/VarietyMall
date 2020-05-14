@@ -51,6 +51,7 @@ import com.smg.variety.view.activity.WithdrawActivity;
 import com.smg.variety.view.adapter.ServiceMenuAdapter;
 import com.smg.variety.view.mainfragment.consume.BrandShopDetailActivity;
 import com.smg.variety.view.mainfragment.consume.CommodityDetailActivity;
+import com.smg.variety.view.mainfragment.consume.EntityStoreActivity;
 import com.smg.variety.view.widgets.CircleImageView;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -262,6 +263,7 @@ public class MemberFragment extends BaseFragment {
             public void onClick(View v) {
 //                gotoActivity(AppQianDaoActivity.class);
 //                gotoActivity(AppNewPeopleActivity.class);
+
                 Intent intent = new Intent(getActivity(), SuperYqYlActivity.class);
 
                 startActivity(intent);

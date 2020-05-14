@@ -22,6 +22,7 @@ import com.smg.variety.bean.BalanceDto;
 import com.smg.variety.bean.CheckOutOrderResult;
 import com.smg.variety.bean.WEIXINREQ;
 import com.smg.variety.common.utils.PayUtils;
+import com.smg.variety.utils.TextUtil;
 import com.smg.variety.view.MainActivity;
 import com.smg.variety.view.SettingPasswordActivity;
 import com.smg.variety.view.activity.PaySuccessActivity;
@@ -189,6 +190,10 @@ public class OrderFragment extends BaseFragment {
                         case "查看物流":
                             Bundle bundle3 = new Bundle();
                             bundle3.putString("id", mAdapter.getItem(position).getId());
+                            if(TextUtil.isNotEmpty(mAdapter.getItem(position).express_no)){
+                                bundle3.putString("express_no", mAdapter.getItem(position).express_no);
+                            }
+
                             gotoActivity(MyOrderLogisticsActivity.class, false, bundle3);
                             break;
                         case "查看兑换券":

@@ -93,6 +93,8 @@ public class EnterpireRequireActivity extends BaseActivity {
     View           line;
     @BindView(R.id.ll_choose)
     LinearLayout   ll_choose;
+
+
     @Override
     public int getLayoutId() {
         return R.layout.activity_enterprise;
@@ -444,7 +446,11 @@ public class EnterpireRequireActivity extends BaseActivity {
         info.logo=img6;
         info.id_cards=imgs;
         info.credentials=imgs1;
-        info.ext.license=img1;
+        StoreInfo storeInfo = new StoreInfo();
+        storeInfo.license=img1;
+        storeInfo.business_license=img4;
+
+        info.ext=storeInfo;
         info.ext.business_license=img4;
         info.credentials=imgs1;
         DataManager.getInstance().upSellers(new DefaultSingleObserver<HttpResult<Object>>() {

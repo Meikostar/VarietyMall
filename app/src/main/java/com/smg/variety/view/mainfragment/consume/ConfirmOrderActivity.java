@@ -171,15 +171,17 @@ public class ConfirmOrderActivity extends BaseActivity {
                 }
                 if (TextUtil.isNotEmpty(stock_id)) {
                     map.put("stock_id", stock_id);
+                }else {
+                    if (TextUtil.isNotEmpty(product_id)) {
+                        map.put("product_id", product_id);
+
+                    }
                 }
                 if (TextUtil.isNotEmpty(countBuy)) {
                     map.put("qty", countBuy);
                 }
 
-                if (TextUtil.isNotEmpty(product_id)) {
-                    map.put("product_id", product_id);
 
-                }
 //                map.put("address_id", addressId);
                 map.put("include", "shop_name");
                 getOrderPreInfo(mall_type, map);
@@ -197,11 +199,13 @@ public class ConfirmOrderActivity extends BaseActivity {
                 }
                 if (TextUtil.isNotEmpty(stock_id)) {
                     map.put("stock_id", stock_id);
+                }else {
+                    if (TextUtil.isNotEmpty(product_id)){
+                        map.put("product_id", product_id);
+                    }
                 }
 
-                if (TextUtil.isNotEmpty(product_id)){
-                    map.put("product_id", product_id);
-                }
+
                 map.put("include", "shop_name");
                 getOrderPreInfo(mall_type, map);
                 rlAddress.setVisibility(View.GONE);
@@ -470,7 +474,7 @@ public class ConfirmOrderActivity extends BaseActivity {
                 if (ApiException.getInstance().isSuccess()) {
                     ToastUtil.showToast("下单成功");
                 } else {
-                    ToastUtil.showToast("下单失败");
+                    ToastUtil.showToast(ApiException.getHttpExceptionMessage(throwable));
                 }
                 //                finish();
             }

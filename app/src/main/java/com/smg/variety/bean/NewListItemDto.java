@@ -34,17 +34,20 @@ public class NewListItemDto implements Serializable {
     public NewListItemDto category;
 
 
+
+
     public ExtDto data;
     public String slug;
     public String sales_count;
     public String template_id;
     public String weight;
     public boolean is_virtual;
+    public boolean on_sale;
     public String comment_count;
     public String logo;
     public String comment_good_rate;
     public String favorite_count;
-    public String on_sale;
+
     public String is_new;
     public String is_hot;
     public String is_recommend;
@@ -216,13 +219,6 @@ public class NewListItemDto implements Serializable {
         this.favorite_count = favorite_count;
     }
 
-    public String getOn_sale() {
-        return on_sale;
-    }
-
-    public void setOn_sale(String on_sale) {
-        this.on_sale = on_sale;
-    }
 
     public String getIs_new() {
         return is_new;

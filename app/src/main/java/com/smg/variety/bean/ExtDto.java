@@ -11,7 +11,7 @@ public class ExtDto implements Serializable {
     private String       district;
     private String       province;
     private String       min_buy;
-    private String       is_brand;
+    public String       is_brand;
     public  String       slogan;
     public  List<String> imgs;
     public  String       name;

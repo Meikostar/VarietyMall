@@ -201,7 +201,7 @@ public class SelectConturyActivity extends BaseActivity {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     if (TextUtil.isNotEmpty(fromStr)) {
                         if (fromStr.equals("entityStore")) {
-                            //                            Intent intent = new Intent(SelectCityActivity.this, EntityStoreActivity.class);
+                            //                            Intent intent = new Intent(SelectCityActivity.this, EntityProductActivity.class);
                             //                            intent.putExtra("city", hList.get(position).getName());
                             //                            setResult(RESULT_OK, intent);
                             //                            finish();
@@ -220,7 +220,7 @@ public class SelectConturyActivity extends BaseActivity {
                 @Override
                 public void onClick(View v) {
                     if (fromStr.equals("entityStore")) {
-                        //                        Intent intent = new Intent(SelectCityActivity.this, EntityStoreActivity.class);
+                        //                        Intent intent = new Intent(SelectCityActivity.this, EntityProductActivity.class);
                         //                        intent.putExtra("city", vh.item_header_city_dw.getText().toString());
                         //                        setResult(RESULT_OK, intent);
                         //                        finish();
@@ -242,7 +242,7 @@ public class SelectConturyActivity extends BaseActivity {
                     if (fromStr.equals("entityStore")) {
                         BroadcastManager.getInstance(SelectConturyActivity.this).sendBroadcast(Constants.CHOICE_CITY, cName);
                         finish();
-                        //                        Intent intent = new Intent(SelectCityActivity.this, EntityStoreActivity.class);
+                        //                        Intent intent = new Intent(SelectCityActivity.this, EntityProductActivity.class);
                         //                        intent.putExtra("city", cName);
                         //                        setResult(RESULT_OK, intent);
                         //                        finish();

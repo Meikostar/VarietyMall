@@ -10,6 +10,7 @@ import me.yokeyword.indexablerv.IndexableEntity;
 public class CityDto implements IndexableEntity,Serializable {
     private String cityName;
     private String cityCode;
+    public String id;
 
 
     public String getCityName() {

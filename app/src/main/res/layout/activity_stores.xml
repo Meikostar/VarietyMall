@@ -640,6 +640,7 @@
                                   android:textSize="12sp"
                                   />
                               <View
+                                  android:visibility="invisible"
                                   android:layout_marginLeft="2dp"
                                   android:id="@+id/view_one"
                                   android:layout_width="@dimen/bj_5dp"
@@ -679,6 +680,7 @@
                                     android:textSize="12sp"
                                     />
                                 <View
+                                    android:visibility="invisible"
                                     android:layout_marginLeft="2dp"
                                     android:id="@+id/view_two"
                                     android:layout_width="@dimen/bj_5dp"
@@ -716,6 +718,7 @@
                                     android:textSize="12sp"
                                     />
                                 <View
+                                    android:visibility="invisible"
                                     android:layout_marginLeft="2dp"
                                     android:id="@+id/view_three"
                                     android:layout_width="@dimen/bj_5dp"

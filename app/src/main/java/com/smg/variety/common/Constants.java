@@ -167,5 +167,6 @@ public class Constants {
     public static final String INTENT_FLAG = "flag";
 
     public static final String CHOICE_CITY = "choice_city";
+    public static final String CHOICE_CITYS = "choice_citys";
 
 }

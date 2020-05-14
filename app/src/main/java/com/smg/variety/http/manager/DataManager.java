@@ -15,6 +15,7 @@ import com.smg.variety.bean.BaseDto2;
 import com.smg.variety.bean.BaseDto4;
 import com.smg.variety.bean.BrandListItemDto;
 import com.smg.variety.bean.CaptchaImgDto;
+import com.smg.variety.bean.CarrieryDto;
 import com.smg.variety.bean.CategorieBean;
 import com.smg.variety.bean.CategoryListdto;
 import com.smg.variety.bean.CheckOutOrderResult;
@@ -62,6 +63,7 @@ import com.smg.variety.bean.OnlineLiveFinishBean;
 import com.smg.variety.bean.OrderCheckoutBean;
 import com.smg.variety.bean.OrderPreviewDto;
 import com.smg.variety.bean.Param;
+import com.smg.variety.bean.Params;
 import com.smg.variety.bean.PersonalInfoDto;
 import com.smg.variety.bean.ProductBean;
 import com.smg.variety.bean.ProductDto;
@@ -936,6 +938,11 @@ public class DataManager {
                 .map(new HttpResultMapper.HttpResultOtheData<>(null));
         subscribe(observable, observer);
     }
+    public void findSellersGoodsLists(Map<String, String> map,DefaultSingleObserver<HttpResult<List<NewListItemDto>>> observer) {
+        Single<HttpResult<List<NewListItemDto>>> observable = retrofitService.findSellersGoodsLists(getToken(), map)
+                .map(new HttpResultMapper.HttpResultOtheData<>(null));
+        subscribe(observable, observer);
+    }
 
     public void findGoodsLives(Map<String, String> map,DefaultSingleObserver<HttpResult<List<NewListItemDto>>> observer) {
         Single<HttpResult<List<NewListItemDto>>> observable = retrofitService.findGoodsLives(getToken(), map)
@@ -1186,13 +1193,22 @@ public class DataManager {
                 .map(new HttpResultMapper.HttpResultOtheData<>(null));
         subscribe(observable, observer);
     }
-
+    public void getSellersData(DefaultSingleObserver<HttpResult<ConfigDto>> observer) {
+        Single<HttpResult<ConfigDto>> observable = retrofitService.getSellersData()
+                .map(new HttpResultMapper.HttpResultOtheData<>(null));
+        subscribe(observable, observer);
+    }
+    public void getNotification(DefaultSingleObserver<HttpResult<ConfigDto>> observer) {
+        Single<HttpResult<ConfigDto>> observable = retrofitService.getNotification()
+                .map(new HttpResultMapper.HttpResultOtheData<>(null));
+        subscribe(observable, observer);
+    }
 
     /**
      * 实体店铺--最下面列表
      */
-    public void getShopList(DefaultSingleObserver<HttpResult<List<RecommendListDto>>> observer, String type, String scopeAreaSearch, String scopeDistanceIn, String lat, String lng, String sort) {
-        Single<HttpResult<List<RecommendListDto>>> observable = retrofitService.getShopList(type, scopeAreaSearch, scopeDistanceIn, lat, lng, sort)
+    public void getShopList(DefaultSingleObserver<HttpResult<List<RecommendListDto>>> observer,HashMap<String, String> map) {
+        Single<HttpResult<List<RecommendListDto>>> observable = retrofitService.getShopList(map)
                 .map(new HttpResultMapper.HttpResultOtheData<>(null));
         subscribe(observable, observer);
     }
@@ -1364,6 +1380,17 @@ public class DataManager {
                 .map(new HttpResultMapper.HttpResultOtheData<>(null));
         subscribe(observable, observer);
     }
+    public void getAllTags(DefaultSingleObserver<HttpResult<Param>> observer, Map<String, String> map) {
+        Single<HttpResult<Param>> observable = retrofitService.getAllTags(map)
+                .map(new HttpResultMapper.HttpResultOtheData<>(null));
+        subscribe(observable, observer);
+    }
+    public void getInducts(DefaultSingleObserver<HttpResult<List<Params>>> observer, Map<String, String> map) {
+        Single<HttpResult<List<Params>>> observable = retrofitService.getInducts(map)
+                .map(new HttpResultMapper.HttpResultOtheData<>(null));
+        subscribe(observable, observer);
+    }
+
     public void getInducts(DefaultSingleObserver<Param> observer) {
         Single<Param> observable = retrofitService.getInduct()
                 .map(new HttpResultMapper.HttpResultOtheData<>(null));
@@ -1798,6 +1825,11 @@ public class DataManager {
                 .map(new HttpResultMapper.HttpResultOtheData<>(null));
         subscribe(observable, observer);
     }
+    public void getShopOrders(DefaultSingleObserver<HttpResult<List<MyOrderDto>>> observer, Map<String, String> map) {
+        Single<HttpResult<List<MyOrderDto>>> observable = retrofitService.getShopOrders(getToken(), map)
+                .map(new HttpResultMapper.HttpResultOtheData<>(null));
+        subscribe(observable, observer);
+    }
 
     public void getSellerOrders(DefaultSingleObserver<HttpResult<List<MyOrderDto>>> observer, Map<String, String> map) {
         Single<HttpResult<List<MyOrderDto>>> observable = retrofitService.getSellerOrders(getToken(), map)
@@ -1909,9 +1941,20 @@ public class DataManager {
         subscribe(observable, observer);
     }
 
-    //物流信息
-    public void getLogisticsList(DefaultSingleObserver<HttpResult<MyOrderLogisticsDto>> observer, String orderId, Map<String, String> map) {
-        Single<HttpResult<MyOrderLogisticsDto>> observable = retrofitService.getLogisticsList(getToken(), orderId, map)
+    /**
+     * 实时查询物流信息
+     */
+    public void getLogisticsList(DefaultSingleObserver<List<MyOrderLogisticsDto>> observer, String number, String code) {
+        Single<List<MyOrderLogisticsDto>> observable = retrofitService.getLogisticsList(getToken(), number, code)
+                .map(new HttpResultMapper.HttpResultOtheData<>(null));
+        subscribe(observable, observer);
+    }
+
+    /**
+     * 获取运输商
+     */
+    public void getCarriery(DefaultSingleObserver<HttpResult<List<CarrieryDto>>> observer, String code) {
+        Single<HttpResult<List<CarrieryDto>>> observable = retrofitService.getCarriery(getToken(), code)
                 .map(new HttpResultMapper.HttpResultOtheData<>(null));
         subscribe(observable, observer);
     }
@@ -1968,6 +2011,12 @@ public class DataManager {
                 .map(new HttpResultMapper.HttpResultOtheData<>(null));
         subscribe(observable, observer);
     }
+    public void editShipment(DefaultSingleObserver<Object> observer,Map<String, Object> map) {
+        Single<Object> observable = retrofitService.editShipment(getToken(),map)
+                .map(new HttpResultMapper.HttpResultOtheData<>(null));
+        subscribe(observable, observer);
+    }
+
     public void serviceMenu(DefaultSingleObserver<HttpResult<List<ServiceMenuBean>>> observer) {
         Single<HttpResult<List<ServiceMenuBean>>> observable = retrofitService.serviceMenu()
                 .map(new HttpResultMapper.HttpResultOtheData<>(null));
@@ -1978,7 +2027,11 @@ public class DataManager {
                 .map(new HttpResultMapper.HttpResultOtheData<>(null));
         subscribe(observable, observer);
     }
-
+    public void getShopOrderDetail(DefaultSingleObserver<HttpResult<MyOrderDto>> observer,String id,String include,String strack) {
+        Single<HttpResult<MyOrderDto>> observable = retrofitService.getShopOrderDetail(getToken(),id,include,strack)
+                .map(new HttpResultMapper.HttpResultOtheData<>(null));
+        subscribe(observable, observer);
+    }
     /**
      * 添加收藏
      */

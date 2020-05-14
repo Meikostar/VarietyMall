@@ -280,7 +280,7 @@ public class ConturyActivity extends BaseActivity {
                         mHomedapter.setData(datass);
                         AreaDto liveCatesBean = new AreaDto();
                         liveCatesBean.title = "";
-                        liveCatesBean.setId(-2);
+                        liveCatesBean.setId(-2+"");
                         datas.add(liveCatesBean);
                         testAdapter.setDatas(datas);
                         testAdapter.notifyDataSetChanged();

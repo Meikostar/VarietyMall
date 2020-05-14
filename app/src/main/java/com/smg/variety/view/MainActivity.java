@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -46,6 +48,8 @@ import com.smg.variety.view.mainfragment.LearnFragment;
 import com.smg.variety.view.mainfragment.MeFragment;
 import com.smg.variety.view.mainfragment.MemberFragment;
 import com.smg.variety.view.mainfragment.community.TopicPublishActivity;
+import com.smg.variety.view.widgets.FirstPopupWindow;
+import com.smg.variety.view.widgets.PhotoPopupWindow;
 import com.smg.variety.view.widgets.autoview.AutoViewPager;
 import com.smg.variety.view.widgets.dialog.MorePopWindow;
 import com.smg.variety.view.widgets.updatadialog.UpdataCallback;
@@ -135,13 +139,24 @@ public class MainActivity extends BaseActivity implements
         StatusBarUtils.StatusBarLightMode(this);
         mViewPager = findViewById(R.id.main_viewpager);
         page_index = getIntent().getIntExtra(PAGE_INDEX, 0);
+        mWindow=new FirstPopupWindow(this);
         changeTextViewColor();
         initMainViewPager();
         mViewPager.setCurrentItem(page_index == 0 ? 0 : page_index , false);
         changeSelectedTabState(page_index == 0 ? 0 : page_index );
         getConfigs();
-
+        mHandler.sendEmptyMessageDelayed(1,800);
     }
+    private Handler          mHandler =new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message msg) {
+            if(!ShareUtil.getInstance().isLogin()){
+                mWindow.showAsDropDown(findViewById(R.id.lines));
+            }
+            return false;
+        }
+    });
+    private     FirstPopupWindow mWindow;
     private void getConfigs() {
         //showLoadDialog();
         DataManager.getInstance().getConfigs(new DefaultSingleObserver<HttpResult<ConfigDto>>() {
@@ -201,9 +216,7 @@ public class MainActivity extends BaseActivity implements
     @Override
     public void initData() {
         String cacheToken = ShareUtil.getInstance().getString(Constants.APP_USER_KEY, null);
-        if(TextUtil.isNotEmpty(cacheToken)){
-            getUserInfo();
-        }
+
 
         if (!TextUtils.isEmpty(cacheToken)) {
             ChatroomKit.connect(cacheToken, new RongIMClient.ConnectCallback() {
@@ -366,20 +379,7 @@ public class MainActivity extends BaseActivity implements
     public void onPageScrollStateChanged(int state) {
 
     }
-    private void getUserInfo() {
-        DataManager.getInstance().getUserInfo(new DefaultSingleObserver<PersonalInfoDto>() {
-            @Override
-            public void onSuccess(PersonalInfoDto personalInfoDto) {
 
-                BaseApplication.level=personalInfoDto.level;
-
-            }
-
-            @Override
-            public void onError(Throwable throwable) {
-            }
-        });
-    }
     private void changeTextViewColor() {
         tab_img_consume.setBackgroundResource(R.mipmap.ic_xiaofei_def);
         tab_img_chat.setBackgroundResource(R.mipmap.ic_chat_def);

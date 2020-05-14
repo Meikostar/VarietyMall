@@ -28,11 +28,13 @@ public class BannerInfoDto implements Serializable {
       public List<BannerItemDto>  category_list_top;//新闻详情中部
       public List<BannerItemDto>  index_after_category_1;//新闻详情中部
       public List<BannerItemDto>  index_after_category_2_left;//新闻详情中部
+      public List<BannerItemDto>  home_new_pull;//新闻详情中部
       public List<BannerItemDto>  index_after_category_2_right_top;//新闻详情中部
       public List<BannerItemDto>  index_after_category_2_right_bottom;//新闻详情中部
       public List<BannerItemDto>  task_list_top;//新闻详情中部
       public List<BannerItemDto>  new_go;//新闻详情中部
       public List<BannerItemDto>  advanced_learning;//新闻详情中部
+      public List<BannerItemDto>  near_seller_banner;//新闻详情中部
       public String level_1;
       public String level_2;
       public String id;

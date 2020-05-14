@@ -11,13 +11,16 @@ public class RecommendListDto implements Serializable {
     private String       type;
     private String       category;
     private String       industry;
+    private String       name;
     private String       area_id;
     private String       address;
     private String       lat;
     private String       lng;
     private String       phone;
     private String       logo;
-    private List<String> photos;
+    private String photos;
+    public List<String> service_arr;
+
     private ExtDto       ext;
     private String       created_at;
     private String       updated_at;
@@ -31,9 +34,11 @@ public class RecommendListDto implements Serializable {
     private String       tips;
     private List<String> labels;
     private String       order_column;
+    public String       new_goods_count;
+    public String       per_consumption;
     private String       comment_good_count;
     private String       comment_average_score;
-    private String       distance;
+    public String       distance;
     private String       follow_count;
     private boolean       is_follow;
     private String       id;
@@ -122,11 +127,11 @@ public class RecommendListDto implements Serializable {
         this.logo = logo;
     }
 
-    public List<String> getPhotos() {
+    public String getPhotos() {
         return photos;
     }
 
-    public void setPhotos(List<String> photos) {
+    public void setPhotos(String photos) {
         this.photos = photos;
     }
 

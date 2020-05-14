@@ -42,6 +42,7 @@ public class BaseApplication extends Application{
     private static Handler mHandler;
     public static int  isSetPay;
     public static int  level;
+    public static int  is_new;
     public static String  real_state="0";
 
     public static BaseApplication getInstance() {

@@ -210,7 +210,8 @@ public class CommodityDetailActivity extends BaseActivity implements BaseActivit
     private CommodityDetailInfoDto commodityDetailInfoDto;
     private String                 isFavorite = "false";//是否收藏
     private String                 fromStr;
-    private int status;
+    private int                    status;
+
     @Override
     public int getLayoutId() {
         return R.layout.ui_commodity_detail_layout;
@@ -241,7 +242,7 @@ public class CommodityDetailActivity extends BaseActivity implements BaseActivit
         if (bundle != null) {
             product_id = bundle.getString(PRODUCT_ID);
             authorId = bundle.getString("authorId");
-            status = bundle.getInt("live",0);
+            status = bundle.getInt("live", 0);
             mall_type = bundle.getString(MALL_TYPE);
             fromStr = bundle.getString(FROM);
         }
@@ -259,10 +260,12 @@ public class CommodityDetailActivity extends BaseActivity implements BaseActivit
         }
         getCommentsList();
     }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(FinishEvent event) {
         finish();
     }
+
     @Override
     public void initListener() {
         bindClickEvent(layout_back, () -> {
@@ -305,7 +308,7 @@ public class CommodityDetailActivity extends BaseActivity implements BaseActivit
         tvShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(TextUtil.isEmpty(url)){
+                if (TextUtil.isEmpty(url)) {
                     return;
                 }
                 showYqSix(CommodityDetailActivity.this, url, title, price);
@@ -318,8 +321,8 @@ public class CommodityDetailActivity extends BaseActivity implements BaseActivit
 
             if (ShareUtil.getInstance().isLogin()) {
                 Intent intent = new Intent(CommodityDetailActivity.this, ShopCarActivity.class);
-                intent.putExtra("live",status);
-                intent.putExtra("authorId",authorId);
+                intent.putExtra("live", status);
+                intent.putExtra("authorId", authorId);
                 startActivity(intent);
 
             } else {
@@ -370,8 +373,8 @@ public class CommodityDetailActivity extends BaseActivity implements BaseActivit
                                 } else {
                                     bundle.putString("product_id", product_id);
                                 }
-                                 bundle.putInt("live",status);
-                                 bundle.putString("authorId",authorId);
+                                bundle.putInt("live", status);
+                                bundle.putString("authorId", authorId);
 
                                 if (defaultAddress != null) {
                                     bundle.putString("id", defaultAddress.getId() + "");
@@ -405,18 +408,18 @@ public class CommodityDetailActivity extends BaseActivity implements BaseActivit
                 @Override
                 public void sureItem(int position) {
                     boolean isTimelineCb = false;
-                    String url =Constants.BASE_URL +  "/h5/#/goodDetail/"+product_id+"?invite_code=" + "from_phone_"+ShareUtil.getInstance().get(Constants.USER_PHONE);
+                    String url = Constants.BASE_URL + "/h5/#/goodDetail/" + product_id + "?invite_code=" + "from_phone_" + ShareUtil.getInstance().get(Constants.USER_PHONE);
                     String title = commodityDetailInfoDto.getTitle();
                     if (position == ShareModeDialog.SHARE_PYQ) {
                         isTimelineCb = true;
                     }
                     int isFirstShare = ShareUtil.getInstance().getInt("isFirstShare", 0);
-                    if(isFirstShare==0){
+                    if (isFirstShare == 0) {
                         putFirstShare();
-                        ShareUtil.getInstance().saveInt("isFirstShare",1);
+                        ShareUtil.getInstance().saveInt("isFirstShare", 1);
                     }
                     putDailyShare();
-                    ShareUtil.sendToWeaChat(CommodityDetailActivity.this, isTimelineCb, title, url,procutUrl);
+                    ShareUtil.sendToWeaChat(CommodityDetailActivity.this, isTimelineCb, title, url, procutUrl);
 
                 }
             });
@@ -424,18 +427,21 @@ public class CommodityDetailActivity extends BaseActivity implements BaseActivit
         });
     }
 
-    private   Dialog dialogs=null;
-    private  View ll_bgs=null;;
+    private Dialog dialogs = null;
+    private View   ll_bgs  = null;
+    ;
 
-    public void iniBitmaps(View view){
+    public void iniBitmaps(View view) {
         view.setDrawingCacheEnabled(true);
         view.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
         view.setDrawingCacheBackgroundColor(Color.WHITE);
         String fileName = Calendar.getInstance().getTimeInMillis() + ".png";
         // 把一个View转换成图片
-         bm = loadBitmapFromView(view);
+        bm = loadBitmapFromView(view);
     }
+
     private Bitmap bm;
+
     public static Bitmap loadBitmapFromView(View v) {
         int w = v.getWidth();
         int h = v.getHeight();
@@ -450,9 +456,10 @@ public class CommodityDetailActivity extends BaseActivity implements BaseActivit
 
         return bmp;
     }
-    public  void showYqSix(Context context, String url1,String title,String price) {
 
-        if(dialogs==null){
+    public void showYqSix(Context context, String url1, String title, String price) {
+
+        if (dialogs == null) {
             dialogs = new Dialog(context, R.style.loading_dialog);
             dialogs.setCancelable(true);
 
@@ -460,17 +467,17 @@ public class CommodityDetailActivity extends BaseActivity implements BaseActivit
             View view = inflater.inflate(R.layout.dialog_yqyl_six, null);
 
             ll_bgs = view.findViewById(R.id.ll_bg);
-            TextView  tv_title = view.findViewById(R.id.tv_title);
-            TextView  tv_price = view.findViewById(R.id.tv_price);
+            TextView tv_title = view.findViewById(R.id.tv_title);
+            TextView tv_price = view.findViewById(R.id.tv_price);
             tv_title.setText(title);
             tv_price.setText(price);
-            TextView  tvDs = view.findViewById(R.id.tv_name);
+            TextView tvDs = view.findViewById(R.id.tv_name);
 
 
             tvDs.setText(ShareUtil.getInstance().get(Constants.USER_NAME));
-            String encode=null;
+            String encode = null;
             try {
-                 encode = URLEncoder.encode((Constants.BASE_URL +  "/h5/#/goodDetail/"+product_id+"?invite_code=" + "from_phone_"+ShareUtil.getInstance().get(Constants.USER_PHONE)), "utf-8");
+                encode = URLEncoder.encode((Constants.BASE_URL + "/h5/#/goodDetail/" + product_id + "?invite_code=" + "from_phone_" + ShareUtil.getInstance().get(Constants.USER_PHONE)), "utf-8");
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
@@ -478,7 +485,7 @@ public class CommodityDetailActivity extends BaseActivity implements BaseActivit
             ImageView ivImg = view.findViewById(R.id.iv_img);
             ImageView iv_code = view.findViewById(R.id.iv_code);
             ImageView civ_user_avatar = view.findViewById(R.id.civ_user_avatar);
-            GlideUtils.getInstances().loadNormalImg(context, iv_code, Constants.BASE_URL + "/api/qrcode?str="+encode);
+            GlideUtils.getInstances().loadNormalImg(context, iv_code, Constants.BASE_URL + "/api/qrcode?str=" + encode);
             GlideUtils.getInstances().loadNormalImg(context, ivImg, url1);
             GlideUtils.getInstances().loadNormalImg(context, civ_user_avatar, ShareUtil.getInstance().get(Constants.USER_HEAD));
             tvNo.setOnClickListener(new View.OnClickListener() {
@@ -505,9 +512,9 @@ public class CommodityDetailActivity extends BaseActivity implements BaseActivit
                                 isTimelineCb = true;
                             }
                             int isFirstShare = ShareUtil.getInstance().getInt("isFirstShare", 0);
-                            if(isFirstShare==0){
+                            if (isFirstShare == 0) {
                                 putFirstShare();
-                                ShareUtil.getInstance().saveInt("isFirstShare",1);
+                                ShareUtil.getInstance().saveInt("isFirstShare", 1);
                             }
                             putDailyShare();
                             ShareUtil.WXsharePic(CommodityDetailActivity.this, isTimelineCb, bm);
@@ -521,26 +528,26 @@ public class CommodityDetailActivity extends BaseActivity implements BaseActivit
             tvSure.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
                     dialogs.dismiss();
-                    DialogUtils.creatPictures(CommodityDetailActivity.this,ll_bgs);
+                    DialogUtils.creatPictures(CommodityDetailActivity.this, ll_bgs);
                 }
             });
             dialogs.setContentView(view);
             Window dialogWindow = dialogs.getWindow();
             dialogWindow.setGravity(Gravity.CENTER);
-            WindowManager wm = ((Activity)(context)).getWindowManager();
+            WindowManager wm = ((Activity) (context)).getWindowManager();
             Display d = wm.getDefaultDisplay(); // 获取屏幕宽、高用
             WindowManager.LayoutParams p = dialogs.getWindow().getAttributes(); // 获取对话框当前的参数值
-            p.width = (int) (d.getWidth()*1) ; // 宽度设置为屏幕的0.6
-            p.height = (int) (d.getHeight()*1) ; // 宽度设置为屏幕的0.6
+            p.width = (int) (d.getWidth() * 1); // 宽度设置为屏幕的0.6
+            p.height = (int) (d.getHeight() * 1); // 宽度设置为屏幕的0.6
             dialogWindow.setAttributes(p);
             dialogs.show();
-        }else {
+        } else {
             dialogs.show();
         }
 
 
-
     }
+
     public CommodityDetailInfoDto getCommodityDetailInfoDto() {
         return commodityDetailInfoDto;
     }
@@ -719,7 +726,7 @@ public class CommodityDetailActivity extends BaseActivity implements BaseActivit
             map.put("product_id", productId);
         }
         if (TextUtil.isNotEmpty(authorId)) {
-            map.put(" liver_user_ids["+product_id+"]", authorId);
+            map.put(" liver_user_ids[" + product_id + "]", authorId);
         }
         map.put("qty", countBuy);
         DataManager.getInstance().addShoppingCart(new DefaultSingleObserver<HttpResult<Object>>() {
@@ -736,6 +743,7 @@ public class CommodityDetailActivity extends BaseActivity implements BaseActivit
             }
         }, "default", map);
     }
+
     public void putDailyShare() {
 
         DataManager.getInstance().putLookLive(new DefaultSingleObserver<HttpResult<Object>>() {
@@ -751,6 +759,7 @@ public class CommodityDetailActivity extends BaseActivity implements BaseActivit
             }
         }, "task_daily_share_product");
     }
+
     public void putFirstShare() {
 
         DataManager.getInstance().putLookLive(new DefaultSingleObserver<HttpResult<Object>>() {
@@ -765,6 +774,7 @@ public class CommodityDetailActivity extends BaseActivity implements BaseActivit
             }
         }, "task_first_share");
     }
+
     private void getCommentsList() {
         String commented_type = "SMG\\Mall\\Models\\MallProduct";
         DataManager.getInstance().getCommentsList(new DefaultSingleObserver<HttpResult<List<CommentDto>>>() {
@@ -803,9 +813,11 @@ public class CommodityDetailActivity extends BaseActivity implements BaseActivit
     public void callbackPermissions(String permissions, boolean isSuccess) {
 
     }
+
     private String title;
     private String price;
     private String url;
+
     /**
      * 刷新商品详细数据
      *
@@ -814,11 +826,11 @@ public class CommodityDetailActivity extends BaseActivity implements BaseActivit
     private void notifyData(CommodityDetailInfoDto commodityDetailDto) {
         if (commodityDetailDto.getImgs() != null) {
             startBanner(commodityDetailDto.getImgs());
-            url=commodityDetailDto.getImgs().get(0);
+            url = commodityDetailDto.getImgs().get(0);
         }
 
-        title=commodityDetailDto.getTitle();
-        price=commodityDetailDto.getPrice();
+        title = commodityDetailDto.getTitle();
+        price = commodityDetailDto.getPrice();
         tv_commodity_info_title.setText(commodityDetailDto.getTitle());
         tv_commodity_info_price.setText(commodityDetailDto.getPrice());
         tv_commodity_info_market_price.setText("¥" + commodityDetailDto.getMarket_price());
@@ -857,28 +869,32 @@ public class CommodityDetailActivity extends BaseActivity implements BaseActivit
             }
         }
         mAdapter.setData(mList);
-
-        if(BaseApplication.level==0){
+        if(commodityDetailDto.flag2){
+            tv_add_cart.setVisibility(View.GONE);
+        }else {
+            tv_add_cart.setVisibility(View.VISIBLE);
+        }
+        if (BaseApplication.level == 0) {
             ivSj.setVisibility(View.VISIBLE);
             tvSjs.setVisibility(View.VISIBLE);
-            tvSj.setText("升级为掌柜再省¥"+commodityDetailDto.save_money);
+            tvSj.setText("升级为掌柜再省¥" + commodityDetailDto.save_money);
 
             llSj.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(CommodityDetailActivity.this, SuperMemberActivity.class);
-                    intent.putExtra("level",BaseApplication.level);
+                    intent.putExtra("level", BaseApplication.level);
                     startActivity(intent);
 
                 }
             });
-        }else {
+        } else {
             ivSj.setVisibility(View.GONE);
             tvSjs.setVisibility(View.GONE);
-            tvSj.setText("推广挣¥"+commodityDetailDto.save_money);
+            tvSj.setText("推广挣¥" + commodityDetailDto.save_money);
         }
-        tvXl.setText("销售："+commodityDetailDto.getSales_count()+"件");
-        tvXl.setText("库存： "+commodityDetailDto.getStock()+"件");
+        tvKc.setText("销售：" + commodityDetailDto.getSales_count() + "件");
+        tvXl.setText("库存： " + commodityDetailDto.getStock() + "件");
         tv_commodity_info_market_price.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG); //中间横线
         if (commodityDetailDto.getFreight() != null) {
             if (Double.valueOf(commodityDetailDto.getFreight().getFreight()) == 0) {
@@ -932,7 +948,6 @@ public class CommodityDetailActivity extends BaseActivity implements BaseActivit
     }
 
 
-
     public class GlideImageLoader extends ImageLoader {
         @Override
         public void displayImage(Context context, Object path, ImageView imageView) {
@@ -949,13 +964,15 @@ public class CommodityDetailActivity extends BaseActivity implements BaseActivit
 
         }
     }
+
     private String procutUrl;
+
     private void startBanner(List<String> data) {
-        if(data!=null&&data.size()>0){
-            if(data.get(0).contains("http")){
-                procutUrl=data.get(0);
-            }else {
-                procutUrl=Constants.WEB_IMG_URL_UPLOADS+data.get(0);
+        if (data != null && data.size() > 0) {
+            if (data.get(0).contains("http")) {
+                procutUrl = data.get(0);
+            } else {
+                procutUrl = Constants.WEB_IMG_URL_UPLOADS + data.get(0);
             }
         }
 

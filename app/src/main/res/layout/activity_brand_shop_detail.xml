@@ -12,7 +12,7 @@
         android:overScrollMode="never"
         android:scrollbars="none"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         app:mainLayoutId="@layout/layout_recyclerview_verticalscroll"
         app:layout_moreProgress="@layout/view_more_progress"
         app:recyclerClipToPadding="true"

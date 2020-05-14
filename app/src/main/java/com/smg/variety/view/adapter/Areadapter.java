@@ -76,7 +76,7 @@ public class Areadapter extends BaseAdapter {
             holder = (ViewHolder) view.getTag();
         }
         AreaDto bannerDto = list.get(i);
-        if(bannerDto.id==-2){
+        if((int)Integer.valueOf(bannerDto.id)==-2){
             holder.img_icon.setVisibility(View.GONE);
         }else {
             holder.img_icon.setVisibility(View.VISIBLE);

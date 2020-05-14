@@ -17,10 +17,12 @@ public class MyOrderDto{
     MyorderItemsDto items;
     MyOrderAddressDetailDto address_detail;
     MyOrderShopDto shop;
+  public   MyOrderDto user;
+    public MyOrderShopDto data;
     MyOrderShipDataDto ship_data;
     MyOrderExtraDto  extra;
     MyOrderUserSubDto user_sub;
-
+   public SBHoutaibean shipments;
     String total_amount;
     String remark;
     String paid_at;
@@ -59,6 +61,7 @@ public class MyOrderDto{
    public String use_score;
    public String discount;
    public String discount_info;
+   public String shop_remark;
    public String adjustments_total;
    public String score;
    public String comment;
@@ -68,6 +71,7 @@ public class MyOrderDto{
    public String promotion_info_id;
    public String commission;
    public String distribution;
+   public String express_no;
     public String getId() {
         return id;
     }

@@ -14,6 +14,7 @@ import com.smg.variety.bean.BaseDto2;
 import com.smg.variety.bean.BaseDto4;
 import com.smg.variety.bean.BrandListItemDto;
 import com.smg.variety.bean.CaptchaImgDto;
+import com.smg.variety.bean.CarrieryDto;
 import com.smg.variety.bean.CategorieBean;
 import com.smg.variety.bean.CategoryListdto;
 import com.smg.variety.bean.CheckOutOrderResult;
@@ -61,6 +62,7 @@ import com.smg.variety.bean.OnlineLiveFinishBean;
 import com.smg.variety.bean.OrderCheckoutBean;
 import com.smg.variety.bean.OrderPreviewDto;
 import com.smg.variety.bean.Param;
+import com.smg.variety.bean.Params;
 import com.smg.variety.bean.PersonalInfoDto;
 import com.smg.variety.bean.ProductBean;
 import com.smg.variety.bean.ProductDto;
@@ -584,6 +586,10 @@ public interface RetrofitService {
     @GET("api/package/mall/default/products")
     Single<HttpResult<List<NewListItemDto>>> findGoodsLists(@Header("Authorization") String token, @QueryMap Map<String, String> map);
 
+
+    @GET("api/sellers_products/default")
+    Single<HttpResult<List<NewListItemDto>>> findSellersGoodsLists(@Header("Authorization") String token, @QueryMap Map<String, String> map);
+
     @GET("api/live/default/liver_product")
     Single<HttpResult<List<NewListItemDto>>> findGoodsLives(@Header("Authorization") String token, @QueryMap Map<String, String> map);
 
@@ -798,11 +804,16 @@ public interface RetrofitService {
     @GET("api/configs")
     Single<HttpResult<ConfigDto>> getConfigs();
 
+    @GET("api/sellers_data")
+    Single<HttpResult<ConfigDto>> getSellersData();
+
+    @GET("api/base/user/notification_stats")
+    Single<HttpResult<ConfigDto>> getNotification();
     /**
      * 实体店铺-最下面列表
      */
     @GET("api/sellers")
-    Single<HttpResult<List<RecommendListDto>>> getShopList(@Query("filter[type]") String type, @Query("filter[scopeAreaSearch]") String scopeAreaSearch, @Query("filter[scopeDistanceIn]") String scopeDistanceIn, @Query("lat") String lat, @Query("lng") String lng, @Query("sort") String sort);
+    Single<HttpResult<List<RecommendListDto>>> getShopList(@QueryMap HashMap<String, String> map);
 
     /**
      * 店铺详情-最下面的产品列表
@@ -1007,6 +1018,10 @@ public interface RetrofitService {
     @GET("api/indust")
     Single<Param> getInduct();
 
+    @GET("api/indust")
+    Single<HttpResult<List<Params>>> getInducts(@QueryMap Map<String, String> map);
+    @GET("api/tags")
+    Single<HttpResult<Param>> getAllTags(@QueryMap Map<String, String> map);
     /**
      *
      */
@@ -1207,6 +1222,10 @@ public interface RetrofitService {
     @GET("api/promote_order")
     Single<HttpResult<List<MyOrderDto>>> getPromoteOrders(@Header("Authorization") String token, @QueryMap Map<String, String> map);
 
+
+    @GET("api/shop/order")
+    Single<HttpResult<List<MyOrderDto>>> getShopOrders(@Header("Authorization") String token, @QueryMap Map<String, String> map);
+
     /**
      * 售后列表
      */
@@ -1311,8 +1330,13 @@ public interface RetrofitService {
     /**
      * 物流信息
      */
-    @GET("api/package/mall/all/user/orders/{orderId}")
-    Single<HttpResult<MyOrderLogisticsDto>> getLogisticsList(@Header("Authorization") String token, @Path("orderId") String orderId, @QueryMap Map<String, String> map);
+    @GET("api/tracking/logistics")
+    Single<List<MyOrderLogisticsDto>> getLogisticsList(@Header("Authorization") String token, @Query("number") String number, @Query("code") String code);
+    /**
+     * 获取运输商
+     */
+    @GET("api/tracking/carriery")
+    Single<HttpResult<List<CarrieryDto>>> getCarriery(@Header("Authorization") String token, @Query("filter[code]") String code);
 
     /**
      * 确定收货
@@ -1363,11 +1387,15 @@ public interface RetrofitService {
     /**
      * 编辑宝贝
      */
-    @PUT("api/package/mall/ax/products/{id}")
+    @PUT("api/package/mall/default/products/{id}")
     Single<Object> editProducts(@Header("Authorization") String token, @Path("id") String id, @Body Map<String, Object> map);
 
+
+    @PUT("api/shop/update_shipment")
+    Single<Object> editShipment(@Header("Authorization") String token, @Body Map<String, Object> map);
+
     /**
-     * 用户中心更多服务菜单
+     * 用户中心更多服务菜单/
      */
     @GET("api/service_menu")
     Single<HttpResult<List<ServiceMenuBean>>> serviceMenu();
@@ -1425,6 +1453,9 @@ public interface RetrofitService {
      */
     @GET("api/package/mall/{mall_type}/user/orders/{id}")
     Single<HttpResult<MyOrderDto>> getOrderDetail(@Header("Authorization") String token, @Path("id") String id, @Path("mall_type") String mall_type, @Query("include") String include);
+
+    @GET("api/shop/order/{id}")
+    Single<HttpResult<MyOrderDto>> getShopOrderDetail(@Header("Authorization") String token, @Path("id") String id, @Query("include") String include, @Query("extra_include") String extra_include);
 
     /**
      * 领取红包

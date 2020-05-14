@@ -20,11 +20,13 @@ import com.smg.variety.common.utils.ToastUtil;
 import com.smg.variety.utils.ShareUtil;
 import com.smg.variety.utils.TextUtil;
 import com.smg.variety.view.activity.AppNewPeopleActivity;
+import com.smg.variety.view.activity.GiftSendActivity;
 import com.smg.variety.view.activity.LoginActivity;
 import com.smg.variety.view.activity.ProductListActivity;
 import com.smg.variety.view.activity.ShopStoreDetailActivity;
 import com.smg.variety.view.activity.WebViewActivity;
 import com.smg.variety.view.activity.WebViewsActivity;
+import com.smg.variety.view.mainfragment.consume.EntityStoreActivity;
 import com.smg.variety.view.mainfragment.consume.ProductSearchResultActivity;
 
 import java.util.List;
@@ -101,6 +103,7 @@ public class Homedapter extends BaseAdapter {
                             gotoActivity(ShopStoreDetailActivity.class, false, bundle);
                         }
                     }else {
+
                         if(i==0){
                             if (TextUtils.isEmpty(ShareUtil.getInstance().get(Constants.USER_TOKEN))) {
 
@@ -112,11 +115,41 @@ public class Homedapter extends BaseAdapter {
                             }
 
                         }else {
-                            Intent intent = new Intent(context, WebViewActivity.class);
+                            if(bannerDto.title.equals("附近商家")){
+                                Intent intent = new Intent(context, EntityStoreActivity.class);
+                                context.startActivity(intent);
+                            }else {
+                                if(bannerDto.url.contains("{user_id}")){
+                                    String replace = bannerDto.url.replace("{user_id}",  TextUtil.isNotEmpty(ShareUtil.getInstance().get(Constants.USER_ID))?ShareUtil.getInstance().get(Constants.USER_ID):"0");
+                                    if (replace.contains("https://s.click.taobao.com") || replace.contains("https://m.tb.cn")) {
+                                        Intent intent = new Intent(context, WebViewsActivity.class);
 
-                            intent.putExtra(WebViewActivity.WEBTITLE, bannerDto.title);
-                            intent.putExtra(WebViewActivity.WEBURL, bannerDto.url);
-                            context.startActivity(intent   );
+                                        intent.putExtra(WebViewActivity.WEBTITLE, bannerDto.title);
+                                        intent.putExtra(WebViewActivity.WEBURL, replace);
+                                        context.startActivity(intent);
+                                    } else {
+                                        Intent intent = new Intent(context, WebViewActivity.class);
+
+                                        intent.putExtra(WebViewActivity.WEBTITLE, bannerDto.title);
+                                        intent.putExtra(WebViewActivity.WEBURL, replace);
+                                        context.startActivity(intent);
+                                    }
+                                } else  if(bannerDto.url.equals("free_get")){
+
+                                    Intent intent = new Intent(context, GiftSendActivity.class);
+
+                                    context.startActivity(intent);
+
+                                }else {
+                                    Intent intent = new Intent(context, WebViewActivity.class);
+
+                                    intent.putExtra(WebViewActivity.WEBTITLE, bannerDto.title);
+                                    intent.putExtra(WebViewActivity.WEBURL, bannerDto.url);
+                                    context.startActivity(intent   );
+                                }
+
+                            }
+
                         }
                     }
 

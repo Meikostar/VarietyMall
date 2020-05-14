@@ -1,5 +1,6 @@
 package com.smg.variety.view.mainfragment.consume;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -38,6 +39,7 @@ import com.smg.variety.view.widgets.autoview.ClearEditText;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import butterknife.BindView;
 import me.yokeyword.indexablerv.IndexableAdapter;
 import me.yokeyword.indexablerv.IndexableHeaderAdapter;
@@ -49,20 +51,20 @@ import me.yokeyword.indexablerv.IndexableLayout;
 public class SelectCityActivity extends BaseActivity {
     public static final String CURRENT_CITY = "current_city";
     @BindView(R.id.iv_title_back)
-    ImageView iv_title_back;
+    ImageView       iv_title_back;
     @BindView(R.id.tv_title_right)
-    TextView tv_title_right;
+    TextView        tv_title_right;
     @BindView(R.id.indexableLayout)
     IndexableLayout indexableLayout;
 
-    private ContactAdapter mAdapter;
-    private BannerHeaderAdapter mBannerHeaderAdapter;
+    private ContactAdapter               mAdapter;
+    private BannerHeaderAdapter          mBannerHeaderAdapter;
     private CYBChangeCityGridViewAdapter cybChangeCityGridViewAdapter;
-    private List<AllCityDto> allCityList = new ArrayList<AllCityDto>();
-    private List<CityDto> cList = new ArrayList<>();
-    private List<HotCityDto> hList = new ArrayList<>();
-    private String cName;
-    private String fromStr;
+    private List<AllCityDto>             allCityList = new ArrayList<AllCityDto>();
+    private List<CityDto>                cList       = new ArrayList<>();
+    private List<HotCityDto>             hList       = new ArrayList<>();
+    private String                       cName;
+    private String                       fromStr;
 
     @Override
     public int getLayoutId() {
@@ -77,8 +79,8 @@ public class SelectCityActivity extends BaseActivity {
     @Override
     public void initData() {
         Bundle bundle = getIntent().getExtras();
-        if(bundle != null){
-           fromStr = bundle.getString("from");
+        if (bundle != null) {
+            fromStr = bundle.getString("from");
         }
         initAdapter();
         getLocation();
@@ -101,22 +103,33 @@ public class SelectCityActivity extends BaseActivity {
             public void onItemClick(View v, int originalPosition, int currentPosition, CityDto entity) {
                 if (originalPosition >= 0) {
                     String cityName = entity.getCityName();
-//                    if(fromStr.equals("entityStore")) {
+                    if (fromStr.equals("entityStore")) {
 
-//                        Intent intent = new Intent(SelectCityActivity.this, EntityStoreActivity.class);
-//                        intent.putExtra("city", cityName);
-//                        setResult(RESULT_OK, intent);
-//                        finish();
-//                    }else {
                         BroadcastManager.getInstance(SelectCityActivity.this).sendBroadcast(Constants.CHOICE_CITY, cityName);
-                        finish();
 
+                        finish();
+                    } else if (fromStr.equals("entityStores")) {
+                                                    Intent intent = new Intent(SelectCityActivity.this, EntityStoreActivity.class);
+                                                    intent.putExtra("id", entity.id);
+                                                    setResult(RESULT_OK, intent);
+                        //                            finish();
+                        BroadcastManager.getInstance(SelectCityActivity.this).sendBroadcast(Constants.CHOICE_CITYS, cityName);
+                        finish();
+                    } else {
+
+                        BroadcastManager.getInstance(SelectCityActivity.this).sendBroadcast(Constants.CHOICE_CITY, cityName);
+
+                        Intent intent = new Intent(SelectCityActivity.this, EntityStoreActivity.class);
+                        intent.putExtra("city", cityName);
+                        setResult(RESULT_OK, intent);
+                        finish();
+                    }
                 }
             }
         });
     }
 
-    public void initAdapter(){
+    public void initAdapter() {
         mAdapter = new ContactAdapter(this);
         indexableLayout.setAdapter(mAdapter);
         indexableLayout.setOverlayStyle_Center();
@@ -164,21 +177,28 @@ public class SelectCityActivity extends BaseActivity {
             //for(int i = 0; i<city.length; i++){
             //    hList.add(city[i]);
             //}
-            cybChangeCityGridViewAdapter=new CYBChangeCityGridViewAdapter(SelectCityActivity.this, hList);
+            cybChangeCityGridViewAdapter = new CYBChangeCityGridViewAdapter(SelectCityActivity.this, hList);
             vh.head_home_change_city_gridview.setAdapter(cybChangeCityGridViewAdapter);
             vh.item_header_city_dw.setText(cName);
             vh.head_home_change_city_gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    if(TextUtil.isNotEmpty(fromStr)){
-                        if(fromStr.equals("entityStore")){
-//                            Intent intent = new Intent(SelectCityActivity.this, EntityStoreActivity.class);
-//                            intent.putExtra("city", hList.get(position).getName());
-//                            setResult(RESULT_OK, intent);
-//                            finish();
+                    if (TextUtil.isNotEmpty(fromStr)) {
+                        if (fromStr.equals("entityStore")) {
+                            //                            Intent intent = new Intent(SelectCityActivity.this, EntityProductActivity.class);
+                            //                            intent.putExtra("city", hList.get(position).getName());
+                            //                            setResult(RESULT_OK, intent);
+                            //                            finish();
                             BroadcastManager.getInstance(SelectCityActivity.this).sendBroadcast(Constants.CHOICE_CITY, hList.get(position).getName());
                             finish();
-                        }else {
+                        } else if (fromStr.equals("entityStores")) {
+                                                        Intent intent = new Intent(SelectCityActivity.this, EntityStoreActivity.class);
+                                                        intent.putExtra("id", hList.get(position).getId());
+                                                        setResult(RESULT_OK, intent);
+                            //                            finish();
+                            BroadcastManager.getInstance(SelectCityActivity.this).sendBroadcast(Constants.CHOICE_CITYS, hList.get(position).getName());
+                            finish();
+                        } else {
                             String cityName = hList.get(position).getName();
                             BroadcastManager.getInstance(SelectCityActivity.this).sendBroadcast(Constants.CHOICE_CITY, cityName);
                             finish();
@@ -190,14 +210,21 @@ public class SelectCityActivity extends BaseActivity {
             vh.item_header_city_dw.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(fromStr.equals("entityStore")){
-//                        Intent intent = new Intent(SelectCityActivity.this, EntityStoreActivity.class);
+                    if (fromStr.equals("entityStore")) {
+                        //                        Intent intent = new Intent(SelectCityActivity.this, EntityProductActivity.class);
                         //                        intent.putExtra("city", vh.item_header_city_dw.getText().toString());
                         //                        setResult(RESULT_OK, intent);
                         //                        finish();
                         BroadcastManager.getInstance(SelectCityActivity.this).sendBroadcast(Constants.CHOICE_CITY, vh.item_header_city_dw.getText().toString());
                         finish();
-                    }else {
+                    } else if (fromStr.equals("entityStores")) {
+                        //                            Intent intent = new Intent(SelectCityActivity.this, EntityProductActivity.class);
+                        //                            intent.putExtra("city", hList.get(position).getName());
+                        //                            setResult(RESULT_OK, intent);
+                        //                            finish();
+//                        BroadcastManager.getInstance(SelectCityActivity.this).sendBroadcast(Constants.CHOICE_CITYS, vh.item_header_city_dw.getText().toString());
+                        finish();
+                    } else {
                         String cityName = vh.item_header_city_dw.getText().toString();
                         BroadcastManager.getInstance(SelectCityActivity.this).sendBroadcast(Constants.CHOICE_CITY, cityName);
                         finish();
@@ -210,14 +237,21 @@ public class SelectCityActivity extends BaseActivity {
                 public void onClick(View v) {
                     getLocation();
                     vh.item_header_city_dw.setText(cName);
-                    if(fromStr.equals("entityStore")){
+                    if (fromStr.equals("entityStore")) {
                         BroadcastManager.getInstance(SelectCityActivity.this).sendBroadcast(Constants.CHOICE_CITY, cName);
                         finish();
-//                        Intent intent = new Intent(SelectCityActivity.this, EntityStoreActivity.class);
-//                        intent.putExtra("city", cName);
-//                        setResult(RESULT_OK, intent);
-//                        finish();
-                    }else {
+                        //                        Intent intent = new Intent(SelectCityActivity.this, EntityProductActivity.class);
+                        //                        intent.putExtra("city", cName);
+                        //                        setResult(RESULT_OK, intent);
+                        //                        finish();
+                    } else if (fromStr.equals("entityStores")) {
+                        //                            Intent intent = new Intent(SelectCityActivity.this, EntityProductActivity.class);
+                        //                            intent.putExtra("city", hList.get(position).getName());
+                        //                            setResult(RESULT_OK, intent);
+                        //                            finish();
+                        BroadcastManager.getInstance(SelectCityActivity.this).sendBroadcast(Constants.CHOICE_CITYS, cName);
+                        finish();
+                    } else {
                         BroadcastManager.getInstance(SelectCityActivity.this).sendBroadcast(Constants.CHOICE_CITY, cName);
                         finish();
                     }
@@ -248,16 +282,18 @@ public class SelectCityActivity extends BaseActivity {
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
                     //当输入框里面的值为空，更新为原来的列表，否则为过滤数据列表
-                    if (TextUtils.isEmpty(s.toString())){
+                    if (TextUtils.isEmpty(s.toString())) {
                         vh.tv_search_contacts_view.setVisibility(View.VISIBLE);
                         mAdapter.setDatas(cList);
-                    }else{
+                    } else {
                         vh.tv_search_contacts_view.setVisibility(View.GONE);
                     }
                 }
+
                 @Override
                 public void beforeTextChanged(CharSequence text, int start, int count, int after) {
                 }
+
                 @Override
                 public void afterTextChanged(Editable edit) {
                 }
@@ -265,15 +301,15 @@ public class SelectCityActivity extends BaseActivity {
         }
 
         private class VH extends RecyclerView.ViewHolder {
-            GridView  head_home_change_city_gridview;
-            TextView  item_header_city_dw;
-            TextView  tv_re_loction;
-            TextView  tv_search_contacts_view;
+            GridView      head_home_change_city_gridview;
+            TextView      item_header_city_dw;
+            TextView      tv_re_loction;
+            TextView      tv_search_contacts_view;
             ClearEditText et_search_str;
 
             public VH(View itemView) {
                 super(itemView);
-                head_home_change_city_gridview =(QGridView)itemView.findViewById(R.id.item_header_city_gridview);
+                head_home_change_city_gridview = (QGridView) itemView.findViewById(R.id.item_header_city_gridview);
                 item_header_city_dw = itemView.findViewById(R.id.item_header_city_dw);
                 tv_re_loction = itemView.findViewById(R.id.tv_re_loction);
                 tv_search_contacts_view = itemView.findViewById(R.id.tv_search_contacts_view);
@@ -283,27 +319,28 @@ public class SelectCityActivity extends BaseActivity {
     }
 
     private List<CityDto> initDatas() {
-        for(int i=0; i<allCityList.size(); i++) {
-           List<SecondLevelCityCto> sList = allCityList.get(i).getChildren();
-           for (int j = 0; j < sList.size(); j++) {
-               CityDto cd = new CityDto();
-               cd.setCityName(sList.get(j).getName());
-               cd.setCityCode(sList.get(j).getCode());
-               cList.add(cd);
-           }
+        for (int i = 0; i < allCityList.size(); i++) {
+            List<SecondLevelCityCto> sList = allCityList.get(i).getChildren();
+            for (int j = 0; j < sList.size(); j++) {
+                CityDto cd = new CityDto();
+                cd.setCityName(sList.get(j).getName());
+                cd.setCityCode(sList.get(j).getCode());
+                cd.id=(sList.get(j).getId());
+                cList.add(cd);
+            }
         }
         return cList;
     }
 
-    private void getHotCityList(){
+    private void getHotCityList() {
         //showLoadDialog();
         DataManager.getInstance().getHotCityList(new DefaultSingleObserver<HttpResult<List<HotCityDto>>>() {
             @Override
             public void onSuccess(HttpResult<List<HotCityDto>> result) {
                 //dissLoadDialog();
-                if(result != null) {
-                    if(result.getData() != null) {
-                        List<HotCityDto> hotList= result.getData();
+                if (result != null) {
+                    if (result.getData() != null) {
+                        List<HotCityDto> hotList = result.getData();
                         if (hotList != null) {
                             hList.addAll(hotList);
                             mBannerHeaderAdapter.notifyDataSetChanged();
@@ -311,6 +348,7 @@ public class SelectCityActivity extends BaseActivity {
                     }
                 }
             }
+
             @Override
             public void onError(Throwable throwable) {
                 //dissLoadDialog();
@@ -318,15 +356,15 @@ public class SelectCityActivity extends BaseActivity {
         });
     }
 
-    private void getAllCityList(){
+    private void getAllCityList() {
         //showLoadDialog();
         DataManager.getInstance().getAllCityList(new DefaultSingleObserver<HttpResult<List<AllCityDto>>>() {
             @Override
             public void onSuccess(HttpResult<List<AllCityDto>> result) {
                 //dissLoadDialog();
-                if(result != null) {
-                    if(result.getData() != null) {
-                        List<AllCityDto> aList= result.getData();
+                if (result != null) {
+                    if (result.getData() != null) {
+                        List<AllCityDto> aList = result.getData();
                         if (aList != null) {
                             allCityList.addAll(aList);
                             mAdapter.setDatas(initDatas());
@@ -334,6 +372,7 @@ public class SelectCityActivity extends BaseActivity {
                     }
                 }
             }
+
             @Override
             public void onError(Throwable throwable) {
                 //dissLoadDialog();
@@ -341,14 +380,14 @@ public class SelectCityActivity extends BaseActivity {
         });
     }
 
-    private void getLocation(){
+    private void getLocation() {
         //showLoadDialog();
         DataManager.getInstance().getLocation(new DefaultSingleObserver<HttpResult<AreaDto>>() {
             @Override
             public void onSuccess(HttpResult<AreaDto> result) {
                 //dissLoadDialog();
-                if(result != null){
-                    if(result.getData() != null){
+                if (result != null) {
+                    if (result.getData() != null) {
                         cName = result.getData().getName();
                     }
                 }
@@ -363,14 +402,14 @@ public class SelectCityActivity extends BaseActivity {
 
     /**
      * 根据输入框中的值来过滤数据并更新RecyclerView
+     *
      * @param filterStr
      */
     private void filterData(String filterStr) {
         List<CityDto> filterDateList = new ArrayList<>();
         if (TextUtils.isEmpty(filterStr)) {
             filterDateList = cList;
-        }
-        else {
+        } else {
             filterDateList.clear();
             if (cList != null && !cList.isEmpty()) {
                 for (CityDto item : cList) {

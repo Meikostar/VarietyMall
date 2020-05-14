@@ -95,7 +95,7 @@ public class BrandShopDetailActivity extends BaseActivity {
                 return true;
             }
         };
-        initHeaderView();
+
         mSuperRecyclerView.addItemDecoration(new RecyclerItemDecoration(6, 2));
         mSuperRecyclerView.setLayoutManager(gridLayoutManager2);
         //        layoutManager = new LinearLayoutManager(this);
@@ -106,6 +106,7 @@ public class BrandShopDetailActivity extends BaseActivity {
 
 
         mSuperRecyclerView.setAdapter(mAdapter);
+        initHeaderView();
         refreshListener = new SwipeRefreshLayout.OnRefreshListener() {
 
             @Override

@@ -56,44 +56,7 @@ public class ShopStoreDetailActivity extends BaseActivity {
 
     @BindView(R.id.super_recycle_view)
     SuperRecyclerView mSuperRecyclerView;
-    @BindView(R.id.banner)
-    Banner            banner;
-    @BindView(R.id.acb_status_bar)
-    ImageView         acbStatusBar;
-    @BindView(R.id.actionbar_back)
-    ImageView         actionbarBack;
-    @BindView(R.id.et_search)
-    EditText          etSearch;
-    @BindView(R.id.iv_labe)
-    ImageView         ivLabe;
-    @BindView(R.id.iv_img)
-    ImageView         ivImg;
-    @BindView(R.id.tv_title)
-    TextView          tvTitle;
-    @BindView(R.id.tv_content)
-    TextView          tvContent;
-    @BindView(R.id.tv_attention)
-    TextView          tvShopFollow;
-    @BindView(R.id.tv_detail)
-    TextView          tv_detail;
-    @BindView(R.id.tv_shop_product_1)
-    TextView          tvShopProduct1;
-    @BindView(R.id.tv_shop_product_2)
-    TextView          tvShopProduct2;
-    @BindView(R.id.tv_shop_product_3)
-    TextView          tvShopProduct3;
-    @BindView(R.id.iv_shop_product_3)
-    ImageView         ivShopProduct3;
-    @BindView(R.id.ll_shop_product_3)
-    LinearLayout      llShopProduct3;
-    @BindView(R.id.tv_shop_product_4)
-    TextView          tvShopProduct4;
-    @BindView(R.id.iv_shop_product_4)
-    ImageView         ivShopProduct4;
-    @BindView(R.id.ll_shop_product_4)
-    LinearLayout      llShopProduct4;
-    @BindView(R.id.ll_bg)
-    LinearLayout      llBg;
+
     private SwipeRefreshLayoutUtil mSwipeRefreshLayoutUtil;
     private String                 id;
 
@@ -129,6 +92,7 @@ public class ShopStoreDetailActivity extends BaseActivity {
 
 
         mSuperRecyclerView.setAdapter(mAdapter);
+        initHeaderView();
         refreshListener = new SwipeRefreshLayout.OnRefreshListener() {
 
             @Override
@@ -148,6 +112,47 @@ public class ShopStoreDetailActivity extends BaseActivity {
 
     }
 
+    private Banner    banner;
+    private ImageView acbStatusBar;
+    private ImageView actionbarBack;
+    private EditText  etSearch;
+
+    private ImageView ivLabe;
+    private ImageView ivImg;
+    private TextView  tvTitle;
+    private TextView  tv_detail;
+    private TextView                tvContent;
+    private  TextView                tvShopFollow;
+    private TextView                tvShopProduct1;
+    private TextView                tvShopProduct2;
+    private TextView                tvShopProduct3;
+    private ImageView               ivShopProduct3;
+    private LinearLayout       llShopProduct3;
+    private TextView           tvShopProduct4;
+    private ImageView          ivShopProduct4;
+    private LinearLayout       llShopProduct4;
+    private void initHeaderView() {
+        View mHeaderView = View.inflate(this, R.layout.layout_shop_details, null);
+        banner = mHeaderView.findViewById(R.id.banner);
+        acbStatusBar = mHeaderView.findViewById(R.id.acb_status_bar);
+        actionbarBack = mHeaderView.findViewById(R.id.actionbar_back);
+        etSearch = mHeaderView.findViewById(R.id.et_search);
+        ivLabe = mHeaderView.findViewById(R.id.iv_labe);
+        ivImg = mHeaderView.findViewById(R.id.iv_img);
+        tvTitle = mHeaderView.findViewById(R.id.tv_title);
+        tv_detail = mHeaderView.findViewById(R.id.tv_detail);
+        tvContent = mHeaderView.findViewById(R.id.tv_content);
+        tvShopFollow = mHeaderView.findViewById(R.id.tv_attention);
+        tvShopProduct1 = mHeaderView.findViewById(R.id.tv_shop_product_1);
+        tvShopProduct2 = mHeaderView.findViewById(R.id.tv_shop_product_2);
+        tvShopProduct3 = mHeaderView.findViewById(R.id.tv_shop_product_3);
+        tvShopProduct4= mHeaderView.findViewById(R.id.tv_shop_product_4);
+        ivShopProduct3 = mHeaderView.findViewById(R.id.iv_shop_product_3);
+        llShopProduct3 = mHeaderView.findViewById(R.id.ll_shop_product_3);
+        ivShopProduct3 = mHeaderView.findViewById(R.id.iv_shop_product_4);
+        llShopProduct4 = mHeaderView.findViewById(R.id.ll_shop_product_4);
+        mAdapter.addHeaderView(mHeaderView);
+    }
 
     public void refresh() {
         if (mSuperRecyclerView != null) {

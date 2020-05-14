@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:layout_height="wrap_content">
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#f4f4f4"/>
+    <LinearLayout
+        android:layout_below="@+id/line"
+        android:id="@+id/ll_bg"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="118dp">
+        <FrameLayout
+            android:layout_marginBottom="12dp"
+            android:layout_marginLeft="13.5dp"
+            android:layout_marginTop="11.5dp"
+            android:layout_width="@dimen/bj_90dp"
+            android:layout_height="90dp">
+
+
+            <ImageView
+                android:id="@+id/iv_img"
+                android:layout_width="@dimen/bj_90dp"
+                android:layout_height="@dimen/bj_90dp" />
+
+        </FrameLayout>
+        <LinearLayout
+            android:layout_marginLeft="13dp"
+            android:orientation="vertical"
+            android:layout_centerVertical="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_marginTop="20dp"
+                android:maxLines="2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="商品标题商品标题商品标题商品标题商品标题"
+                android:textColor="#ff111111"
+                android:textSize="12sp"
+                />
+            <com.donkingliang.labels.LabelsView
+                android:id="@+id/tv_item_select_commodity_datas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="2dp"
+                app:labelBackground="@drawable/label_entity_product"
+                app:labelTextColor="@drawable/label_text_entity_product_color"
+                app:labelTextPaddingBottom="3dp"
+                app:labelTextPaddingLeft="6dp"
+                app:labelTextPaddingRight="6dp"
+                app:labelTextPaddingTop="3dp"
+                app:labelTextSize="10sp"
+                app:lineMargin="10dp"
+                app:maxSelect="30"
+                app:wordMargin="10dp" />
+            <TextView
+                android:id="@+id/tv_price"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="￥1999.00"
+                android:textColor="#ffff0000"
+                android:textSize="15sp"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="130dp"
+        android:layout_marginLeft="13.5dp"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_xs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="已销售：1000件"
+                android:textColor="#ff111111"
+                android:textSize="10sp"
+                />
+            <TextView
+                android:id="@+id/tv_id"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ID：1254620332000"
+                android:textColor="#ff111111"
+                android:textSize="10sp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginBottom="12dp"
+            android:gravity="center_vertical"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_kc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="库存：2000件"
+                android:textColor="#ff111111"
+                android:textSize="10sp"
+                />
+            <ImageView
+                android:id="@+id/iv_bj"
+                android:layout_marginLeft="22dp"
+                android:padding="3dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/product_bj"/>
+        </LinearLayout>
+    </LinearLayout>
+    <TextView
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:background="@drawable/shape_radius_red"
+        android:layout_marginTop="110dp"
+        android:id="@+id/tv_del"
+        android:gravity="center"
+        android:text="上架"
+        android:layout_marginRight="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="22dp"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/white"
+        android:textSize="12sp" />
+
+</RelativeLayout>

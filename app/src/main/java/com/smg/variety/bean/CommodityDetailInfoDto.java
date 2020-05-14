@@ -41,6 +41,7 @@ public class CommodityDetailInfoDto implements Serializable {
     private String       is_hot;
     private String       is_recommend;
     public String       save_money;
+    public boolean       flag2;
     private String       is_shop_recommend;
     private String       created_at;
     private String       updated_at;

@@ -53,11 +53,11 @@ public class FirstClassAdapter extends BaseAdapter {
 
         //选中和没选中时，设置不同的颜色
         if (position == selectedPosition){
-            convertView.setBackgroundResource(R.color.my_color_white);
-            holder.nameTV.setTextColor(context.getResources().getColor(R.color.my_color_black));
+            convertView.setBackgroundResource(R.color.white);
+            holder.nameTV.setTextColor(context.getResources().getColor(R.color.my_color_212121));
         }else{
             convertView.setBackgroundResource(R.drawable.selector_left_normal);
-            holder.nameTV.setTextColor(context.getResources().getColor(R.color.my_color_white));
+            holder.nameTV.setTextColor(context.getResources().getColor(R.color.my_color_212121));
         }
         holder.nameTV.setText(list.get(position).getName());
 //      if (list.get(position).getSecondList() != null && list.get(position).getSecondList().size() > 0) {

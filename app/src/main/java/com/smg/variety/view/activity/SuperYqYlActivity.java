@@ -48,6 +48,8 @@ public class SuperYqYlActivity extends BaseActivity {
     TextView       tvDs;
     @BindView(R.id.tv_gz)
     TextView       tv_gz;
+    @BindView(R.id.tv_time)
+    TextView       tv_time;
 
     @Override
     public int getLayoutId() {
@@ -139,6 +141,7 @@ public class SuperYqYlActivity extends BaseActivity {
 
     private String one;
     private String two;
+    private String three;
 
     private void getConfigs() {
         //showLoadDialog();
@@ -150,8 +153,11 @@ public class SuperYqYlActivity extends BaseActivity {
                     if (result.getData() != null && result.getData().rights_pull_new != null) {
                         one = result.getData().rights_pull_new.level_1;
                         two = result.getData().rights_pull_new.level_2;
+                        three = result.getData().rights_pull_new.new_pull_end_at;
                         tvSp.setText(one);
                         tvDs.setText(two);
+                        tv_time.setText(three);
+
                     }
                 }
             }

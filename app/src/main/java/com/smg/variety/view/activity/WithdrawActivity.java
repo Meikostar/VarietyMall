@@ -157,7 +157,7 @@ public class WithdrawActivity extends BaseActivity {
         DataManager.getInstance().withdraw(new DefaultSingleObserver<Object>() {
             @Override
             public void onSuccess(Object balanceDto) {
-                ToastUtil.showToast("提现成功");
+                ToastUtil.showToast("提现申请已提交");
                 finish();
             }
 
@@ -165,7 +165,7 @@ public class WithdrawActivity extends BaseActivity {
             public void onError(Throwable throwable) {
                 super.onError(throwable);
                 if(ApiException.getInstance().isSuccess()){
-                    ToastUtil.showToast("提现成功");
+                    ToastUtil.showToast("提现申请已提交");
                     finish();
                 }else {
                     ToastUtil.showToast(ApiException.getHttpExceptionMessage(throwable));

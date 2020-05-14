@@ -16,6 +16,7 @@ import com.smg.variety.bean.NewListItemDto;
 import com.smg.variety.common.Constants;
 import com.smg.variety.common.utils.GlideUtils;
 import com.smg.variety.common.utils.ScreenSizeUtil;
+import com.smg.variety.utils.ShareUtil;
 import com.smg.variety.view.mainfragment.consume.CommodityDetailActivity;
 
 /**

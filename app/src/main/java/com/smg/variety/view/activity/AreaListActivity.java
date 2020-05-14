@@ -61,7 +61,7 @@ public class AreaListActivity extends BaseActivity {
             if (serializable != null) {
                 AreaDto areaDto = (AreaDto) serializable;
                 name = areaDto.getName();
-                parendId = areaDto.getId();
+                parendId = Integer.valueOf(areaDto.getId());
             }
         }
         if (TextUtils.isEmpty(name)) {

@@ -33,6 +33,7 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.smg.variety.R;
+import com.smg.variety.base.BaseApplication;
 import com.smg.variety.base.BaseFragment;
 import com.smg.variety.bean.AreaDto;
 import com.smg.variety.bean.BannerDto;
@@ -42,6 +43,7 @@ import com.smg.variety.bean.BaseDto;
 import com.smg.variety.bean.GAME;
 import com.smg.variety.bean.HeadLineDto;
 import com.smg.variety.bean.NewListItemDto;
+import com.smg.variety.bean.PersonalInfoDto;
 import com.smg.variety.bean.RecommendListDto;
 import com.smg.variety.common.Constants;
 import com.smg.variety.common.utils.GlideUtils;
@@ -50,16 +52,19 @@ import com.smg.variety.http.manager.DataManager;
 import com.smg.variety.http.response.HttpResult;
 import com.smg.variety.utils.LocationUtils;
 import com.smg.variety.utils.ShareUtil;
+import com.smg.variety.utils.TextUtil;
 import com.smg.variety.view.MainActivity;
 import com.smg.variety.view.activity.AppNewPeopleActivity;
 import com.smg.variety.view.activity.AppRenWuActivity;
 import com.smg.variety.view.activity.AppStoreActivity;
 import com.smg.variety.view.activity.BrandsActivity;
 import com.smg.variety.view.activity.ConturyActivity;
+import com.smg.variety.view.activity.GiftSendActivity;
 import com.smg.variety.view.activity.HotActivity;
 import com.smg.variety.view.activity.LoginActivity;
 import com.smg.variety.view.activity.MenberShareActivity;
 import com.smg.variety.view.activity.MessageCenterActivity;
+import com.smg.variety.view.activity.OnlyNewPeopleActivity;
 import com.smg.variety.view.activity.ShopStoreDetailActivity;
 import com.smg.variety.view.activity.SpikeActivity;
 import com.smg.variety.view.activity.WebViewActivity;
@@ -69,6 +74,7 @@ import com.smg.variety.view.adapter.ConsumePushAdapter;
 import com.smg.variety.view.adapter.Homedapter;
 import com.smg.variety.view.mainfragment.consume.BrandShopDetailActivity;
 import com.smg.variety.view.mainfragment.consume.CommodityDetailActivity;
+import com.smg.variety.view.mainfragment.consume.EntityStoreActivity;
 import com.smg.variety.view.mainfragment.consume.ProductSearchActivity;
 import com.smg.variety.view.mainfragment.consume.SelectCityActivity;
 import com.smg.variety.view.widgets.RecyclerItemDecoration;
@@ -97,15 +103,15 @@ public class ConsumeFragment extends BaseFragment {
 
 
     @BindView(R.id.header)
-    MaterialHeader     header;
+    MaterialHeader   header;
     @BindView(R.id.banner)
-    Banner             banner;
+    Banner           banner;
     @BindView(R.id.grid_content)
-    NoScrollGridView   gridContent;
+    NoScrollGridView gridContent;
     @BindView(R.id.rl_vp_container)
-    RelativeLayout     rlVpContainer;
+    RelativeLayout   rlVpContainer;
     @BindView(R.id.iv_one)
-    ImageView          ivOne;
+    ImageView        ivOne;
 
     @BindView(R.id.iv_two)
     ImageView          ivTwo;
@@ -136,7 +142,7 @@ public class ConsumeFragment extends BaseFragment {
     @BindView(R.id.ll_fl)
     LinearLayout       ll_fl;
     @BindView(R.id.grid)
-    GridView       gridView;
+    GridView           gridView;
     @BindView(R.id.iv_red)
     ImageView          iv_red;
 
@@ -168,13 +174,14 @@ public class ConsumeFragment extends BaseFragment {
         gridContent.setAdapter(mHomedapter);
 
     }
+
     private void iniGridView(final List<GAME> list) {
 
         int length = 62;  //定义一个长度
         int size = 0;  //得到集合长度
         //获得屏幕分辨路
         DisplayMetrics dm = new DisplayMetrics();
-        if(dm==null||getActivity()==null){
+        if (dm == null || getActivity() == null) {
             return;
         }
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
@@ -196,27 +203,57 @@ public class ConsumeFragment extends BaseFragment {
         adapter.setClickListener(new ChatMenberAdapter.ClickListener() {
             @Override
             public void clicks(BannerDto game) {
-                if(game.url.contains("::")&&game.url.contains("seller")){
+                if (game.url.contains("::") && game.url.contains("seller")) {
                     String[] split = game.url.split("=");
-                    if(split!=null&&split.length==2){
+                    if (split != null && split.length == 2) {
                         Bundle bundle = new Bundle();
                         bundle.putString(ShopStoreDetailActivity.SHOP_DETAIL_ID, split[1]);
                         gotoActivity(ShopStoreDetailActivity.class, false, bundle);
                     }
-                }else {
-                    if(game.url.contains("https://s.click.taobao.com")||game.url.contains("https://m.tb.cn")){
-                        Intent intent = new Intent(getActivity(), WebViewsActivity.class);
-
-                        intent.putExtra(WebViewActivity.WEBTITLE, game.title);
-                        intent.putExtra(WebViewActivity.WEBURL, game.url);
-                        startActivity(intent   );
+                } else {
+                    if(game.title.equals("附近商家")){
+                        Intent intent = new Intent(getActivity(), EntityStoreActivity.class);
+                        startActivity(intent);
                     }else {
-                        Intent intent = new Intent(getActivity(), WebViewActivity.class);
+                        if(game.url.contains("{user_id}")){
+                            String replace = game.url.replace("{user_id}", TextUtil.isNotEmpty(ShareUtil.getInstance().get(Constants.USER_ID))?ShareUtil.getInstance().get(Constants.USER_ID):"0");
+                            if (replace.contains("https://s.click.taobao.com") || replace.contains("https://m.tb.cn")) {
+                                Intent intent = new Intent(getActivity(), WebViewsActivity.class);
 
-                        intent.putExtra(WebViewActivity.WEBTITLE, game.title);
-                        intent.putExtra(WebViewActivity.WEBURL, game.url);
-                        startActivity(intent   );
+                                intent.putExtra(WebViewActivity.WEBTITLE, game.title);
+                                intent.putExtra(WebViewActivity.WEBURL, replace);
+                                startActivity(intent);
+                            } else {
+                                Intent intent = new Intent(getActivity(), WebViewActivity.class);
+
+                                intent.putExtra(WebViewActivity.WEBTITLE, game.title);
+                                intent.putExtra(WebViewActivity.WEBURL, replace);
+                                startActivity(intent);
+                            }
+                        } else  if(game.url.equals("free_get")){
+
+                                Intent intent = new Intent(getActivity(), GiftSendActivity.class);
+
+                                startActivity(intent);
+
+                        }else {
+                            if (game.url.contains("https://s.click.taobao.com") || game.url.contains("https://m.tb.cn")) {
+                                Intent intent = new Intent(getActivity(), WebViewsActivity.class);
+
+                                intent.putExtra(WebViewActivity.WEBTITLE, game.title);
+                                intent.putExtra(WebViewActivity.WEBURL, game.url);
+                                startActivity(intent);
+                            } else {
+                                Intent intent = new Intent(getActivity(), WebViewActivity.class);
+
+                                intent.putExtra(WebViewActivity.WEBTITLE, game.title);
+                                intent.putExtra(WebViewActivity.WEBURL, game.url);
+                                startActivity(intent);
+                            }
+                        }
+
                     }
+
                 }
 
 
@@ -225,9 +262,11 @@ public class ConsumeFragment extends BaseFragment {
 
     }
 
-    private  Homedapter mHomedapter;
-    private  ChatMenberAdapter adapter;
-     private Gson       gson = new Gson();;
+    private Homedapter        mHomedapter;
+    private ChatMenberAdapter adapter;
+    private Gson              gson = new Gson();
+    ;
+
     @Override
     protected void initData() {
 
@@ -235,44 +274,66 @@ public class ConsumeFragment extends BaseFragment {
         refreshLayout.autoRefresh();
         initViewPager();
         setData();
-        Location location = LocationUtils.getInstance( getActivity() ).showLocation();
-        if(location!=null){
+        Location location = LocationUtils.getInstance(getActivity()).showLocation();
+        if (location != null) {
             getLocation();
         }
-
+        String cacheToken = ShareUtil.getInstance().getString(Constants.USER_ID, null);
+        if(TextUtil.isNotEmpty(cacheToken)){
+            getUserInfo();
+        }else {
+            getFourBanner();
+        }
         getHomeCategorie1();
         getTopBanner();
-        getFourBanner();
+
         getHeadLines();
         //        getHomeRecommendList();
         //        findGoodLists();
     }
-    public void setData(){
+    private void getUserInfo() {
+        DataManager.getInstance().getUserInfo(new DefaultSingleObserver<PersonalInfoDto>() {
+            @Override
+            public void onSuccess(PersonalInfoDto personalInfoDto) {
+
+                BaseApplication.level=personalInfoDto.level;
+                BaseApplication.is_new=personalInfoDto.is_new_pull==null?1:Integer.valueOf(personalInfoDto.is_new_pull);
+                getFourBanner();
+
+            }
+
+            @Override
+            public void onError(Throwable throwable) {
+                getFourBanner();
+            }
+        });
+    }
+    public void setData() {
         BannerInfoDto home_one = gson.fromJson(ShareUtil.getInstance().get("home_one"), BannerInfoDto.class);
         BannerInfoDto home_three = gson.fromJson(ShareUtil.getInstance().get("home_three"), BannerInfoDto.class);
         BaseDto home_two = gson.fromJson(ShareUtil.getInstance().get("home_two"), BaseDto.class);
         BannerItemDto home_last = gson.fromJson(ShareUtil.getInstance().get("home_last"), BannerItemDto.class);
         BaseDto home_four = gson.fromJson(ShareUtil.getInstance().get("home_four"), BaseDto.class);
-        if(home_one!=null){
+        if (home_one != null) {
             List<BannerItemDto> bannerList = home_one.getIndex_top();
             startBanner(bannerList);
         }
-        if(home_two!=null){
+        if (home_two != null) {
             mHomedapter.setData(home_two.home_two);
         }
-        if(home_three!=null){
-            GlideUtils.getInstances().loadNormalImg(getActivity(),ivOne,home_three.index_after_category_1.get(0).getPath());
-            GlideUtils.getInstances().loadNormalImg(getActivity(),ivTwo,home_three.index_after_category_2_left.get(0).getPath());
-            GlideUtils.getInstances().loadNormalImg(getActivity(),ivThree,home_three.index_after_category_2_right_top.get(0).getPath());
-            GlideUtils.getInstances().loadNormalImg(getActivity(),ivFour,home_three.index_after_category_2_right_bottom.get(0).getPath());
-//            GlideUtils.getInstances().loadNormalImg(getActivity(), ivOne,  home_three.index_after_category_1.get(0).getPath(), R.drawable.home_1);
-//            GlideUtils.getInstances().loadNormalImg(getActivity(), ivTwo,   home_three.index_after_category_2_left.get(0).getPath(), R.drawable.home_2);
-//
-//            GlideUtils.getInstances().loadNormalImg(getActivity(), ivThree,  home_three.index_after_category_2_right_top.get(0).getPath(), R.drawable.home_3);
-//            GlideUtils.getInstances().loadNormalImg(getActivity(), ivFour,  home_three.index_after_category_2_right_bottom.get(0).getPath(), R.drawable.home_4);
+        if (home_three != null) {
+            //            GlideUtils.getInstances().loadNormalImg(getActivity(),ivOne,home_three.index_after_category_1.get(0).getPath());
+            GlideUtils.getInstances().loadNormalImg(getActivity(), ivTwo, home_three.index_after_category_2_left.get(0).getPath());
+            GlideUtils.getInstances().loadNormalImg(getActivity(), ivThree, home_three.index_after_category_2_right_top.get(0).getPath());
+            GlideUtils.getInstances().loadNormalImg(getActivity(), ivFour, home_three.index_after_category_2_right_bottom.get(0).getPath());
+            //            GlideUtils.getInstances().loadNormalImg(getActivity(), ivOne,  home_three.index_after_category_1.get(0).getPath(), R.drawable.home_1);
+            //            GlideUtils.getInstances().loadNormalImg(getActivity(), ivTwo,   home_three.index_after_category_2_left.get(0).getPath(), R.drawable.home_2);
+            //
+            //            GlideUtils.getInstances().loadNormalImg(getActivity(), ivThree,  home_three.index_after_category_2_right_top.get(0).getPath(), R.drawable.home_3);
+            //            GlideUtils.getInstances().loadNormalImg(getActivity(), ivFour,  home_three.index_after_category_2_right_bottom.get(0).getPath(), R.drawable.home_4);
 
         }
-        if(home_four!=null){
+        if (home_four != null) {
             mConsumePushAdapter.setNewData(home_four.home_four);
             if (home_four.home_four == null || home_four.home_four.size() == 0) {
                 mConsumePushAdapter.setEmptyView(new EmptyView(getActivity()));
@@ -282,17 +343,17 @@ public class ConsumeFragment extends BaseFragment {
             refreshLayout.finishLoadMore();
 
         }
-        if(home_last!=null){
+        if (home_last != null) {
             ban = home_last;
-            ShareUtil.getInstance().save("home_last",gson.toJson(ban));
+            ShareUtil.getInstance().save("home_last", gson.toJson(ban));
             String imgStr = ban.getPath();
             if (imgStr != null) {
                 if (imgStr.contains("http://")) {
-                    GlideUtils.getInstances().loadNormalImg(getActivity(),ivFive,imgStr);
-//                    GlideUtils.getInstances().loadNormalImg(getActivity(), ivFive, imgStr, R.mipmap.img_default_2);
+                    GlideUtils.getInstances().loadNormalImg(getActivity(), ivFive, imgStr);
+                    //                    GlideUtils.getInstances().loadNormalImg(getActivity(), ivFive, imgStr, R.mipmap.img_default_2);
                 } else {
-                    GlideUtils.getInstances().loadNormalImg(getActivity(),ivFive,Constants.WEB_IMG_URL_UPLOADS + imgStr);
-//                    GlideUtils.getInstances().loadNormalImg(getActivity(), ivFive, Constants.WEB_IMG_URL_UPLOADS + imgStr, R.drawable.home_5);
+                    GlideUtils.getInstances().loadNormalImg(getActivity(), ivFive, Constants.WEB_IMG_URL_UPLOADS + imgStr);
+                    //                    GlideUtils.getInstances().loadNormalImg(getActivity(), ivFive, Constants.WEB_IMG_URL_UPLOADS + imgStr, R.drawable.home_5);
                 }
             }
             ivFive.setOnClickListener(new View.OnClickListener() {
@@ -322,7 +383,6 @@ public class ConsumeFragment extends BaseFragment {
                 }
             });
         }
-
 
 
     }
@@ -376,7 +436,12 @@ public class ConsumeFragment extends BaseFragment {
         ivOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), SpikeActivity.class));
+                if (BaseApplication.is_new == 1) {
+                    startActivity(new Intent(getActivity(), OnlyNewPeopleActivity.class));
+                } else {
+                    startActivity(new Intent(getActivity(), SpikeActivity.class));
+                }
+
             }
         });
         ivFour.setOnClickListener(new View.OnClickListener() {
@@ -405,13 +470,13 @@ public class ConsumeFragment extends BaseFragment {
                  * 启动扫一扫
                  */
                 startActivity(new Intent(getActivity(), MenberShareActivity.class));
-//                Intent intent = new Intent(getActivity(), CaptureActivity.class);
-//                ZxingConfig config = new ZxingConfig();
-//                config.setReactColor(R.color.my_color_009AFF);//设置扫描框四个角的颜色 默认为白色
-//                config.setScanLineColor(R.color.my_color_009AFF);//设置扫描线的颜色 默认白色
-//                intent.putExtra(Constant.INTENT_ZXING_CONFIG, config);
-//                config.setShowbottomLayout(false);
-//                startActivityForResult(intent, Constants.HOME_REQUEST_CODE_SCAN);
+                //                Intent intent = new Intent(getActivity(), CaptureActivity.class);
+                //                ZxingConfig config = new ZxingConfig();
+                //                config.setReactColor(R.color.my_color_009AFF);//设置扫描框四个角的颜色 默认为白色
+                //                config.setScanLineColor(R.color.my_color_009AFF);//设置扫描线的颜色 默认白色
+                //                intent.putExtra(Constant.INTENT_ZXING_CONFIG, config);
+                //                config.setShowbottomLayout(false);
+                //                startActivityForResult(intent, Constants.HOME_REQUEST_CODE_SCAN);
 
             }
         });
@@ -499,12 +564,12 @@ public class ConsumeFragment extends BaseFragment {
                         tv_location.setText(cityName);
                     }
                 }
-                LocationUtils.getInstance( getActivity() ).removeLocationUpdatesListener();
+                LocationUtils.getInstance(getActivity()).removeLocationUpdatesListener();
             }
 
             @Override
             public void onError(Throwable throwable) {
-                LocationUtils.getInstance( getActivity() ).removeLocationUpdatesListener();
+                LocationUtils.getInstance(getActivity()).removeLocationUpdatesListener();
                 //dissLoadDialog();
             }
         });
@@ -519,8 +584,8 @@ public class ConsumeFragment extends BaseFragment {
                 dissLoadDialog();
                 if (result != null && result.getData() != null) {
                     BaseDto baseDto = new BaseDto();
-                    baseDto.home_two=result.getData();
-                    ShareUtil.getInstance().save("home_two",gson.toJson(baseDto));
+                    baseDto.home_two = result.getData();
+                    ShareUtil.getInstance().save("home_two", gson.toJson(baseDto));
                     mHomedapter.setData(result.getData());
                 }
 
@@ -533,8 +598,10 @@ public class ConsumeFragment extends BaseFragment {
             }
         });
     }
-    private List<BannerDto> list=new ArrayList<>();
-    private List<GAME> mGAMES=new ArrayList<>();
+
+    private List<BannerDto> list   = new ArrayList<>();
+    private List<GAME>      mGAMES = new ArrayList<>();
+
     private void getHomeCategorie1() {
         //showLoadDialog();
         DataManager.getInstance().getApplication(new DefaultSingleObserver<HttpResult<List<BannerDto>>>() {
@@ -545,52 +612,52 @@ public class ConsumeFragment extends BaseFragment {
                     list.clear();
                     mGAMES.clear();
                     int size = result.getData().size();
-                    if(size>=5){
-                        for(int i=0;i<5;i++){
+                    if (size >= 5) {
+                        for (int i = 0; i < 5; i++) {
                             list.add(result.getData().get(i));
                         }
-                      int cout=  (size-4)/2;
-                      int zoe=  (size-4)%2;
-                      int len=zoe==0?cout:cout+1;
-                      for(int a=5;a<5+len;a++){
-                          GAME game = new GAME();
+                        int cout = (size - 4) / 2;
+                        int zoe = (size - 4) % 2;
+                        int len = zoe == 0 ? cout : cout + 1;
+                        for (int a = 5; a < 5 + len; a++) {
+                            GAME game = new GAME();
 
 
-                          if(a==len+4){
-                             if(zoe==0){
-                                 BannerDto bannerDto = new BannerDto();
-                                 bannerDto.title="更多";
-                                 game.one=result.getData().get(a);
-                                 game.two=bannerDto;
-                             } else {
-                                 game.one=result.getData().get(a);
-//                                 game.two=result.getData().get(len+a);
-                             }
-                          }else if (a==len+3){
-                              if(zoe!=0){
-                                  BannerDto bannerDto = new BannerDto();
-                                  bannerDto.title="更多";
-                                  game.one=result.getData().get(a);
-                                  game.two=bannerDto;
-                              }else {
-                                  game.one=result.getData().get(a);
-                                  game.two=result.getData().get(len+a);
-                              }
-                          }else{
-                              game.one=result.getData().get(a);
-                              game.two=result.getData().get(len+a);
-                          }
-                          mGAMES.add(game);
-                      }
+                            if (a == len + 4) {
+                                if (zoe == 0) {
+                                    BannerDto bannerDto = new BannerDto();
+                                    bannerDto.title = "更多";
+                                    game.one = result.getData().get(a);
+                                    game.two = bannerDto;
+                                } else {
+                                    game.one = result.getData().get(a);
+                                    //                                 game.two=result.getData().get(len+a);
+                                }
+                            } else if (a == len + 3) {
+                                if (zoe != 0) {
+                                    BannerDto bannerDto = new BannerDto();
+                                    bannerDto.title = "更多";
+                                    game.one = result.getData().get(a);
+                                    game.two = bannerDto;
+                                } else {
+                                    game.one = result.getData().get(a);
+                                    game.two = result.getData().get(len + a);
+                                }
+                            } else {
+                                game.one = result.getData().get(a);
+                                game.two = result.getData().get(len + a);
+                            }
+                            mGAMES.add(game);
+                        }
 
-                    }else {
-                        for(int i=0;i<size;i++){
+                    } else {
+                        for (int i = 0; i < size; i++) {
                             list.add(result.getData().get(i));
                         }
                     }
 
                     mHomedapter.setData(list);
-                     iniGridView(mGAMES);
+                    iniGridView(mGAMES);
 
                 }
 
@@ -603,6 +670,7 @@ public class ConsumeFragment extends BaseFragment {
             }
         });
     }
+
     private void getTopBanner() {
         //showLoadDialog();
         DataManager.getInstance().getBannerList(new DefaultSingleObserver<HttpResult<BannerInfoDto>>() {
@@ -612,7 +680,7 @@ public class ConsumeFragment extends BaseFragment {
                 if (result != null) {
                     if (result.getData() != null) {
 
-                        ShareUtil.getInstance().save("home_one",gson.toJson(result.getData()));
+                        ShareUtil.getInstance().save("home_one", gson.toJson(result.getData()));
                         List<BannerItemDto> bannerList = result.getData().getIndex_top();
                         startBanner(bannerList);
 
@@ -639,13 +707,13 @@ public class ConsumeFragment extends BaseFragment {
                         if (bannerList != null) {
 
                             ban = bannerList.get(0);
-                            ShareUtil.getInstance().save("home_last",gson.toJson(ban));
+                            ShareUtil.getInstance().save("home_last", gson.toJson(ban));
                             String imgStr = ban.getPath();
                             if (imgStr != null) {
                                 if (imgStr.contains("http://")) {
                                     GlideUtils.getInstances().loadNormalImg(getActivity(), ivFive, imgStr, R.mipmap.img_default_2);
                                 } else {
-                                    GlideUtils.getInstances().loadNormalImg(getActivity(), ivFive,  Constants.WEB_IMG_URL_UPLOADS + imgStr, R.drawable.home_5);
+                                    GlideUtils.getInstances().loadNormalImg(getActivity(), ivFive, Constants.WEB_IMG_URL_UPLOADS + imgStr, R.drawable.home_5);
                                 }
                             }
                             ivFive.setOnClickListener(new View.OnClickListener() {
@@ -701,7 +769,7 @@ public class ConsumeFragment extends BaseFragment {
         //设置图片集合
         banner.setImages(data);
         //设置banner动画效果
-                banner.setBannerAnimation(Transformer.DepthPage);
+        banner.setBannerAnimation(Transformer.DepthPage);
         //设置标题集合（当banner样式有显示title时）
         //        banner.setBannerTitles(titles);
         //设置自动轮播，默认为true
@@ -720,9 +788,9 @@ public class ConsumeFragment extends BaseFragment {
             String imgStr = slidersDto.getPath();
             if (imgStr != null) {
                 if (imgStr.contains("http://")) {
-                    GlideUtils.getInstances().loadRoundCornerImg(getActivity(), imageView, 7, imgStr, R.mipmap.img_default_2);
+                    GlideUtils.getInstances().loadRoundCornerImg(getActivity(), imageView, 5, imgStr, R.mipmap.img_default_2);
                 } else {
-                    GlideUtils.getInstances().loadRoundCornerImg(getActivity(), imageView, 7, Constants.WEB_IMG_URL_UPLOADS + imgStr, R.mipmap.img_default_2);
+                    GlideUtils.getInstances().loadRoundCornerImg(getActivity(), imageView, 5, Constants.WEB_IMG_URL_UPLOADS + imgStr, R.mipmap.img_default_2);
                 }
             }
             imageView.setOnClickListener(new View.OnClickListener() {
@@ -784,16 +852,21 @@ public class ConsumeFragment extends BaseFragment {
                 //dissLoadDialog();
                 if (result != null) {
                     if (result.getData() != null) {
-                        ShareUtil.getInstance().save("home_three",gson.toJson(result.getData()));
+                        ShareUtil.getInstance().save("home_three", gson.toJson(result.getData()));
                         List<BannerItemDto> bannerList = result.getData().getIndex_middle();
-                        GlideUtils.getInstances().loadNormalImg(getActivity(),ivOne,result.getData().index_after_category_1.get(0).getPath());
-                        GlideUtils.getInstances().loadNormalImg(getActivity(),ivTwo,result.getData().index_after_category_2_left.get(0).getPath());
-                        GlideUtils.getInstances().loadNormalImg(getActivity(),ivThree,result.getData().index_after_category_2_right_top.get(0).getPath());
-                        GlideUtils.getInstances().loadNormalImg(getActivity(),ivFour,result.getData().index_after_category_2_right_bottom.get(0).getPath());
-//                        GlideUtils.getInstances().loadRoundCornerImg(getActivity(), ivOne, 0f,  result.getData().index_after_category_1.get(0).getPath(), R.drawable.home_1);
-//                        GlideUtils.getInstances().loadRoundCornerImg(getActivity(), ivTwo, 0f, result.getData().index_after_category_2_left.get(0).getPath(), R.drawable.home_2);
-//                        GlideUtils.getInstances().loadRoundCornerImg(getActivity(), ivThree, 0f,  result.getData().index_after_category_2_right_top.get(0).getPath(), R.drawable.home_3);
-//                        GlideUtils.getInstances().loadRoundCornerImg(getActivity(), ivFour, 0f,  result.getData().index_after_category_2_right_bottom.get(0).getPath(), R.drawable.home_4);
+                        if (BaseApplication.is_new == 1) {
+                            GlideUtils.getInstances().loadNormalImg(getActivity(), ivOne, result.getData().home_new_pull.get(0).getPath());
+                        } else {
+                            GlideUtils.getInstances().loadNormalImg(getActivity(), ivOne, result.getData().index_after_category_1.get(0).getPath());
+                        }
+
+                        GlideUtils.getInstances().loadNormalImg(getActivity(), ivTwo, result.getData().index_after_category_2_left.get(0).getPath());
+                        GlideUtils.getInstances().loadNormalImg(getActivity(), ivThree, result.getData().index_after_category_2_right_top.get(0).getPath());
+                        GlideUtils.getInstances().loadNormalImg(getActivity(), ivFour, result.getData().index_after_category_2_right_bottom.get(0).getPath());
+                        //                        GlideUtils.getInstances().loadRoundCornerImg(getActivity(), ivOne, 0f,  result.getData().index_after_category_1.get(0).getPath(), R.drawable.home_1);
+                        //                        GlideUtils.getInstances().loadRoundCornerImg(getActivity(), ivTwo, 0f, result.getData().index_after_category_2_left.get(0).getPath(), R.drawable.home_2);
+                        //                        GlideUtils.getInstances().loadRoundCornerImg(getActivity(), ivThree, 0f,  result.getData().index_after_category_2_right_top.get(0).getPath(), R.drawable.home_3);
+                        //                        GlideUtils.getInstances().loadRoundCornerImg(getActivity(), ivFour, 0f,  result.getData().index_after_category_2_right_bottom.get(0).getPath(), R.drawable.home_4);
                     }
                 }
             }
@@ -802,7 +875,7 @@ public class ConsumeFragment extends BaseFragment {
             public void onError(Throwable throwable) {
                 //dissLoadDialog();
             }
-        }, "index_after_category_1,index_after_category_2_left,index_after_category_2_right_top,index_after_category_2_right_bottom");
+        }, "index_after_category_1,index_after_category_2_left,index_after_category_2_right_top,index_after_category_2_right_bottom,home_new_pull");
     }
 
     private void getHeadLines() {
@@ -840,10 +913,10 @@ public class ConsumeFragment extends BaseFragment {
         DataManager.getInstance().findHomeGoodLists(new DefaultSingleObserver<HttpResult<List<NewListItemDto>>>() {
             @Override
             public void onSuccess(HttpResult<List<NewListItemDto>> result) {
-                if(mPage==1){
-                   BaseDto baseDto=new BaseDto();
-                   baseDto.home_four=result.getData();
-                    ShareUtil.getInstance().save("home_four",gson.toJson(baseDto));
+                if (mPage == 1) {
+                    BaseDto baseDto = new BaseDto();
+                    baseDto.home_four = result.getData();
+                    ShareUtil.getInstance().save("home_four", gson.toJson(baseDto));
                 }
                 dissLoadDialog();
                 setData(result);
@@ -904,7 +977,9 @@ public class ConsumeFragment extends BaseFragment {
         mUnbinder = ButterKnife.bind(this, rootView);
         return rootView;
     }
-   private Unbinder mUnbinder;
+
+    private Unbinder mUnbinder;
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();

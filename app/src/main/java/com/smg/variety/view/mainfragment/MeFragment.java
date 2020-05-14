@@ -446,6 +446,7 @@ public class MeFragment extends BaseFragment {
                 userCountStatistics();
                 getAllUserOrdersCount();
                 getAlOrdersRefundCount();
+                BaseApplication.is_new=personalInfoDto.is_new_pull==null?1:Integer.valueOf(personalInfoDto.is_new_pull);
                 seller=personalInfoDto.seller;
                 //                getShopInfo();
                 if (mPersonalInfoDto != null) {
@@ -689,7 +690,8 @@ public class MeFragment extends BaseFragment {
                      }else if(seller.data.status.equals("3")){
                          gotoActivity(ShopCheckFailActivity.class);
                      }else if(seller.data.status.equals("4")){
-                         gotoActivity(ShopCheckFailActivity.class);
+                         ToastUtil.showToast("已禁用！请与管理员联系");
+//                         gotoActivity(ShopCheckFailActivity.class);
                      }
                  }else {
                      gotoActivity(StoreDetailActivity.class);

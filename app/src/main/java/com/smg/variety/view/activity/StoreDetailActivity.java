@@ -36,12 +36,14 @@ public class StoreDetailActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 gotoActivity(PersonRequireActivity.class);
+                finish();
             }
         });
         rlQy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 gotoActivity(EnterpireRequireActivity.class);
+                finish();
             }
         });
     }
