@@ -49,7 +49,7 @@ public class OrderStoreAdapter extends BaseQuickAdapter<MyOrderDto, BaseViewHold
         });
 
         helper.setText(R.id.tv_no, item.getNo());
-        helper.setText(R.id.tv_button_1, "共"+item.getCount()+"见商品，合计");
+        helper.setText(R.id.tv_button_1, "共"+item.getCount()+"件商品，合计");
         helper.setText(R.id.tv_button_2, "￥"+item.getTotal());
 
         RecyclerView recyclerView = helper.getView(R.id.item_order_goods_list);

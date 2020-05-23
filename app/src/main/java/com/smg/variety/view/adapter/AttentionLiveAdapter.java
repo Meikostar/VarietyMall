@@ -30,7 +30,7 @@ public class AttentionLiveAdapter extends BaseQuickAdapter<AttentionCommunityBea
         TextView view = helper.getView(R.id.tv_state);
         GlideUtils.getInstances().loadNormalImg(mContext,helper.getView(R.id.iv_img),user.getAvatar(),R.drawable.moren_ren);
         helper.setText(R.id.tv_name,user.getName())
-                .setText(R.id.tv_fs,user.followingsCount);
+                .setText(R.id.tv_fs,user.followingsCount+"粉丝");
         if (user.isFollowed) {
             view.setText("已关注");
             view.setTextColor(mContext.getResources().getColor(R.color.white));

@@ -79,7 +79,7 @@
                 android:layout_height="@dimen/bj_26dp"
                 android:layout_marginRight="@dimen/bj_3dp"
                 android:gravity="center"
-                android:text="共2见商品，合计"
+                android:text="共2件商品，合计"
                 android:textColor="#6C6E74"
                 android:textSize="12sp"
                 android:visibility="visible" />

@@ -49,7 +49,7 @@ public class SearchLiveActivity extends BaseActivity {
     @BindView(R.id.tv_search)
     TextView         tvSearch;
 
-    private String[] titles = {"直播", "直播间"};
+    private String[] titles = {"主播", "直播间"};
 
     @Override
     public int getLayoutId() {

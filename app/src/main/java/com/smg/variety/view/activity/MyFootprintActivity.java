@@ -219,9 +219,8 @@ public class MyFootprintActivity extends BaseActivity {
             public void onSuccess(Object o) {
                 dissLoadDialog();
                 ToastUtil.showToast("清空成功");
+                loadData(TYPE_PULL_REFRESH);
 
-                mAdapter.setNewData(null);
-                mAdapter.setEmptyView(new EmptyView(MyFootprintActivity.this));
             }
 
             @Override
@@ -229,11 +228,11 @@ public class MyFootprintActivity extends BaseActivity {
                 dissLoadDialog();
                 if (ApiException.getInstance().isSuccess()) {
                     ToastUtil.showToast("清空成功");
-                    mAdapter.setNewData(null);
-                    mAdapter.setEmptyView(new EmptyView(MyFootprintActivity.this));
+
                 } else {
                     ToastUtil.showToast(ApiException.getHttpExceptionMessage(throwable));
                 }
+                loadData(TYPE_PULL_REFRESH);
             }
         }, map);
     }

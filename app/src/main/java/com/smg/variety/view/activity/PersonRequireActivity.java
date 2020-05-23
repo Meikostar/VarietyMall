@@ -203,7 +203,7 @@ public class PersonRequireActivity extends BaseActivity {
         } else if (poition == 4) {
             code = Constants.INTENT_REQUESTCODE_VERIFIED_IMG4;
         }
-
+        closeKeyBoard();
         new RxPermissions(this).requestEach(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
                 .subscribe(new Consumer<Permission>() {
                     @Override
@@ -350,7 +350,7 @@ public class PersonRequireActivity extends BaseActivity {
             return;
         }
         if (TextUtils.isEmpty(img3)) {
-            ToastUtil.showToast("请上传营业执照");
+            ToastUtil.showToast("请上传品牌授权资质");
             return;
         }
 

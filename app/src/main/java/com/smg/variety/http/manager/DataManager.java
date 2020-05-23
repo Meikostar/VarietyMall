@@ -286,6 +286,18 @@ public class DataManager {
                 .map(new HttpResultMapper.HttpResultOtheData<>(null));
         subscribe(observable, observer);
     }
+    public void getSellerslog(DefaultSingleObserver<HttpResult<List<IncomeDto>>> observer, Map<String, String> map) {
+        Single<HttpResult<List<IncomeDto>>> observable = retrofitService.getSellerslog(getToken(),map)
+                .map(new HttpResultMapper.HttpResultOtheData<>(null));
+        subscribe(observable, observer);
+    }
+
+    public void getStorelog(DefaultSingleObserver<HttpResult<IncomeDto>> observer) {
+        Single<HttpResult<IncomeDto>> observable = retrofitService.getStorelog(getToken())
+                .map(new HttpResultMapper.HttpResultOtheData<>(null));
+        subscribe(observable, observer);
+    }
+
     public void getGiftLog(DefaultSingleObserver<HttpResult<List<IncomeDto>>> observer, Map<String, String> map) {
         Single<HttpResult<List<IncomeDto>>> observable = retrofitService.getGiftLog(getToken(),map)
                 .map(new HttpResultMapper.HttpResultOtheData<>(null));
@@ -1194,7 +1206,7 @@ public class DataManager {
         subscribe(observable, observer);
     }
     public void getSellersData(DefaultSingleObserver<HttpResult<ConfigDto>> observer) {
-        Single<HttpResult<ConfigDto>> observable = retrofitService.getSellersData()
+        Single<HttpResult<ConfigDto>> observable = retrofitService.getSellersData(getToken())
                 .map(new HttpResultMapper.HttpResultOtheData<>(null));
         subscribe(observable, observer);
     }
@@ -2126,7 +2138,11 @@ public class DataManager {
                 .map(new HttpResultMapper.HttpResultOtheData<>(null));
         subscribe(observable, observer);
     }
-
+    public void submitWxRecharge(DefaultSingleObserver<HttpResult<WEIXINREQ>> observer, Map<String, String> map) {
+        Single<HttpResult<WEIXINREQ>> observable = retrofitService.submitWxRecharge(getToken(), map)
+                .map(new HttpResultMapper.HttpResultOtheData<>(null));
+        subscribe(observable, observer);
+    }
 
     /**
      * zfb
@@ -2136,6 +2152,12 @@ public class DataManager {
                 .map(new HttpResultMapper.HttpResultOtheData<>(null));
         subscribe(observable, observer);
     }
+    public void submitZfbRecharge(DefaultSingleObserver<HttpResult<String>> observer, Map<String, String> map) {
+        Single<HttpResult<String>> observable = retrofitService.submitZfbRecharge(getToken(), map)
+                .map(new HttpResultMapper.HttpResultOtheData<>(null));
+        subscribe(observable, observer);
+    }
+
     /**
      * zfb
      */

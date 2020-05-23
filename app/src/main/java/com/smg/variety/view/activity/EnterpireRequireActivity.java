@@ -223,7 +223,7 @@ public class EnterpireRequireActivity extends BaseActivity {
         } else if (poition == 6) {
             code = Constants.INTENT_REQUESTCODE_VERIFIED_IMG6;
         }
-
+      closeKeyBoard();
         new RxPermissions(this).requestEach(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
                 .subscribe(new Consumer<Permission>() {
                     @Override
@@ -387,19 +387,27 @@ public class EnterpireRequireActivity extends BaseActivity {
             return;
         }
         if (TextUtils.isEmpty(img1)) {
-            ToastUtil.showToast("请上传法人身份证正面照");
+            ToastUtil.showToast("请添加企业营业执照");
             return;
         }
         if (TextUtils.isEmpty(img2)) {
-            ToastUtil.showToast("请上传法人身份证背面照");
+            ToastUtil.showToast("请添加法人身份证正面");
             return;
         }
         if (TextUtils.isEmpty(img3)) {
-            ToastUtil.showToast("请上传营业执照");
+            ToastUtil.showToast("请添加法人身份证反面");
             return;
         }
 
         if (TextUtils.isEmpty(img4)) {
+            ToastUtil.showToast("添加行业经营许可证");
+            return;
+        }
+        if (TextUtils.isEmpty(img5)) {
+            ToastUtil.showToast("添加品牌授权资质");
+            return;
+        }
+        if (TextUtils.isEmpty(img6)) {
             ToastUtil.showToast("请上传logo");
             return;
         }

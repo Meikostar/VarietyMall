@@ -10,6 +10,7 @@ public class WEIXINREQ implements Serializable {
     public String prepayid;
     public String mch_id;
     public WEIXINREQ data;
+    public WEIXINREQ pay_params;
 
     public String packages;//="Sign=WXPay"
     public String appid;

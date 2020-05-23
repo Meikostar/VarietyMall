@@ -22,8 +22,12 @@ public class IncomeDto implements Serializable {
     public String type_id;
     public String gift_name;
     public String qty;
-    public String wallet_type;
     public String money;
+    public String all_income;
+    public String month_income;
+    public String month_spend;
+    public String day_income;
+    public String wallet_type;
     public String created_at;
     public String updated_at;
     public String name;

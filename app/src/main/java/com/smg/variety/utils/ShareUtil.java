@@ -621,7 +621,7 @@ public class ShareUtil {
         //用WXWebpageObject对象初始化一个WXMediaMessage，天下标题，描述
         WXMediaMessage msg = new WXMediaMessage(webpageObject);
         msg.title = title;
-        msg.description = "百变商城";
+        msg.description = "免费教你学直播 免费提供货源 免费开直播卖货 免费开通店铺";
         Bitmap thumb = BitmapFactory.decodeResource(mContext.getResources(), R.mipmap.ic_logo);
 
         Bitmap thumbBmp = Bitmap.createScaledBitmap(thumb, 120, 120, true);

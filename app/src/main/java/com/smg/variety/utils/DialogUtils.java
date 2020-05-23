@@ -410,7 +410,7 @@ public class DialogUtils {
 
             }
         });
-        GlideUtils.getInstances().loadNormalImg(context, imgQrcode, Constants.BASE_URL + "api/package/user/invitation_img?user_id=" + ShareUtil.getInstance().getString(Constants.USER_ID, ""));
+        GlideUtils.getInstances().loadNormalImg(context, imgQrcode, Constants.BASE_URLS + "api/package/user/invitation_img?user_id=" + ShareUtil.getInstance().getString(Constants.USER_ID, ""));
 
 
         dialog.setContentView(view);
@@ -481,7 +481,7 @@ public class DialogUtils {
              ImageView ivImg = view.findViewById(R.id.iv_img);
              ImageView iv_code = view.findViewById(R.id.iv_code);
              ImageView civ_user_avatar = view.findViewById(R.id.civ_user_avatar);
-             GlideUtils.getInstances().loadNormalImg(context, iv_code, Constants.BASE_URL + "api/package/user/invitation_img?user_id=" + ShareUtil.getInstance().getString(Constants.USER_ID, ""));
+             GlideUtils.getInstances().loadNormalImg(context, iv_code, Constants.BASE_URLS + "api/package/user/invitation_img?user_id=" + ShareUtil.getInstance().getString(Constants.USER_ID, ""));
              GlideUtils.getInstances().loadNormalImg(context, ivImg, url1);
              GlideUtils.getInstances().loadNormalImg(context, civ_user_avatar, ShareUtil.getInstance().get(Constants.USER_HEAD));
              tvNo.setOnClickListener(new View.OnClickListener() {

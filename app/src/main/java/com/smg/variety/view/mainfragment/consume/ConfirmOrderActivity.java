@@ -394,6 +394,11 @@ public class ConfirmOrderActivity extends BaseActivity {
             @Override
             public void onError(Throwable throwable) {
                 LogUtil.i(TAG, "--RxLog-Thread: onError()");
+                if (ApiException.getInstance().isSuccess()) {
+
+                } else {
+                    ToastUtil.showToast(ApiException.getHttpExceptionMessage(throwable));
+                }
                 dissLoadDialog();
             }
         }, mType, map);

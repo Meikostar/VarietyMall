@@ -73,8 +73,8 @@ public class MyQRcodeActivity extends BaseActivity {
     public void initView() {
         tvTitleText.setText("分享二维码");
         tvTgm.setText("邀请码:"+ShareUtil.getInstance().get(Constants.USER_PHONE));
-        shareUrl = Constants.BASE_URL + "api/package/user/invitation_img?user_id=" + ShareUtil.getInstance().getString(Constants.USER_ID, "");
-        GlideUtils.getInstances().loadNormalImg(this, imgQrcode, Constants.BASE_URL + "api/package/user/invitation_img?user_id=" + ShareUtil.getInstance().getString(Constants.USER_ID, ""));
+        shareUrl = Constants.BASE_URLS + "api/package/user/invitation_img?user_id=" + ShareUtil.getInstance().getString(Constants.USER_ID, "");
+        GlideUtils.getInstances().loadNormalImg(this, imgQrcode, Constants.BASE_URLS + "api/package/user/invitation_img?user_id=" + ShareUtil.getInstance().getString(Constants.USER_ID, ""));
     }
 
     @Override
@@ -121,7 +121,7 @@ public class MyQRcodeActivity extends BaseActivity {
                     public void sureItem(int position) {
                         boolean isTimelineCb = false;
                         //http://bbsc.885505.com/api/package/user/invitation_img?user_id=14
-                        String url = "http://bbsc.885505.com/h5/#/register?invite_code=from_phone_" + ShareUtil.getInstance().getString(Constants.USER_PHONE, "");
+                        String url = Constants.BASE_URLS+"h5/#/register?invite_code=from_phone_" + ShareUtil.getInstance().getString(Constants.USER_PHONE, "");
                         String title = "5G社交直播带货平台";
                         if (position == ShareModeDialog.SHARE_PYQ) {
                             isTimelineCb = true;

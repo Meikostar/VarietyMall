@@ -198,8 +198,15 @@ public interface RetrofitService {
     Single<HttpResult<List<IncomeDto>>> getUserlog(@Header("Authorization") String token,@QueryMap Map<String, String> map);
 
 
+    @GET("/api/sellers_wallet_log")
+    Single<HttpResult<List<IncomeDto>>> getSellerslog(@Header("Authorization") String token,@QueryMap Map<String, String> map);
+
+    @GET("api/sellers_financial_data")
+    Single<HttpResult<IncomeDto>> getStorelog(@Header("Authorization") String token);
+
     /**
      * 获取用户信息
+     ​/
      */
     @GET("api/live/reward/water")
     Single<HttpResult<List<IncomeDto>>> getGiftLog(@Header("Authorization") String token,@QueryMap Map<String, String> map);
@@ -805,7 +812,7 @@ public interface RetrofitService {
     Single<HttpResult<ConfigDto>> getConfigs();
 
     @GET("api/sellers_data")
-    Single<HttpResult<ConfigDto>> getSellersData();
+    Single<HttpResult<ConfigDto>> getSellersData(@Header("Authorization") String token);
 
     @GET("api/base/user/notification_stats")
     Single<HttpResult<ConfigDto>> getNotification();
@@ -1436,12 +1443,22 @@ public interface RetrofitService {
     @POST("api/package/pay/union")
     Single<HttpResult<WEIXINREQ>> submitWxOrder(@Header("Authorization") String token, @QueryMap Map<String, String> map);
 
+    @POST("api/package/pay/gadget/user/recharge")
+    Single<HttpResult<WEIXINREQ>> submitWxRecharge(@Header("Authorization") String token, @QueryMap Map<String, String> map);
+    /**
+     * 支付zfb
+     */
+    @POST("api/pay/gadget/user/order/recharge")
+    Single<HttpResult<String>> submitZfbRecharge(@Header("Authorization") String token, @QueryMap Map<String, String> map);
+
 
     /**
      * 支付zfb
      */
     @POST("api/package/pay/union")
     Single<HttpResult<String>> submitZfbOrder(@Header("Authorization") String token, @QueryMap Map<String, String> map);
+
+
     /**
      * 支付zfb
      */

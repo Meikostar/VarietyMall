@@ -48,7 +48,7 @@ public class GiftSendActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        tvTitleText.setText("免费领取");
+        tvTitleText.setText("注册赠送");
         initAdapter();
 
     }

@@ -63,6 +63,7 @@ public class MyOrderLogisticsActivity extends BaseActivity {
     private SBHoutaibean data;
     @Override
     public void initView() {
+
         actionbar.setImgStatusBar(R.color.my_color_white);
         StatusBarUtils.StatusBarLightMode(this);
         actionbar.setTitle("查看物流");

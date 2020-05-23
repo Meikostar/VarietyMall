@@ -94,6 +94,7 @@
                         />
                 </LinearLayout>
                 <TextView
+                    android:visibility="gone"
                     android:background="@drawable/carda0_regrect_line"
                     android:layout_marginTop="33dp"
                     android:layout_alignParentRight="true"
@@ -255,6 +256,12 @@
                             android:textColor="#333333"
                             android:textSize="12sp"
                             />
+                        <ImageView
+                            android:layout_marginRight="15dp"
+                            android:src="@drawable/arrow_right_gray"
+                            android:layout_width="7dp"
+                            android:layout_height="12dp" />
+
 
                     </LinearLayout>
                     <View
@@ -416,7 +423,11 @@
                             android:textColor="#333333"
                             android:textSize="12sp"
                             />
-
+                        <ImageView
+                            android:layout_marginRight="15dp"
+                            android:src="@drawable/arrow_right_gray"
+                            android:layout_width="7dp"
+                            android:layout_height="12dp" />
                     </LinearLayout>
                     <View
                         android:layout_marginLeft="12dp"
@@ -578,7 +589,11 @@
                             android:textColor="#333333"
                             android:textSize="12sp"
                             />
-
+                        <ImageView
+                            android:layout_marginRight="15dp"
+                            android:src="@drawable/arrow_right_gray"
+                            android:layout_width="7dp"
+                            android:layout_height="12dp" />
                     </LinearLayout>
                     <View
                         android:layout_marginLeft="12dp"
@@ -775,7 +790,11 @@
                             android:textColor="#333333"
                             android:textSize="12sp"
                             />
-
+                        <ImageView
+                            android:layout_marginRight="15dp"
+                            android:src="@drawable/arrow_right_gray"
+                            android:layout_width="7dp"
+                            android:layout_height="12dp" />
                     </LinearLayout>
                     <View
                         android:layout_marginLeft="12dp"

@@ -408,7 +408,7 @@ public class CommodityDetailActivity extends BaseActivity implements BaseActivit
                 @Override
                 public void sureItem(int position) {
                     boolean isTimelineCb = false;
-                    String url = Constants.BASE_URL + "/h5/#/goodDetail/" + product_id + "?invite_code=" + "from_phone_" + ShareUtil.getInstance().get(Constants.USER_PHONE);
+                    String url = Constants.BASE_URLS + "/h5/#/goodDetail/" + product_id + "?invite_code=" + "from_phone_" + ShareUtil.getInstance().get(Constants.USER_PHONE);
                     String title = commodityDetailInfoDto.getTitle();
                     if (position == ShareModeDialog.SHARE_PYQ) {
                         isTimelineCb = true;
@@ -477,7 +477,7 @@ public class CommodityDetailActivity extends BaseActivity implements BaseActivit
             tvDs.setText(ShareUtil.getInstance().get(Constants.USER_NAME));
             String encode = null;
             try {
-                encode = URLEncoder.encode((Constants.BASE_URL + "/h5/#/goodDetail/" + product_id + "?invite_code=" + "from_phone_" + ShareUtil.getInstance().get(Constants.USER_PHONE)), "utf-8");
+                encode = URLEncoder.encode((Constants.BASE_URLS + "/h5/#/goodDetail/" + product_id + "?invite_code=" + "from_phone_" + ShareUtil.getInstance().get(Constants.USER_PHONE)), "utf-8");
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
@@ -485,7 +485,7 @@ public class CommodityDetailActivity extends BaseActivity implements BaseActivit
             ImageView ivImg = view.findViewById(R.id.iv_img);
             ImageView iv_code = view.findViewById(R.id.iv_code);
             ImageView civ_user_avatar = view.findViewById(R.id.civ_user_avatar);
-            GlideUtils.getInstances().loadNormalImg(context, iv_code, Constants.BASE_URL + "/api/qrcode?str=" + encode);
+            GlideUtils.getInstances().loadNormalImg(context, iv_code, Constants.BASE_URLS + "/api/qrcode?str=" + encode);
             GlideUtils.getInstances().loadNormalImg(context, ivImg, url1);
             GlideUtils.getInstances().loadNormalImg(context, civ_user_avatar, ShareUtil.getInstance().get(Constants.USER_HEAD));
             tvNo.setOnClickListener(new View.OnClickListener() {

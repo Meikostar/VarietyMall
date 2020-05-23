@@ -527,8 +527,8 @@ public class AVStreamingActivity extends StreamingBaseActivity implements Stream
                     public void sureItem(int position) {
                         boolean isTimelineCb = false;
                         //http://bbsc.885505.com/api/package/user/invitation_img?user_id=14
-                        String url = Constants.BASE_URL + "api/package/user/invitation_img?user_id=" + ShareUtil.getInstance().getString(Constants.USER_ID, "");
-                        String title = "5G社交直播带货平台";
+                        String url =Constants.BASE_URLS+"h5/#/liveVideo/" + id;
+                        String title = ShareUtil.getInstance().get(Constants.USER_NAME)+"正在5G社交直播带货平台直播";
                         if (position == ShareModeDialog.SHARE_PYQ) {
                             isTimelineCb = true;
                         }

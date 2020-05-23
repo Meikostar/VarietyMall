@@ -50,6 +50,7 @@ import com.smg.variety.http.DefaultSingleObserver;
 import com.smg.variety.http.error.ApiException;
 import com.smg.variety.http.manager.DataManager;
 import com.smg.variety.http.response.HttpResult;
+import com.smg.variety.qiniu.AVStreamingActivity;
 import com.smg.variety.qiniu.MediaController;
 import com.smg.variety.qiniu.adapter.DanmuAdapter;
 import com.smg.variety.qiniu.adapter.DanmuEntity;
@@ -1056,7 +1057,7 @@ public class LiveVideoViewActivity extends BaseActivity implements Handler.Callb
 
             @Override
             public void onError(RongIMClient.ErrorCode errorCode) {
-                ToastUtil.showToast("加入聊天室失败");
+                ToastUtil.showToast("加入聊天室失败,请重新登录");
                 finish();
             }
         });
@@ -1726,9 +1727,8 @@ public class LiveVideoViewActivity extends BaseActivity implements Handler.Callb
                     @Override
                     public void sureItem(int position) {
                         boolean isTimelineCb = false;
-                        //http://bbsc.885505.com/api/package/user/invitation_img?user_id=14
-                        String url = Constants.BASE_URL + "api/package/user/invitation_img?user_id=" + ShareUtil.getInstance().getString(Constants.USER_ID, "");
-                        String title = "百变商城下载";
+                        String url =Constants.BASE_URLS+"h5/#/liveVideo/" + videoId;
+                        String title = ShareUtil.getInstance().get(Constants.USER_NAME)+"正在5G社交直播带货平台直播";
                         if (position == ShareModeDialog.SHARE_PYQ) {
                             isTimelineCb = true;
                         }

@@ -277,6 +277,7 @@ public class StoreOrderDetailActivity extends BaseActivity {
             @Override
             public void onSuccess(Object o) {
                 dissLoadDialog();
+                finish();
                 ToastUtil.showToast("发货成功");
 
             }
@@ -285,6 +286,7 @@ public class StoreOrderDetailActivity extends BaseActivity {
             public void onError(Throwable throwable) {
                 dissLoadDialog();
                 if (ApiException.getInstance().isSuccess()) {
+                    finish();
                     ToastUtil.showToast("发货成功");
 
                 } else {
@@ -435,6 +437,7 @@ public class StoreOrderDetailActivity extends BaseActivity {
                     et_content.setClickable(false);
                     et_content.setFocusableInTouchMode(false);
                     break;
+
 
             }
         }

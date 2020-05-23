@@ -43,6 +43,7 @@
             android:layout_toRightOf="@+id/tv_rmb"
             android:background="@null"
             android:text=""
+            android:inputType="number|numberDecimal"
             android:textColor="#ff333333"
             android:textSize="33sp" />
 

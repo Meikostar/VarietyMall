@@ -14,6 +14,7 @@ public class Constants {
 
 //    public final static String BASE_URL = "http://bbsc.885505.com/";
     public final static String BASE_URL = "http://bbsc.2aa6.com/";
+    public final static String BASE_URLS = "https://bbsc.2aa6.com/";
 //    public final static String BASE_URL = "http://bbsc.885505.com/";
     /**
      * 请求http网络图片前缀url。 后台上传

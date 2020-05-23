@@ -61,7 +61,7 @@
                 <ImageView
                     android:layout_width="@dimen/bj_19dp"
                     android:layout_height="17dp"
-                    android:src="@drawable/live_ic"/>
+                    android:src="@drawable/live_fk"/>
                 <TextView
                     android:layout_marginLeft="13dp"
                     android:layout_width="wrap_content"

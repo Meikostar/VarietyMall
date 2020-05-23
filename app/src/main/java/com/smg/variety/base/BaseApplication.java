@@ -162,7 +162,7 @@ public class BaseApplication extends Application{
 
 
     private void initRongCloud() {
-        ChatroomKit.init(this,"pwe86ga5pihl6");
+        ChatroomKit.init(this,"4z3hlwrv4abmt");
 
 
     }

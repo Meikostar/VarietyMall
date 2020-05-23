@@ -3,7 +3,10 @@ package com.smg.variety.view.mainfragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,15 +17,23 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.scwang.smartrefresh.header.MaterialHeader;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.smg.variety.R;
 import com.smg.variety.base.BaseApplication;
 import com.smg.variety.base.BaseFragment;
 import com.smg.variety.bean.AnchorInfo;
 import com.smg.variety.bean.BannerInfoDto;
 import com.smg.variety.bean.BannerItemDto;
+import com.smg.variety.bean.BaseDto;
 import com.smg.variety.bean.BaseDto1;
 import com.smg.variety.bean.CountOrderBean;
 import com.smg.variety.bean.CountStatisticsBean;
+import com.smg.variety.bean.HeadLineDto;
+import com.smg.variety.bean.NewListItemDto;
 import com.smg.variety.bean.PersonalInfoDto;
 import com.smg.variety.bean.ServiceMenuBean;
 import com.smg.variety.common.Constants;
@@ -68,11 +79,15 @@ import com.smg.variety.view.activity.StartLiveActivity;
 import com.smg.variety.view.activity.StoreDetailActivity;
 import com.smg.variety.view.activity.SuperMemberActivity;
 import com.smg.variety.view.activity.UserInfoActivity;
+import com.smg.variety.view.adapter.ConsumePushAdapter;
 import com.smg.variety.view.adapter.ServiceMenuAdapter;
 import com.smg.variety.view.mainfragment.consume.BrandShopDetailActivity;
 import com.smg.variety.view.mainfragment.consume.CommodityDetailActivity;
 import com.smg.variety.view.widgets.CircleImageView;
+import com.smg.variety.view.widgets.RecyclerItemDecoration;
 import com.smg.variety.view.widgets.RedDotLayout;
+import com.smg.variety.view.widgets.autoview.CustomView;
+import com.smg.variety.view.widgets.autoview.EmptyView;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.loader.ImageLoader;
@@ -81,7 +96,10 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -166,18 +184,25 @@ public class MeFragment extends BaseFragment {
     @BindView(R.id.ll_kf)
     LinearLayout    llKf;
     @BindView(R.id.civ_user_avatar)
-    CircleImageView civUserAvatar;
+    CircleImageView    civUserAvatar;
     @BindView(R.id.tv_name)
-    TextView        tvName;
+    TextView           tvName;
     @BindView(R.id.iv_state)
-    ImageView       ivState;
+    ImageView          ivState;
     @BindView(R.id.tv_state)
-    TextView        tvState;
+    TextView           tvState;
     @BindView(R.id.tv_code)
-    TextView        tvCode;
+    TextView           tvCode;
     @BindView(R.id.rl_bg)
-    RelativeLayout  rlBg;
-
+    RelativeLayout     rlBg;
+    @BindView(R.id.consume_push_recy)
+    RecyclerView       consumePushRecy;
+    @BindView(R.id.consume_scrollView)
+    CustomView         consume_scrollView;
+    @BindView(R.id.consume_srl)
+    SmartRefreshLayout refreshLayout;
+    @BindView(R.id.header)
+    MaterialHeader     header;
     private PersonalInfoDto mPersonalInfoDto;
     ServiceMenuAdapter menuAdapter;
 
@@ -200,10 +225,82 @@ public class MeFragment extends BaseFragment {
     protected int getLayoutId() {
         return R.layout.fragment_me;
     }
+    private ConsumePushAdapter     mConsumePushAdapter;
+    private List<NewListItemDto>   goodsLists   = new ArrayList<NewListItemDto>();
+    private ArrayList<HeadLineDto> lineLists    = new ArrayList<HeadLineDto>();
+    private List<String>           lineStrLists = new ArrayList<String>();
+    private int                    mPage        = 1;
+    private int                    hPage        = 1;
 
+    private void initViewPager() {
+
+
+        mConsumePushAdapter = new ConsumePushAdapter(goodsLists, getActivity());
+        GridLayoutManager gridLayoutManager2 = new GridLayoutManager(getActivity(), 2) {
+            @Override
+            public boolean canScrollVertically() {
+                return false;
+            }
+        };
+        consumePushRecy.addItemDecoration(new RecyclerItemDecoration(6, 2));
+        consumePushRecy.setLayoutManager(gridLayoutManager2);
+        consumePushRecy.setAdapter(mConsumePushAdapter);
+
+    }
+    private void findGoodLists() {
+        //showLoadDialog();
+        Map<String, String> map = new HashMap<>();
+        map.put("include", "brand.category");
+        map.put("page", mPage + "");
+        DataManager.getInstance().findHomeGoodLists(new DefaultSingleObserver<HttpResult<List<NewListItemDto>>>() {
+            @Override
+            public void onSuccess(HttpResult<List<NewListItemDto>> result) {
+                if (mPage == 1) {
+                    BaseDto baseDto = new BaseDto();
+                    baseDto.home_four = result.getData();
+
+                }
+                dissLoadDialog();
+                setData(result);
+                refreshLayout.finishLoadMore();
+            }
+
+            @Override
+            public void onError(Throwable throwable) {
+                dissLoadDialog();
+            }
+        }, "default", map);
+    }
+    private void setData(HttpResult<List<NewListItemDto>> httpResult) {
+        if (httpResult == null || httpResult.getData() == null) {
+            return;
+        }
+
+
+        if (mPage <= 1) {
+            mConsumePushAdapter.setNewData(httpResult.getData());
+            if (httpResult.getData() == null || httpResult.getData().size() == 0) {
+                mConsumePushAdapter.setEmptyView(new EmptyView(getActivity()));
+            }
+            refreshLayout.finishRefresh();
+            refreshLayout.setEnableLoadMore(true);
+        } else {
+            refreshLayout.finishLoadMore();
+            refreshLayout.setEnableRefresh(true);
+            mConsumePushAdapter.addData(httpResult.getData());
+        }
+
+        if (httpResult.getMeta() != null && httpResult.getMeta().getPagination() != null) {
+            if (httpResult.getMeta().getPagination().getTotal_pages() == httpResult.getMeta().getPagination().getCurrent_page()) {
+                refreshLayout.finishLoadMoreWithNoMoreData();
+            }
+        }
+
+
+    }
     @Override
     protected void initView() {
-
+        initViewPager();
         menuAdapter = new ServiceMenuAdapter();
 
         menuAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
@@ -298,12 +395,28 @@ public class MeFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-
+        refreshLayout.autoRefresh();
         getBottenBanner();
     }
 
     @Override
     protected void initListener() {
+        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                mPage = 1;
+                findGoodLists();
+            }
+        });
+
+
+        refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                ++mPage;
+                findGoodLists();
+            }
+        });
 
     }
 

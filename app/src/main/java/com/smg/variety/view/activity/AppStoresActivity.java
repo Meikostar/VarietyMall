@@ -139,6 +139,12 @@ public class AppStoresActivity extends BaseActivity {
                 gotoActivity(OrderStoreActivity.class);
             }
         });
+        llBg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gotoActivity(SthoreWalletActivity.class);
+            }
+        });
 
     }
 
@@ -240,8 +246,8 @@ public class AppStoresActivity extends BaseActivity {
                         tvDd3.setText(result.getData().completed_order_count);
                         tvDd4.setText(result.getData().refund_order_count);
                         tvSp1.setText(result.getData().buy_product_count);
-                        tvSp2.setText(result.getData().sale_product_count);
-                        tvSp3.setText(result.getData().no_sale_product_count);
+                        tvSp2.setText(result.getData().no_sale_product_count);
+                        tvSp3.setText(result.getData().sale_product_count);
 
                     }
                 }

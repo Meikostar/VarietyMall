@@ -485,7 +485,7 @@
                             android:layout_marginTop="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="我注册用户"
+                            android:text="注册用户"
                             android:textColor="#2b2b2b"
                             android:textSize="12sp"
                             />

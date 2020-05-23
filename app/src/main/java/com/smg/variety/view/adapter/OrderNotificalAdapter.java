@@ -25,7 +25,9 @@ public class OrderNotificalAdapter extends BaseQuickAdapter<NoticeDto, BaseViewH
 
     @Override
     protected void convert(BaseViewHolder helper, NoticeDto item) {
-        GlideUtils.getInstances().loadNormalImg(mContext, helper.getView(R.id.iv_img), Constants.WEB_IMG_URL_UPLOADS+item.getData().data.img);
+        if(item.getData()!=null&&item.getData().data!=null){
+            GlideUtils.getInstances().loadNormalImg(mContext, helper.getView(R.id.iv_img), Constants.WEB_IMG_URL_UPLOADS+item.getData().data.img);
+        }
         helper.setText(R.id.tv_title, item.getData().subject)
                 .setText(R.id.tv_content,  item.getData().content)
                 .setText(R.id.tv_time,  item.created_at);
