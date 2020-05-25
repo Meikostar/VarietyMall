@@ -245,7 +245,6 @@ public class ConsumeFragment extends BaseFragment {
                                 startActivity(intent);
                             } else {
                                 Intent intent = new Intent(getActivity(), WebViewActivity.class);
-
                                 intent.putExtra(WebViewActivity.WEBTITLE, game.title);
                                 intent.putExtra(WebViewActivity.WEBURL, game.url);
                                 startActivity(intent);

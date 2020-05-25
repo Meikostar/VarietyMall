@@ -35,6 +35,7 @@ import com.smg.variety.bean.FriendListItemDto;
 import com.smg.variety.bean.FriendPageDto;
 import com.smg.variety.bean.GAME;
 import com.smg.variety.bean.GiftBean;
+import com.smg.variety.bean.GroupDto;
 import com.smg.variety.bean.GroupInfoDto;
 import com.smg.variety.bean.GroupListDto;
 import com.smg.variety.bean.HeadLineDetailDto;
@@ -49,6 +50,7 @@ import com.smg.variety.bean.LiveMessageInfo;
 import com.smg.variety.bean.LiveVideoInfo;
 import com.smg.variety.bean.LoginDto;
 import com.smg.variety.bean.MemberDto;
+import com.smg.variety.bean.MhSearchDto;
 import com.smg.variety.bean.MyOrderDto;
 import com.smg.variety.bean.MyOrderLogisticsDto;
 import com.smg.variety.bean.NewListItemDto;
@@ -136,6 +138,47 @@ public interface RetrofitService {
      */
     @POST("api/live/chatter")
     Single<Object> joinChatter(@Header("Authorization") String token,@QueryMap Map<String, String> map);
+
+    /**
+     * 获取群相关信息
+     */
+    @POST("/api/group/quit_group")
+    Single<HttpResult<Object>> QuitGroup(@Header("Authorization") String token, @Query("group_id") String groupId);
+    /**
+     * 获取群相关信息
+     */
+    @DELETE("/api/group/del_group")
+    Single<HttpResult<Object>> DelGroup(@Header("Authorization") String token, @Query("group_id") String groupId);
+
+    /**
+     * 搜索好友或者群组
+     */
+    @GET("api/friend/gof")
+    Single<MhSearchDto> getMhSearchInfo(@Header("Authorization") String token, @Query("name") String name);
+    /**
+     * 修改群昵称
+     */
+    @POST("api/group/edit_group_name")
+    Single<HttpResult<Object>> edGroupName(@Header("Authorization") String token, @Query("group_id") String group_id, @Query("group_name") String group_name);
+    /**
+     * 修改群公告
+     */
+    @POST("api/group/edit_group_notice")
+    Single<HttpResult<Object>> edGroupNotice(@Header("Authorization") String token, @Query("group_id") String group_id, @Query("notice") String notice);
+
+
+    /**
+     * 修改用户群昵称
+     */
+    @POST("api/group/edit_group_nickname")
+    Single<HttpResult<Object>> edGroupNick(@Header("Authorization") String token, @Query("group_id") String group_id, @Query("group_nickname") String group_nickname);
+
+    /**
+     * 修改用户备注名
+     */
+    @POST("api/friend/update_remark_name")
+    Single<HttpResult<Object>> edFriendRemark(@Header("Authorization") String token, @Query("friend_user_id") String friend_user_id, @Query("remark_name") String remark_name);
+
     /**
      * 用户注册接口
      */
@@ -683,11 +726,17 @@ public interface RetrofitService {
     @DELETE("api/group/del_user")
     Single<HttpResult<Object>> delGroupUser(@Header("Authorization") String token, @Query("group_id") String groupId, @Query("ar_user_id") List<String> userIdArr);
 
+//    /**
+//     * 发起群聊
+//     */
+//    @POST("api/group/add_group")
+//    Single<HttpResult<Object>> creGroup(@Header("Authorization") String token, @Query("group_name") String groupName, @Query("type") int type, @Query("ar_user_id") List<String> userIdArr);
+//
     /**
      * 发起群聊
      */
     @POST("api/group/add_group")
-    Single<HttpResult<Object>> creGroup(@Header("Authorization") String token, @Query("group_name") String groupName, @Query("type") int type, @Query("ar_user_id") List<String> userIdArr);
+    Single<HttpResult<GroupDto>> creGroup(@Header("Authorization") String token, @Query("group_name") String groupName, @Query("type") int type, @QueryMap HashMap<String, String> map);
 
     /**
      * 新朋友验证列表

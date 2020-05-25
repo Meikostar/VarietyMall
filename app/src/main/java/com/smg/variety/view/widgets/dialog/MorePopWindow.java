@@ -17,8 +17,8 @@ import com.yzq.zxinglibrary.bean.ZxingConfig;
 import com.yzq.zxinglibrary.common.Constant;
 import com.smg.variety.R;
 import com.smg.variety.common.Constants;
-import com.smg.variety.view.mainfragment.chat.AddFriendActivity;
-import com.smg.variety.view.mainfragment.chat.CreatGroupActivity;
+import com.smg.variety.rong.chat.AddFriendActivity;
+import com.smg.variety.rong.chat.CreatGroupActivity;
 
 public class MorePopWindow extends PopupWindow {
     private FragmentActivity mContext;

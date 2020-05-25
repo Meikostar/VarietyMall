@@ -37,25 +37,76 @@
             android:layout_marginRight="@dimen/bj_10dp"
             android:background="@mipmap/icon_add_friend_black" />
     </RelativeLayout>
-
-    <!--群组-->
     <RelativeLayout
         android:id="@+id/rl_contacts_item_scan"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/bj_50dp"
-        android:layout_marginTop="@dimen/bj_20dp"
-        android:background="@color/my_color_white"
-        android:paddingLeft="@dimen/bj_13dp"
-        android:paddingRight="@dimen/bj_13dp">
+        android:layout_height="55dp"
+        android:layout_marginTop="@dimen/bj_10dp"
+        android:background="@color/my_color_white">
+
+        <ImageView
+            android:layout_marginLeft="@dimen/bj_13dp"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:id="@+id/iv_add_friends"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/group_chat"/>
+
+
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/iv_add_friends"
+            android:layout_marginLeft="@dimen/bj_10dp"
             android:layout_centerVertical="true"
-            android:drawablePadding="@dimen/bj_15dp"
-            android:gravity="center"
             android:text="群聊"
-            android:textColor="@color/my_color_333333"
-            android:textSize="@dimen/wz_16sp" />
+            android:textColor="@color/my_color_black"
+            android:textSize="@dimen/wz_16sp"/>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#f5f5f5"/>
+    <RelativeLayout
+        android:id="@+id/layout_add_friend"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/my_color_white">
+        <FrameLayout
+            android:layout_marginLeft="9dp"
+            android:id="@+id/fl_layout"
+            android:layout_centerVertical="true"
+            android:layout_width="45dp"
+            android:layout_height="45dp">
+            <ImageView
+                android:layout_gravity="center"
+                android:id="@+id/iv_add_friend"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@mipmap/img_add_friend"/>
+
+            <com.smg.variety.rong.widget.DragPointView.PointView
+                android:visibility="gone"
+                android:id="@+id/seal_num"
+                android:layout_width="19dp"
+                android:layout_height="19dp"
+                android:layout_gravity="right"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/fl_layout"
+            android:layout_marginLeft="@dimen/bj_7dp"
+            android:layout_centerVertical="true"
+            android:text="新的朋友"
+            android:textColor="@color/my_color_black"
+            android:textSize="@dimen/wz_16sp"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -73,20 +124,18 @@
             android:layout_centerInParent="true"
             android:drawablePadding="@dimen/bj_5dp"
             android:gravity="center"
-            android:hint="搜索"
+            android:hint="搜 索"
             android:textColor="@color/my_color_535353"
-            android:textSize="@dimen/wz_13sp" />
-        <com.smg.variety.view.widgets.autoview.ClearEditText
+            android:textSize="@dimen/wz_15sp" />
+        <TextView
             android:id="@+id/et_contacts_search_str"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:background="@null"
-            android:imeOptions="actionSearch"
             android:singleLine="true"
             android:textColor="@color/my_color_333333"
-            android:textSize="12sp" />
+            android:textSize="14sp" />
     </RelativeLayout>
 
     <RelativeLayout

@@ -13,6 +13,7 @@ public class HttpResult<T> {
     private int status_code;
     private Object debug;
     private T data;
+    public T group;
     private T live_apply;
     public T seller;
     private T live_video;

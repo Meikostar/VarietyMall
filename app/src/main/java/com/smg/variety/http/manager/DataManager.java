@@ -36,6 +36,7 @@ import com.smg.variety.bean.FriendListItemDto;
 import com.smg.variety.bean.FriendPageDto;
 import com.smg.variety.bean.GAME;
 import com.smg.variety.bean.GiftBean;
+import com.smg.variety.bean.GroupDto;
 import com.smg.variety.bean.GroupInfoDto;
 import com.smg.variety.bean.GroupListDto;
 import com.smg.variety.bean.HeadLineDetailDto;
@@ -50,6 +51,7 @@ import com.smg.variety.bean.LiveMessageInfo;
 import com.smg.variety.bean.LiveVideoInfo;
 import com.smg.variety.bean.LoginDto;
 import com.smg.variety.bean.MemberDto;
+import com.smg.variety.bean.MhSearchDto;
 import com.smg.variety.bean.MyOrderDto;
 import com.smg.variety.bean.MyOrderLogisticsDto;
 import com.smg.variety.bean.NewListItemDto;
@@ -168,7 +170,66 @@ public class DataManager {
                 .map(new HttpResultMapper.HttpResultOtheData<>(null));
         subscribe(observable, observer);
     }
-
+    /**
+     * 修改群昵称
+     */
+    public void edGroupName(DefaultSingleObserver<HttpResult<Object>> observer, String groupId, String groupName) {
+        Single<HttpResult<Object>> observable = retrofitService.edGroupName(getToken(), groupId, groupName)
+                .map(new HttpResultMapper.HttpResultOtheData<>(null));
+        subscribe(observable, observer);
+    }
+    /**
+     * 修改群公告
+     */
+    public void edGroupNotice(DefaultSingleObserver<HttpResult<Object>> observer, String groupId, String notice) {
+        Single<HttpResult<Object>> observable = retrofitService.edGroupNotice(getToken(), groupId, notice)
+                .map(new HttpResultMapper.HttpResultOtheData<>(null));
+        subscribe(observable, observer);
+    }
+    /**
+     * 修改用户群昵称
+     */
+    public void edGroupNick(DefaultSingleObserver<HttpResult<Object>> observer, String groupId, String groupNickname) {
+        Single<HttpResult<Object>> observable = retrofitService.edGroupNick(getToken(), groupId, groupNickname)
+                .map(new HttpResultMapper.HttpResultOtheData<>(null));
+        subscribe(observable, observer);
+    }
+    /**
+     * 更新好友备注名称
+     */
+    public void edFriendRemark(DefaultSingleObserver<HttpResult<Object>> observer, String friend_user_id, String remark_name) {
+        Single<HttpResult<Object>> observable = retrofitService.edFriendRemark(getToken(), friend_user_id, remark_name)
+                .map(new HttpResultMapper.HttpResultOtheData<>(null));
+        subscribe(observable, observer);
+    }
+    /**
+     * 获取群相关信息
+     *
+     * @param observer
+     */
+    public void QuitGroup(DefaultSingleObserver<HttpResult<Object>> observer, String groupId) {
+        Single<HttpResult<Object>> observable = retrofitService.QuitGroup(getToken(), groupId)
+                .map(new HttpResultMapper.HttpResultOtheData<>(null));
+        subscribe(observable, observer);
+    }
+    /**
+     * 获取群相关信息
+     *
+     * @param observer
+     */
+    public void DelGroup(DefaultSingleObserver<HttpResult<Object>> observer, String groupId) {
+        Single<HttpResult<Object>> observable = retrofitService.DelGroup(getToken(), groupId)
+                .map(new HttpResultMapper.HttpResultOtheData<>(null));
+        subscribe(observable, observer);
+    }
+    /**
+     * 搜索好友或者群组
+     */
+    public void getMhSearchInfo(DefaultSingleObserver<MhSearchDto> observer, String name) {
+        Single<MhSearchDto> observable = retrofitService.getMhSearchInfo(getToken(), name)
+                .map(new HttpResultMapper.HttpResultOtheData<>(null));
+        subscribe(observable, observer);
+    }
     public void quitChatter(DefaultSingleObserver<Object> observer, Map<String, String> map) {
         Single<Object> observable = retrofitService.quitChatter(getToken(),map)
                 .map(new HttpResultMapper.HttpResultOtheData<>(null));
@@ -758,15 +819,31 @@ public class DataManager {
     }
 
 
+//    /**
+//     * 发起群聊
+//     */
+//    public void creGroup(DefaultSingleObserver<HttpResult<Object>> observer, String groupName, List<String> userIdArr) {
+//        Single<HttpResult<Object>> observable = retrofitService.creGroup(getToken(), groupName, 1, userIdArr)
+//                .map(new HttpResultMapper.HttpResultOtheData<>(null));
+//        subscribe(observable, observer);
+//    }
+
+
     /**
      * 发起群聊
      */
-    public void creGroup(DefaultSingleObserver<HttpResult<Object>> observer, String groupName, List<String> userIdArr) {
-        Single<HttpResult<Object>> observable = retrofitService.creGroup(getToken(), groupName, 1, userIdArr)
+    public void creGroup(DefaultSingleObserver<HttpResult<GroupDto>> observer, String groupName, List<String> userIdArr) {
+
+        HashMap<String, String> map = new HashMap<String, String>();
+        for (int i = 0; i < userIdArr.size(); i++) {
+
+            map.put("ar_user_id[" + i + "]", userIdArr.get(i));
+
+        }
+        Single<HttpResult<GroupDto>> observable = retrofitService.creGroup(getToken(), groupName, 1, map)
                 .map(new HttpResultMapper.HttpResultOtheData<>(null));
         subscribe(observable, observer);
     }
-
     /**
      * 新朋友验证列表
      */

@@ -18,9 +18,9 @@ import com.smg.variety.R;
 import com.smg.variety.qiniu.chatroom.panel.EmojiBoard;
 import com.smg.variety.qiniu.chatroom.panel.EmojiManager;
 
-//import com.zhangjiajie.love.R;
-//import com.zhangjiajie.love.qiniu.chatroom.panel.EmojiBoard;
-//import com.zhangjiajie.love.qiniu.chatroom.panel.EmojiManager;
+//import com.smg.variety.R;
+//import com.smg.variety.qiniu.chatroom.panel.EmojiBoard;
+//import com.smg.variety.qiniu.chatroom.panel.EmojiManager;
 
 public class InputPanel extends LinearLayout {
 

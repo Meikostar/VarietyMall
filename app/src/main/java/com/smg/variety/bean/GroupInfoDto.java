@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class GroupInfoDto implements Serializable{
     private String id;
     private String userId;
+    public String user_id;
     private String group_name;
     private String avatar;
     private String notice;

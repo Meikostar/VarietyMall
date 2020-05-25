@@ -62,6 +62,8 @@ public class WebViewActivity extends BaseActivity {
         ButterKnife.bind(this);
         Intent intent = getIntent();
          urls =intent.getStringExtra(WEBURL);
+         urls=urls+"?time="+System.currentTimeMillis();
+
         String webTitle = intent.getStringExtra(WEBTITLE);
         type = intent.getIntExtra(TYPE, -1);
 

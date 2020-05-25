@@ -108,7 +108,7 @@ public class ProductLabeAdapter extends BaseQuickAdapter<NewListItemDto, BaseVie
             });
         }else {
             iv_sj.setVisibility(View.GONE);
-            tvSj.setText("推广挣¥"+item.save_money);
+            tvSj.setText("推广赚  ¥"+item.save_money);
         }
         helper.setText(R.id.tv_price, item.getPrice());
         GlideUtils.getInstances().loadProcuctNormalImg(mContext, helper.getView(R.id.iv_collect_goods_icon),  item.getCover());

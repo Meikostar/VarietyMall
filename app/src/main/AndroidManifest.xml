@@ -351,22 +351,22 @@
             android:name="com.smg.variety.view.activity.EnterpriseProfileActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.smg.variety.view.mainfragment.chat.UserDetailActivity"
+            android:name=".rong.chat.AddFriendActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.smg.variety.view.mainfragment.chat.AddFriendActivity"
+            android:name="com.smg.variety.rong.chat.ModifyGroupActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.smg.variety.view.mainfragment.chat.ModifyGroupActivity"
+            android:name="com.smg.variety.rong.chat.NewFriendListActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.smg.variety.view.mainfragment.chat.NewFriendListActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.smg.variety.view.mainfragment.chat.CreatGroupActivity"
+            android:name="com.smg.variety.rong.chat.CreatGroupActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.smg.variety.view.mainfragment.consume.CommodityDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".rong.chat.UserDetailActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.smg.variety.view.mainfragment.consume.ShopCartActivity"

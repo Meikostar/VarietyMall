@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:paddingTop="@dimen/bj_24dp"
+    android:orientation="vertical">
+    <include layout="@layout/layout_title_view" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/my_color_F5F5F5">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/bj_70dp"
+            android:layout_marginLeft="@dimen/bj_20dp"
+            android:layout_marginRight="@dimen/bj_20dp"
+            android:paddingTop="@dimen/bj_20dp"
+            android:paddingBottom="@dimen/bj_20dp"
+            android:background="@color/my_color_FFFFFF"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:id="@+id/rl_mine_user_info"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical">
+                <com.scwang.smartrefresh.header.material.CircleImageView
+                    android:id="@+id/civ_user_avatar"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/bj_20dp"
+                    android:src="@mipmap/ic_head_img"
+                    app:border_color="#FFFFFF"
+                    app:border_width="2dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/bj_20dp"
+                    android:layout_toRightOf="@+id/civ_user_avatar"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/tv_user_name"
+                        android:layout_width="@dimen/bj_140dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="#ff000000"
+                        android:textSize="14sp"
+                        android:singleLine="true"
+                        android:ellipsize="end"/>
+                    <TextView
+                        android:id="@+id/tv_user_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/bj_10dp"
+                        android:textColor="#ff000000"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingTop="25dp">
+                    <ImageView
+                        android:id="@+id/img_qrcode"
+                        android:layout_width="@dimen/bj_160dp"
+                        android:layout_height="@dimen/bj_160dp"
+                        android:layout_centerHorizontal="true"
+                        android:src="@mipmap/img_default_1" />
+                    <TextView
+                        android:id="@+id/btn_save_qcode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/bj_20dp"
+                        android:layout_centerHorizontal="true"
+                        android:text="扫一扫上方二维码图案，加我好友"
+                        android:textSize="12sp"
+                        android:textColor="@color/my_color_999999" />
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

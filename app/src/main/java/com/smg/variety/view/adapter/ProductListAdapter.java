@@ -64,7 +64,7 @@ public class ProductListAdapter extends BaseQuickAdapter<NewListItemDto, BaseVie
                 });
             }else {
                 iv_sj.setVisibility(View.GONE);
-                tvSj.setText("推广挣¥"+item.save_money);
+                tvSj.setText("推广赚  ¥"+item.save_money);
             }
 
             if (item.brand != null &&item.brand.data != null &&item.brand.category != null && item.brand.data.category.data != null && !TextUtils.isEmpty(item.brand.data.category.data.title)) {

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/my_color_FFFFFF"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:id="@+id/group_redpacket_friend_top_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bj_68dp"
+        android:paddingTop="@dimen/bj_34dp">
+        <ImageView
+            android:id="@+id/iv_title_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/bj_15dp"
+            android:paddingRight="@dimen/bj_15dp"
+            android:paddingTop="@dimen/bj_5dp"
+            android:src="@mipmap/arrow_topbar" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal"
+            android:id="@+id/linearLayout">
+            <TextView
+                android:id="@+id/group_redpacket_friend_title"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="积分红包好友圈"
+                android:textColor="@color/my_color_black"
+                android:textSize="@dimen/wz_18sp"/>
+            <TextView
+                android:id="@+id/tv_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(0)"
+                android:textColor="@color/my_color_black"
+                android:textSize="@dimen/wz_18sp" />
+        </LinearLayout>
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/my_color_F5F5F5"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/bj_10dp"
+        android:paddingRight="@dimen/bj_10dp"
+        android:paddingTop="@dimen/bj_10dp"
+        android:paddingBottom="@dimen/bj_10dp"
+        android:orientation="vertical"
+        android:background="@color/my_color_FFFFFF">
+        <com.smg.variety.view.widgets.autoview.NoScrollGridView
+            android:id="@+id/group_members_gv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:horizontalSpacing="@dimen/bj_1dp"
+            android:numColumns="5"
+            android:verticalSpacing="@dimen/bj_5dp" />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/btn_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableTop="@mipmap/icon_group_info_add"
+        android:drawablePadding="@dimen/bj_5dp"
+        android:layout_marginLeft="@dimen/bj_10dp"
+        android:gravity="center"
+        android:text="编辑"
+        android:textSize="@dimen/wz_11sp" />
+</LinearLayout>

@@ -63,7 +63,7 @@ public class TypeFactoryAdapter extends BaseQuickAdapter<ProductDto, BaseViewHol
                 });
             }else {
                 iv_sj.setVisibility(View.GONE);
-                tvSj.setText("推广挣¥"+item.save_money);
+                tvSj.setText("推广赚  ¥"+item.save_money);
             }
         }
     }

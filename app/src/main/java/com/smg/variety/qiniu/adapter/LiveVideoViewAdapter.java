@@ -11,12 +11,12 @@ import com.smg.variety.qiniu.chatroom.message.ChatroomWelcome;
 
 import io.rong.imlib.model.MessageContent;
 import io.rong.message.TextMessage;
-//import com.zhangjiajie.love.R;
-//import com.zhangjiajie.love.qiniu.chatroom.message.ChatroomGift;
-//import com.zhangjiajie.love.qiniu.chatroom.message.ChatroomJifen;
-//import com.zhangjiajie.love.qiniu.chatroom.message.ChatroomLike;
-//import com.zhangjiajie.love.qiniu.chatroom.message.ChatroomUserQuit;
-//import com.zhangjiajie.love.qiniu.chatroom.message.ChatroomWelcome;
+//import com.smg.variety.R;
+//import com.smg.variety.qiniu.chatroom.message.ChatroomGift;
+//import com.smg.variety.qiniu.chatroom.message.ChatroomJifen;
+//import com.smg.variety.qiniu.chatroom.message.ChatroomLike;
+//import com.smg.variety.qiniu.chatroom.message.ChatroomUserQuit;
+//import com.smg.variety.qiniu.chatroom.message.ChatroomWelcome;
 //
 //import io.rong.imlib.model.MessageContent;
 //import io.rong.message.TextMessage;

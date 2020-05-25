@@ -103,7 +103,7 @@ public class ConsumePushAdapter extends BaseQuickAdapter<NewListItemDto, BaseVie
                 });
             }else {
                 iv_sj.setVisibility(View.GONE);
-                tvSj.setText("推广挣¥"+item.save_money);
+                tvSj.setText("推广赚  ¥"+item.save_money);
             }
 
             GlideUtils.getInstances().loadProcuctNormalImg(mContext, helper.getView(R.id.iv_item_consume_push_img), item.getCover());

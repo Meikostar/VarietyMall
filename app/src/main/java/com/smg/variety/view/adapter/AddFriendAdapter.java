@@ -11,7 +11,7 @@ import com.smg.variety.R;
 import com.smg.variety.bean.UserInfoDto;
 import com.smg.variety.common.Constants;
 import com.smg.variety.common.utils.GlideUtils;
-import com.smg.variety.view.mainfragment.chat.UserDetailActivity;
+import com.smg.variety.rong.chat.UserDetailActivity;
 
 import java.util.List;
 

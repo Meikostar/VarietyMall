@@ -31,6 +31,36 @@ public class Constants {
     public static final String WX_APP_ID = "wxa560863512d48f9c";
     public static final String WX_LOGIN_BROADCAST = "wx_login_broadcast";
     public static final String INTENT_CODE = "code";
+
+    public static final String INTENT_DATA = "data";
+    public static final String INTENT_AREA_NAME = "area_name";
+    public static final int INTENT_REQUESTCODE_AREA = 10;
+
+    public static final int INTENT_ADD_FRIEND = 160;
+    public static final int INTENT_REQUESTCODE_PUBLISH = 1010;
+    public static final int INTENT_REQUESTCODE_PUBLISH_IMG = 80;
+    public static final String IMAGEITEM_DEFAULT_ADD = "default_add";
+
+    public static final String ADD_FRIEND_MESSAGE = "添加好友:我是";
+    public static final String BROADCAST_CHAT = "broadcast_chat";
+    public static final String INTENT_WEB_URL = "web_url";
+    public static final String INTENT_WEB_TITLE = "web_title";
+    public static final String INTENT_LOGISTICS_NO = "logistics_no";
+    public static final String ADDRESS_ID = "address_id";
+    /*群ID*/
+    public static final String GROUP_ID = "group_Id";
+    /*群头像*/
+    public static final String GROUP_HEAD = "group_head";
+    /*群公告*/
+    public static final String GROUP_NOTICE = "group_notice";
+    /*本群昵称*/
+    public static final String GROUP_NICK = "group_nick";
+    /*群名*/
+    public static final String GROUP_NAME = "group_name";
+    /*好友ID*/
+    public static final String FRIEND_ID = "friend_id";
+    /*好友备注*/
+    public static final String FRIEND_REMARK = "friend_remark";
     /**
      * 保存本地图片基地址
      */
@@ -123,31 +153,9 @@ public class Constants {
     public static final int INTENT_REQUESTCODE_VERIFIED_IMG5 = 90;
     public static final int INTENT_REQUESTCODE_VERIFIED_IMG6 = 100;
 
-    public static final String INTENT_DATA = "data";
-    public static final String INTENT_AREA_NAME = "area_name";
-    public static final int INTENT_REQUESTCODE_AREA = 10;
-
-    public static final int INTENT_ADD_FRIEND = 160;
-    public static final int INTENT_REQUESTCODE_PUBLISH = 1010;
-    public static final int INTENT_REQUESTCODE_PUBLISH_IMG = 80;
-    public static final String IMAGEITEM_DEFAULT_ADD = "default_add";
-
-    public static final String ADD_FRIEND_MESSAGE = "添加好友:我是";
-    public static final String BROADCAST_CHAT = "broadcast_chat";
-    public static final String INTENT_WEB_URL = "web_url";
-    public static final String INTENT_WEB_TITLE = "web_title";
-	    public static final String INTENT_LOGISTICS_NO = "logistics_no";
-    public static final String ADDRESS_ID = "address_id";
-    /*群ID*/
-    public static final String GROUP_ID = "group_Id";
-    /*群头像*/
-    public static final String GROUP_HEAD = "group_head";
     /*群公告*/
     public static final String GROUP_REMARK = "group_remark";
     /*本群昵称*/
-    public static final String GROUP_NICK = "group_nick";
-    /*群名*/
-    public static final String GROUP_NAME = "group_name";
     /*类型*/
     public static final String TYPE = "type";
     public static final int HOME_REQUEST_CODE_SCAN = 1003;

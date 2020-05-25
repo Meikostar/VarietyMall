@@ -31,7 +31,7 @@
     <color name="my_color_18B1">#18B118</color>
     <color name="my_color_FF0">#FF0000</color>
 
-
+    <color name="linecolor">#cccccc</color>
     <color name="content_bg">#F3F3F3</color>
     <color name="my_color_3a3a">#3a3a3a</color>
     <color name="my_color_0266ca">#0266ca</color>

@@ -15,6 +15,7 @@ public class CommodityDetailInfoDto implements Serializable {
     private String       shopId;
     private String       title;
     private String       product_no;
+    public String       video;
     private String       cover;
     private List<String> imgs;
     public List<String> labels;

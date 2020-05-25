@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/my_color_FFFFFF">
+    <LinearLayout
+        android:id="@+id/integral_top_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bj_65dp"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/bj_25dp"
+        android:paddingBottom="@dimen/bj_10dp">
+        <ImageView
+            android:id="@+id/iv_integral_back"
+            android:layout_width="29dp"
+            android:layout_height="29dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:padding="5dp"
+            android:src="@mipmap/arrow_topbar" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/integral_top_layout"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/bj_50dp"/>
+        <TextView
+            android:id="@+id/open_red_packet_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/bj_14dp"
+            android:text="等待确认收款"
+            android:textColor="@color/my_color_black"
+            android:textSize="@dimen/wz_14sp" />
+        <LinearLayout
+            android:layout_marginTop="@dimen/bj_40dp"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_open_integral_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="0"
+                android:textColor="@color/my_color_333333"
+                android:textSize="36sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="  积分"
+                android:textColor="@color/my_color_666666"
+                android:textSize="@dimen/wz_16sp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/but_send_submit"
+
+            android:background="#2aa145"
+            android:layout_width="180dp"
+            android:layout_marginTop="@dimen/bj_50dp"
+            android:text="确认收钱" />
+        <TextView
+            android:id="@+id/open_integral_score_notice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="65dp"
+            android:text="1天内未确认，将退还到原账户"
+            android:textColor="@color/my_color_black"
+            android:textSize="@dimen/wz_12sp"/>
+        <TextView
+            android:id="@+id/open_integral_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:layout_marginLeft="@dimen/bj_5dp"
+            android:text="转账时间"
+            android:textColor="@color/my_color_999999"
+            android:textSize="@dimen/wz_12sp"/>
+    </LinearLayout>
+</RelativeLayout>

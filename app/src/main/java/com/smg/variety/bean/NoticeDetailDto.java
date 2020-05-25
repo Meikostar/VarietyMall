@@ -6,17 +6,17 @@ import java.io.Serializable;
  * Created by rzb on 2019/7/10.
  */
 public class NoticeDetailDto implements Serializable {
-    private String send_user_id;
+    public String send_user_id;
     public String content;
     public String title;
-    private String opt_type;
-    private String msg_type;
-    public String type;
+    public String opt_type;
+    public String msg_type;
     public String subject;
+    public String created_at;
+    public String type;
     public String id;
-    public String img;
 
-    public NoticeDetailDto data;
+    public NoticOrderImgDto data;
 
     public String getSend_user_id() {
         return send_user_id;
@@ -48,5 +48,33 @@ public class NoticeDetailDto implements Serializable {
 
     public void setMsg_type(String msg_type) {
         this.msg_type = msg_type;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public NoticOrderImgDto getData() {
+        return data;
+    }
+
+    public void setData(NoticOrderImgDto data) {
+        this.data = data;
+    }
+
+    public String getTitle() {
+        return title;
     }
 }

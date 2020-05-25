@@ -7,17 +7,15 @@ import java.io.Serializable;
  */
 
 public class NoticeDto implements Serializable {
-    private String id;
+    public String id;
     private String type;
     private NoticeDetailDto data;
     private String read_at;
     public String created_at;
-    private String updated_at;
-    public String subject;
-    public String content;
+    public String updated_at;
     public String title;
+    public String content;
 
-    public String img;
     public String getId() {
         return id;
     }
@@ -64,5 +62,21 @@ public class NoticeDto implements Serializable {
 
     public void setUpdated_at(String updated_at) {
         this.updated_at = updated_at;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }

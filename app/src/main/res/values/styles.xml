@@ -415,4 +415,27 @@
         <attr name="bezierFactor" format="integer" />
         <attr name="anim_duration" format="integer" />
     </declare-styleable>
+
+
+    <style name="chat_search_button_style" parent="@android:style/Widget.CompoundButton.RadioButton">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">80dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:button">@null</item>
+        <item name="android:textSize">@dimen/wz_14sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@drawable/chat_top_text_color</item>
+    </style>
+    <style name="Dialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowFrame">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+        <!--<item name="android:windowIsTranslucent">false</item>-->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 除去title -->
+        <!-- <item name="android:windowContentOverlay">@android:color/transparent</item>-->
+        <!--<item name="android:backgroundDimEnabled">false</item>-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+
+        <!-- 除去背景色 -->
+    </style>
 </resources>
